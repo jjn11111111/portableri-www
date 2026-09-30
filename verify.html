@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verify · PortAbleRI · FNEC</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    main { max-width: 40rem; margin: 6rem auto 3rem; padding: 0 1.25rem; }
+    h1, h2 { font-family: Georgia, serif; color: var(--gold); }
+    h2 { font-size: 1.15rem; margin-top: 2.5rem; }
+    textarea, input[type="text"] {
+      width: 100%; font-family: ui-monospace, monospace; font-size: 0.85rem;
+      background: #12121a; color: var(--off); border: 1px solid #334155;
+      border-radius: 8px; padding: 0.75rem;
+    }
+    button {
+      margin-top: 0.75rem; background: var(--teal); color: var(--hinge);
+      border: none; padding: 0.6rem 1.2rem; font-weight: 700; border-radius: 8px; cursor: pointer;
+    }
+    button.btn-ghost-inline {
+      background: transparent; color: var(--teal); border: 1px solid rgba(2, 195, 154, 0.4);
+    }
+    .result { margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 600; }
+    .ok { background: #022c22; color: var(--teal); border: 1px solid var(--teal); }
+    .bad { background: #3f0d12; color: #fca5a5; border: 1px solid var(--coral); }
+    label { display: block; margin: 1rem 0 0.35rem; color: var(--gold); font-size: 0.9rem; }
+    .mono-sm { font-family: ui-monospace, monospace; font-size: 0.72rem; word-break: break-all; opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Verify locally</h1>
+    <p>Paste SHA-256 (64 hex chars) and file text to check match. Runs in your browser — nothing uploaded.</p>
+
+    <h2>Trust manifest (coordination CDN)</h2>
+    <p style="font-size:0.9rem;opacity:0.85">Step 3 of onboarding — verify pinned manifest self-hash before constitution ack.</p>
+    <label for="pinned-manifest-hash">Optional pinned manifest_sha256</label>
+    <input id="pinned-manifest-hash" type="text" placeholder="64-character hex (leave empty to skip pin)" maxlength="64" autocomplete="off" />
+    <button type="button" class="btn-ghost-inline" id="verify-manifest">Load &amp; verify /.well-known manifest</button>
+    <div id="manifest-out" class="result" hidden></div>
+    <p id="manifest-detail" class="mono-sm" style="margin-top:0.5rem"></p>
+
+    <h2>File or Crystal</h2>
+    <label for="expected">Expected hash (from .sha256 sidecar)</label>
+    <input id="expected" type="text" placeholder="64-character hex" maxlength="64" autocomplete="off" />
+
+    <label for="content">File content (paste Crystal or manifest JSON)</label>
+    <textarea id="content" rows="12" placeholder="Paste file contents here…"></textarea>
+
+    <button type="button" id="go">Compute &amp; compare</button>
+    <div id="out" class="result" hidden></div>
+
+    <p style="margin-top:2rem;font-size:0.85rem;color:#94a3b8;">
+      <a href="onboarding.html">Onboarding</a> ·
+      FAM (FNEC admission map) requires fortress manifest hash + provenance exit 0.
+      <a href="shock-awe.html">PortAbleRI evidence</a> ·
+      <a href="review.html">Scholarly review</a>
+    </p>
+  </main>
+  <script type="module">
+    import { fetchTrustManifest, verifyTrustManifest } from './js/portableri-trust.js';
+
+    async function sha256(text) {
+      const enc = new TextEncoder().encode(text);
+      const buf = await crypto.subtle.digest('SHA-256', enc);
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    document.getElementById('verify-manifest').onclick = async () => {
+      const out = document.getElementById('manifest-out');
+      const detail = document.getElementById('manifest-detail');
+      const pin = document.getElementById('pinned-manifest-hash').value.trim().toLowerCase();
+      out.hidden = false;
+      try {
+        const manifest = await fetchTrustManifest();
+        const v = await verifyTrustManifest(manifest);
+        if (!v.ok) {
+          out.className = 'result bad';
+          out.textContent = 'MANIFEST INVALID — ' + v.error;
+          detail.textContent = '';
+          return;
+        }
+        if (pin && pin !== manifest.manifest_sha256) {
+          out.className = 'result bad';
+          out.textContent = 'PIN MISMATCH — do not onboard against this manifest.';
+          detail.textContent = 'got: ' + manifest.manifest_sha256;
+          return;
+        }
+        out.className = 'result ok';
+        out.textContent = pin
+          ? 'MATCH — manifest verified and pin OK.'
+          : 'MATCH — manifest self-hash OK (no pin set).';
+        detail.textContent =
+          'constitution ' +
+          manifest.constitution.version +
+          ' · ' +
+          manifest.constitution.sha256.slice(0, 16) +
+          '… · anchors: ' +
+          manifest.publish_anchors.length;
+      } catch (e) {
+        out.className = 'result bad';
+        out.textContent = 'Fetch failed: ' + e.message;
+        detail.textContent = '';
+      }
+    };
+
+    document.getElementById('go').onclick = async () => {
+      const expected = document.getElementById('expected').value.trim().toLowerCase();
+      const content = document.getElementById('content').value;
+      const out = document.getElementById('out');
+      out.hidden = false;
+      if (!/^[a-f0-9]{64}$/.test(expected)) {
+        out.className = 'result bad';
+        out.textContent = 'Expected hash must be 64 hex characters.';
+        return;
+      }
+      if (!content.length) {
+        out.className = 'result bad';
+        out.textContent = 'Paste file content to hash.';
+        return;
+      }
+      const got = await sha256(content);
+      if (got === expected) {
+        out.className = 'result ok';
+        out.textContent = 'MATCH — record intact (local verify). Export always.';
+      } else {
+        out.className = 'result bad';
+        out.textContent = 'MISMATCH — do not admit node. Hash: ' + got.slice(0, 16) + '…';
+      }
+    };
+  </script>
+</body>
+</html>

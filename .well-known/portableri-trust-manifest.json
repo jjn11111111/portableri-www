@@ -1,0 +1,67 @@
+{
+  "schema": "PortAbleRI-Trust-Manifest-v1",
+  "generated_at": "2026-09-30T00:34:38.302Z",
+  "constitution": {
+    "version": "SO-v0",
+    "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
+    "sha256": "d215b580feac784ee184535ea37166cd041d8c8a581ab921cbed7f265a7e326b"
+  },
+  "publish_anchors": [
+    {
+      "id": "PUBLISH-MASTER-WP",
+      "path": "publish/2026-09-23_KaiRis-Systems_Master-White-Paper_Public-Scholarly-Review_v0.1.md",
+      "sha256": "fedae5e1bdebeab0b3c05dbe6bf4261b6693ac93e0c9bde1b2e1f6f7ac581448"
+    },
+    {
+      "id": "PUBLISH-LRCC",
+      "path": "publish/2026-09-21_LRCC_Load-Relative-Levelized-Cost-of-Compute_White-Paper-Draft.md",
+      "sha256": "b6c502482769d70889e040984bd48d38f863d295155fc602931d9a2ff9286141"
+    },
+    {
+      "id": "PUBLISH-BUILD-X-PHASE1",
+      "path": "publish/2026-09-24_PortAbleRI_Product-Build-X_Phase1-Kernel-Competencies_v0.md",
+      "sha256": "8999120614a6e2eb1116def60f961c714143826e70296408e4e836827c97c351"
+    },
+    {
+      "id": "PUBLISH-INFRA-DOCTRINE-500M",
+      "path": "publish/2026-09-24_PortAbleRI_Infrastructure-Doctrine_500M-Scenario_v0.md",
+      "sha256": "4db53d8db23fb68daa3f487a802ae6575af3d69b508afe2b823b705c658ffff7"
+    },
+    {
+      "id": "PUBLISH-INFRA-DIAGRAM",
+      "path": "publish/2026-09-24_PortAbleRI_Infrastructure-Architecture-Diagram_v0.md",
+      "sha256": "589d5efb8bf26554462ec9fbff89bd62b8c24855d20602f696830f442bfb6bcb"
+    },
+    {
+      "id": "PUBLISH-FAM-ADMISSION-MAP",
+      "path": "publish/2026-09-24_PortAbleRI_FNEC-FAM-Admission-Map-Public_v0.md",
+      "sha256": "0db13a8201e02e1b6de9669d09828b4c1856f0f3dd56b3edae9813c1be60d058"
+    },
+    {
+      "id": "PUBLISH-CROSS-PLATFORM-INTEGRATION",
+      "path": "publish/2026-09-25_PortAbleRI_Cross-Platform-Integration_v0.md",
+      "sha256": "c7f542242794059d74230147ab01cc318ed706cc366fea685b384cbb193a906a"
+    },
+    {
+      "id": "PUBLISH-MYTH-RECORD",
+      "path": "publish/2026-09-26_PortAbleRI_Myth-and-Record_Public-Doctrine_v0.md",
+      "sha256": "97606c32b1d89ebe2b32a069135c3d76a539baabbc642bf2d4cb3c716b2fa258"
+    },
+    {
+      "id": "PUBLISH-HOST-WARHEAD-LOVE-BOMB",
+      "path": "publish/2026-09-26_PortAbleRI_HOST-Warhead_LOVE-BOMB-Public-Framing_v0.md",
+      "sha256": "15d37f301ec3cb593113b5d8925c1528398830706b67211b8e034865e7e29579"
+    },
+    {
+      "id": "PUBLISH-BRAND-CASE-SNIPPET",
+      "path": "publish/2026-09-23_PortAble-RI_Brand-Case-Snippet_v0.md",
+      "sha256": "f4d04d6e8e3d28765e3a79f42b1e40331570cdaa70f8da16449cf32abf4c54e7"
+    },
+    {
+      "id": "PUBLISH-RAW-WAR-ROAR",
+      "path": "publish/2026-09-28_PortAbleRI_RAW-WaR-ROAR_Non-Violent-Reassembly_Public-Framing_v0.md",
+      "sha256": "4fa70c2daadb5b2ce9c6d4de9b38e08d7045de2ec428dd04726920130d778b52"
+    }
+  ],
+  "manifest_sha256": "33d4a299d115fc2631eb309048d05600eef716e3f16acc85c96c3cfe25a0b8e0"
+}

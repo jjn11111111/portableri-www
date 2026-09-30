@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="Family Door · Father library atlas · gated access and audit beacon." />
+  <title>Family library · PortAbleRI · KaiRis Systems</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="brand/assets/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="lineage.html">Lineage</a></li>
+      <li><a href="verify.html">Verify</a></li>
+      <li><a href="family-library.html" aria-current="page">Family library</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <section class="login-section">
+      <div class="section-inner reveal">
+        <div class="login-grid">
+          <div class="login-copy">
+            <p class="eyebrow">Family Door · Tier A Father artifact</p>
+            <h1>KaiRis Library Wiki · V0002</h1>
+            <p class="lead">
+              <strong>Robert Louis Kovach Jr.</strong> authored the atlas (~18k indexed files, graph-backed).
+              HOST holds crystals and hash receipts; the HTML bundle stays on Drive until you open it through this gate.
+            </p>
+            <p class="tier-note">
+              <strong>Lock-down:</strong> Family Door phrase → short-lived token → append-only audit on HOST coordination.
+              Direct Drive links bypass visitor audit (see process doc).
+            </p>
+            <ul style="font-size:0.9rem;opacity:0.9;max-width:36rem">
+              <li>Artifact SHA-256: <code id="artifactSha">c70f4085…652e7</code></li>
+              <li>Crystal: <code>CR-2026-09-29_Bobby_KaiRis-Library-Wiki-V0002_Inventory-Receipt_v0</code></li>
+            </ul>
+          </div>
+
+          <div class="login-panel">
+            <form id="gateForm" class="login-form">
+              <label for="visitorLabel">Your name or seat (optional, hashed)</label>
+              <input id="visitorLabel" name="visitorLabel" type="text" autocomplete="name" maxlength="64" />
+
+              <label for="gateCode">Family Door phrase</label>
+              <input id="gateCode" name="gateCode" type="password" autocomplete="off" required />
+
+              <button class="btn btn-primary" type="submit">Unlock · record visit</button>
+              <p id="gateStatus" class="tier-note" role="status" aria-live="polite"></p>
+            </form>
+
+            <p id="openRow" hidden>
+              <a id="openLibrary" class="btn btn-ghost" href="#" rel="noopener noreferrer">
+                Open Father library on Drive
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const COORD = window.PORTABLERI_COORD_URL || 'http://127.0.0.1:8787';
+      const DRIVE_VIEW =
+        'https://drive.google.com/file/d/1UAMX4Rx71ihEooRf20_w7WS4bsNGvTgn/view?usp=sharing';
+      const form = document.getElementById('gateForm');
+      const status = document.getElementById('gateStatus');
+      const openRow = document.getElementById('openRow');
+      const openLibrary = document.getElementById('openLibrary');
+      let sessionToken = sessionStorage.getItem('pari_library_token');
+
+      async function beacon(event) {
+        const token = sessionStorage.getItem('pari_library_token');
+        if (!token) return;
+        try {
+          await fetch(COORD + '/v1/library/access-beacon', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token, event }),
+          });
+        } catch (_) {
+          /* coordination offline — gate still works locally */
+        }
+      }
+
+      function showUnlocked() {
+        openRow.hidden = false;
+        openLibrary.href = DRIVE_VIEW;
+        status.textContent = 'Gate open · audit beacon armed for this session.';
+      }
+
+      if (sessionToken) {
+        showUnlocked();
+        beacon('page_view');
+      }
+
+      openLibrary.addEventListener('click', function () {
+        beacon('artifact_open');
+      });
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        status.textContent = 'Verifying…';
+        const gate_code = document.getElementById('gateCode').value;
+        const visitor_label = document.getElementById('visitorLabel').value;
+        try {
+          const res = await fetch(COORD + '/v1/library/gate-exchange', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ gate_code, visitor_label }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            status.textContent = data.error || 'Gate denied.';
+            return;
+          }
+          sessionStorage.setItem('pari_library_token', data.token);
+          document.getElementById('gateCode').value = '';
+          showUnlocked();
+          beacon('page_view');
+        } catch (_) {
+          status.textContent =
+            'Coordination server unreachable. Start: cd infra/coordination && npm run serve';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

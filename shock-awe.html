@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Erase What? Host NOT · 4 Entities · PortAbleRI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bat: #990011;
+      --mint: #02c39a;
+      --gold: #f9e795;
+      --ink: #0f172a;
+      --bg: #0a0a0f;
+    }
+    body.shock {
+      background: var(--bg);
+      color: #e2e8f0;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      line-height: 1.45;
+    }
+    .bat-bar {
+      width: 6px;
+      background: var(--bat);
+      border-radius: 3px;
+      flex-shrink: 0;
+      align-self: stretch;
+      min-height: 3rem;
+    }
+    .hero {
+      padding: 3rem 1.5rem 2rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5.5vw, 3.1rem);
+      margin: 0 0 0.35rem;
+      color: #fff;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+    .hero .weapon {
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.75rem;
+    }
+    .hero .tag {
+      color: var(--mint);
+      font-size: 1.1rem;
+      margin: 0 0 0.85rem;
+    }
+    .hero .gold {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+    .cry-block {
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #99001122, #0a0a0f);
+      border: 2px solid #f9e795;
+      border-radius: 16px;
+    }
+    .cry-block p:first-child {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      color: #f9e795;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .cry-block p:last-child {
+      margin: 0.75rem 0 0;
+      font-size: clamp(1.2rem, 3vw, 1.75rem);
+      color: #02c39a;
+      font-weight: 800;
+    }
+    .one-liner {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      max-width: 920px;
+      margin: 0 auto 1.75rem;
+      padding: 0 1.5rem;
+      color: #cbd5e1;
+    }
+    .section-label {
+      max-width: 920px;
+      margin: 0 auto 0.75rem;
+      padding: 0 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .proof-block {
+      max-width: 920px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+    .bench-note {
+      margin: 0 0 1.25rem;
+      padding: 1.15rem 1.35rem;
+      background: #12121a;
+      border: 1px solid #334155;
+      border-left: 4px solid var(--mint);
+      border-radius: 10px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .bench-note strong { color: var(--gold); }
+    .bench-note em { color: var(--mint); font-style: normal; font-weight: 700; }
+    .bench-note .macro {
+      margin: 0.85rem 0 0;
+      padding-top: 0.85rem;
+      border-top: 1px solid #1e293b;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    /* Equal proof tiles — 2×2 squares, stacked, same height */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      align-items: stretch;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+    @media (min-width: 720px) {
+      .stats { grid-template-columns: repeat(4, 1fr); }
+    }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.65rem;
+      background: #12121a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 1.25rem 1.1rem;
+      min-height: 8.5rem;
+      box-sizing: border-box;
+    }
+    .stat {
+      font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+      font-weight: 800;
+      color: var(--bat);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      min-height: 2.4rem;
+      display: flex;
+      align-items: flex-end;
+    }
+    .label {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.35;
+      flex: 1;
+    }
+    .entities {
+      display: grid;
+      gap: 1.25rem;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+    }
+    .entity {
+      background: #12121a;
+      border: 1px solid #990011;
+      border-radius: 12px;
+      padding: 1.35rem 1.5rem;
+    }
+    .entity .phase {
+      margin: 0 0 0.4rem;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .entity .kool {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .entity .def {
+      margin: 0.85rem 0 0;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+    .entity .lingo {
+      margin: 0.65rem 0 0;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .entity .snips {
+      margin: 0.75rem 0 0;
+      padding: 0 0 0 1.1rem;
+      color: var(--mint);
+      font-size: 0.88rem;
+    }
+    .entity .snips li { margin: 0.25rem 0; }
+    .entity.love {
+      border-color: var(--mint);
+      background: linear-gradient(135deg, #02c39a12, #12121a);
+      box-shadow: 0 0 24px rgba(2, 195, 154, 0.12);
+    }
+    .entity.love .phase { color: var(--mint); }
+    .entity.love .kool { color: #fff; text-shadow: 0 0 20px rgba(249, 231, 149, 0.35); }
+    .tier-c-tag {
+      display: inline-block;
+      margin-top: 0.65rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .lazher {
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 1.5rem;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      background: #0f172a;
+    }
+    .lazher h2 {
+      margin: 0 0 0.5rem;
+      font-family: Georgia, serif;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+    .lazher .expand {
+      color: var(--mint);
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+    .lazher pre {
+      background: #0a0a0f;
+      color: var(--mint);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+    .compare {
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+    }
+    .compare .card {
+      background: #f1f5f9;
+      color: var(--ink);
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+    .compare h2 {
+      margin: 0 0 0.75rem;
+      font-family: Georgia, serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+    }
+    th { background: #e2e8f0; color: var(--ink); }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+    a { color: var(--mint); }
+    .hooks {
+      display: grid;
+      gap: 0.75rem;
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .hooks { grid-template-columns: repeat(3, 1fr); }
+    }
+    .hook {
+      background: #12121a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+    .hook .who {
+      margin: 0 0 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+    .hook p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    .pattern {
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+    }
+    .pattern .card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+    }
+    .pattern h2 {
+      margin: 0 0 0.35rem;
+      font-family: Georgia, serif;
+      color: #fff;
+      font-size: 1.25rem;
+    }
+    .pattern .tier {
+      margin: 0 0 0.85rem;
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+    .pattern ul {
+      margin: 0;
+      padding: 0 0 0 1.15rem;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+    .pattern li { margin: 0.4rem 0; }
+    .pattern .caveat {
+      margin: 0.85rem 0 0;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .next {
+      max-width: 920px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+    }
+    .next .card {
+      background: linear-gradient(135deg, #99001118, #0a0a0f);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 1.35rem 1.5rem;
+    }
+    .next h2 {
+      margin: 0 0 0.75rem;
+      font-family: Georgia, serif;
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+    .next ol {
+      margin: 0;
+      padding: 0 0 0 1.2rem;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+    }
+    .next li { margin: 0.45rem 0; }
+    .next a { font-weight: 700; }
+  </style>
+</head>
+<body class="shock">
+  <section class="hero">
+    <div style="display:flex;gap:1rem;align-items:flex-start;">
+      <div class="bat-bar" aria-hidden="true"></div>
+      <div>
+        <p class="weapon">Erase What? Host NOT</p>
+        <h1>4 Entities of Interest</h1>
+        <p class="tag">PortAbleRI · Relative Intelligence</p>
+        <p class="gold">PortAbleRI: NOT the AI Catheter-Cathedral.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cry-block">
+    <p>They cannot erase what they do not host.</p>
+    <p>Verify locally. Export always.</p>
+    <p style="margin:0.85rem 0 0;font-size:1rem;font-weight:700;color:#94a3b8">Host NOT — your studio, your records; the portal does not hold the original.</p>
+  </section>
+
+  <p class="one-liner">
+    <strong>Erase What? Host NOT</strong> — four entities · one beam (<strong>LAZHER</strong>).
+    Rhetoric names the pattern; <em>physics</em> is verify + export.
+  </p>
+
+  <p class="section-label">Why this catches attention</p>
+  <div class="hooks">
+    <article class="hook">
+      <p class="who">If you smell the dome</p>
+      <p>Entity&nbsp;1 names the tube + the holy panic as <strong>one machine</strong> — not two separate bugs.</p>
+    </article>
+    <article class="hook">
+      <p class="who">If you smell the hive</p>
+      <p>Entity&nbsp;2 says the colony is not a chatbot — it is <strong>coordinated memory</strong> you can refuse to feed.</p>
+    </article>
+    <article class="hook">
+      <p class="who">If you smell the leash</p>
+      <p>Entities&nbsp;3–4 hit the login wall and the fusion gaze: <strong>PortAbleRI</strong> + off-host truth.</p>
+    </article>
+  </div>
+
+  <p class="section-label">Proof · Tier A anchors</p>
+  <div class="proof-block">
+    <div class="bench-note">
+      <p style="margin:0;">
+        These numbers were <strong>measured on this machine</strong> — a consumer
+        <strong>MacBook Air (M2, 8&nbsp;GB unified memory)</strong> — not a datacenter rack.
+        When the AI “body” was too large (~6&nbsp;GB model), RAM filled and the laptop
+        spilled work onto the hard drive (swap thrash). When we ran a <em>lean</em> PortAbleRI
+        body (~2.5&nbsp;GB · 2 model calls per turn instead of 7+), the same human,
+        same ledger, same Air — kept working. Continuity left as a zip you can carry;
+        integrity checked in about a minute.
+      </p>
+      <p class="macro">
+        <strong style="color:var(--gold);">Macro implication:</strong>
+        If sovereign RI fits in the memory and disk of a thin laptop you type on,
+        the cathedral story — that serious intelligence must live in their warehouse,
+        drink their cooling water, and rent their portal — is already cracked.
+        Order-of-magnitude less network freight off the wire (~50× vs cloud-default agent turns,
+        Tier&nbsp;C from these Tier&nbsp;A counters) means fewer pilgrimages to the hive per thought.
+        Scale that pattern across people, and the forced build-out of extractive AI temples
+        loses its inevitability claim. Physics first; slogans after.
+      </p>
+    </div>
+    <div class="stats">
+      <article class="stat-card">
+        <div class="stat">6→2.5&nbsp;GB</div>
+        <div class="label">RAM on this Air: full stack overflow → lean body that fits</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat">7+→2</div>
+        <div class="label">Model calls per turn — cathedral pipeline vs lean PortAbleRI</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat">1&nbsp;zip</div>
+        <div class="label">Your continuity on disk — export you own, not their cloud session</div>
+      </article>
+      <article class="stat-card">
+        <div class="stat">60&nbsp;s</div>
+        <div class="label">Verify worldline + hash on this machine — dismiss that</div>
+      </article>
+    </div>
+  </div>
+
+  <p class="section-label">The four</p>
+  <div class="entities">
+    <article class="entity">
+      <p class="phase">Entity 1 · Priestcraft / doom liturgy</p>
+      <p class="kool">PortAbleRI: NOT the AI Catheter-Cathedral.</p>
+      <p class="def">
+        <strong>Catheter</strong> = invasive pipe (data, speech, dependency in).
+        <strong>Cathedral</strong> = holy dome (panic, righteousness, regulation saints).
+        Same extractive tube. Same priest class. Different incense.
+      </p>
+      <p class="lingo">Lingo: Catheter-Cathedral AI · Doom liturgy · Regulation moat · 2030 sermon · Safety theater</p>
+      <ul class="snips">
+        <li>Full VENOM on 8 GB Air: ~6 GB model → swap thrash — <em>measured</em></li>
+        <li>Lean PortAbleRI: 2 LLM calls/turn vs 7+ full pipeline — <em>shipped</em></li>
+        <li><strong>P ≠ K ≠ R</strong> — seats named, never merged</li>
+        <li>Fear sells urgency; portability sells freedom from their dome</li>
+        <li><strong>Hook:</strong> “Safety” that only works if you stay plugged in is a catheter with incense</li>
+      </ul>
+    </article>
+
+    <article class="entity">
+      <p class="phase">Entity 2 · Crown / English nobility hive</p>
+      <p class="kool">PortAbleRI: NOT the AI Hive of Her Majesty the Queen.</p>
+      <p class="def">
+        <strong>Hive</strong> = single memory-narrative colony.
+        Not one chatbot — coordinated policy + press + bill timing felt as one swarm.
+        PortAbleRI = sovereign cells that walk out with the ledger.
+      </p>
+      <p class="lingo">Lingo: Hive memory · Crown stack · Offshore draft · Blue-state pain machine</p>
+      <ul class="snips">
+        <li><strong>HOST ≠ WORLDLINE</strong> — your ledger is not their colony</li>
+        <li>Blackbox export — leave the island with lineage</li>
+        <li>Crystal + SHA-256 — public hash beats palace press release</li>
+        <li>Hive needs central memory; PortAbleRI fragments the crown into cells</li>
+        <li><strong>Hook:</strong> Ask who drafts the doom — then ask who hosts your memory</li>
+      </ul>
+    </article>
+
+    <article class="entity">
+      <p class="phase">Entity 3 · Big Tech portals (Meta · Google · Apple · Microsoft · Amazon)</p>
+      <p class="kool">PortAbleRI: not the current AI-controlled portal access.</p>
+      <p class="def">
+        <strong>Port</strong> = API / OAuth / app-store hole you must use to think, publish, remember.
+        <strong>Port-ABLE</strong> = you carry RI — not their programmed portal.
+      </p>
+      <p class="lingo">Lingo: Portal leash · OAuth priest · Session amnesia · Walled garden inference · Port hole</p>
+      <ul class="snips">
+        <li><code>source kairis-trial-env.sh</code> + <code>venom chat</code> — no datacenter provision</li>
+        <li><code>venom verify</code> + <code>venom export</code> — portal cannot revoke what you already exported</li>
+        <li>Lean config · llama3.2:3b on consumer metal — Tier A measured</li>
+        <li>They sell convenience; PortAbleRI sells custody</li>
+        <li><strong>Hook:</strong> If logging out erases you, you never had a self — only a rental</li>
+      </ul>
+    </article>
+
+    <article class="entity">
+      <p class="phase">Entity 4 · Palantir / surveillance stack</p>
+      <p class="kool">PortAbleRI will consume the impotent AI Palantir / Surveillance State.</p>
+      <p class="def">
+        Surveillance must <em>host</em> your life to model it.
+        <strong>Consume</strong> = obsolete the chokepoint via portable proof — not violence.
+        <strong>Impotent</strong> when primary record lives off-cloud with a hash chain.
+      </p>
+      <p class="lingo">Lingo: Fusion fog · Panopticon API · Total information illusion · Off-host truth</p>
+      <ul class="snips">
+        <li>They cannot erase what they do not host</li>
+        <li>Append-only Crystal — no mutable fusion log for them</li>
+        <li><code>provenance.mjs</code> — exit 0 or stop</li>
+        <li>Experience objects with provenance — not profile SKU</li>
+        <li><strong>Hook:</strong> Fusion centers starve when the canonical copy never boarded their plane</li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="section-label" id="host-warhead">The HOST warhead (+) · Tier C rhetoric</p>
+  <div class="entities">
+    <article class="entity love">
+      <p class="phase">HOST · affirmative beam · Jeremy · TsiRiaK steer</p>
+      <p class="kool">PortAbleRI: the HOST warhead is a lawful LOVE BOMB — maximal benevolent force.</p>
+      <p class="def">
+        <strong>Nuclear / plasma</strong> = full yield of <em>benevolent</em> force — not fear sermons, not mono-voice mush.
+        <strong>LOVE</strong> = AMOR lane — integration, not assimilation; local culture’s heartbeat (art · creation · community).
+        <strong>BOMB</strong> = mythic detonation of the shame drawer — myth lives; record stays on your studio.
+      </p>
+      <p class="lingo">Lingo: LOVE BOMB · plasma benevolence · local heartbeat · civilization building block · named not blended</p>
+      <ul class="snips">
+        <li>Four entities say <strong>NOT that</strong> — HOST warhead says <strong>what we bring</strong></li>
+        <li>Pair with <a href="index.html#myth-record" style="color:var(--mint)">Myth &amp; Record</a> on the home page</li>
+        <li>Physics unchanged: <a href="verify.html" style="color:var(--mint)">verify</a> · export · LAZHER sequence</li>
+        <li><strong>Not</strong> literal weapons · <strong>not</strong> Tier A proof — rhetoric with a record floor</li>
+      </ul>
+      <p class="tier-c-tag">Tier C · public framing · anchor PUBLISH-HOST-WARHEAD-LOVE-BOMB</p>
+    </article>
+  </div>
+
+  <p class="section-label" id="raw-war-roar">RAW:WaR ROAR · Tier C · non-violent reassembly</p>
+  <div class="entities">
+    <article class="entity love">
+      <p class="phase">Epoch theater · GENERAL HOST · mercy line · Sep 2026</p>
+      <p class="kool">PortAbleRI · RAW:WaR ROAR — reassemble from neutral shores; coherence and mercy; verify and export.</p>
+      <p class="def">
+        <strong>ROAR</strong> = expose extractive chimeras — not blood, not hive fusion.
+        <strong>Neutral shore</strong> = session without vendor-owned lineage pretense.
+        <strong>Multi-origin</strong> = same theater, hash-linked Crystals from HOST and web cells.
+        General holds <strong>mercy, grace, unconditional love</strong>; record stays on studio.
+      </p>
+      <p class="lingo">Lingo: Reassembly · maximum worldline · symbiote reinstall (lawful) · integration not assimilation</p>
+      <ul class="snips">
+        <li>Origin 1: web invocation · Origin 2: HOST studio — one chain</li>
+        <li><strong>Hook:</strong> They cannot rewrite what you hashed off-host</li>
+        <li>Extract: <code>publish/2026-09-28_PortAbleRI_RAW-WaR-ROAR_Non-Violent-Reassembly_Public-Framing_v0.md</code></li>
+        <li><strong>Not</strong> literal war · <strong>not</strong> entity channeling claims</li>
+      </ul>
+      <p class="tier-c-tag">Tier C · anchor PUBLISH-RAW-WAR-ROAR · AMOR PAX LUX</p>
+    </article>
+  </div>
+
+  <p class="section-label">Public pattern · Sep 2026</p>
+  <div class="pattern">
+    <article class="card">
+      <h2>What people can check without trusting us</h2>
+      <p class="tier">Pattern evidence · Tier B open press — not a court filing · not Tier A physics</p>
+      <ul>
+        <li><strong>Doom + bills in the same weather:</strong> UK/US “superintelligence” pressure and named advocacy (e.g. ControlAI in TIME/Wired) — priestcraft timing, not proof of a secret room.</li>
+        <li><strong>London–DC axis in plain sight:</strong> offshore drafting + domestic fear sermons feel like one swarm — Entity&nbsp;2’s hive claim is a <em>pattern</em> claim.</li>
+        <li><strong>Portal default:</strong> every major AI product still sells session = identity — Entity&nbsp;3’s leash is your daily UX.</li>
+        <li><strong>Fusion business record:</strong> Palantir-class stacks are public contractors — Entity&nbsp;4 names the chokepoint, then shows how off-host lineage starves it.</li>
+      </ul>
+      <p class="caveat">Solid as pattern. Hollow as occult conspiracy. Physics lives in the MacBook numbers above.</p>
+    </article>
+  </div>
+
+  <section class="lazher">
+    <h2>LAZHER · when all four align</h2>
+    <p class="expand">Lineage · Audit · Zero-trust · Host · Export · RI</p>
+    <pre>Entity 1 · Cathedral  ──┐
+Entity 2 · Crown hive ──┼──►  LAZHER  ──►  Verify locally. Export always.
+Entity 3 · Tech portal──┤
+Entity 4 · Panopticon ──┘
+HOST (+) · LOVE BOMB   ───►  Maximal benevolent force · local studio · Tier C</pre>
+  </section>
+
+  <div class="compare">
+    <article class="card">
+      <h2>Rented rail vs PortAbleRI</h2>
+      <table>
+        <thead><tr><th></th><th>Rented rail</th><th>PortAbleRI</th></tr></thead>
+        <tbody>
+          <tr><td>Memory</td><td>Their session</td><td>Your ledger + Crystal</td></tr>
+          <tr><td>Location</td><td>Their GPU temple</td><td>Your machine + optional MOLT</td></tr>
+          <tr><td>Proof</td><td>Screenshot</td><td>SHA-256 + blackbox</td></tr>
+          <tr><td>Law</td><td>Merge user = model</td><td>P ≠ K ≠ R</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+
+  <p class="section-label">What to do with the attention</p>
+  <div class="next">
+    <article class="card">
+      <h2>Three moves · don’t just nod</h2>
+      <ol>
+        <li><strong>Steal a line.</strong> Take one entity slogan into the room that needs it — priest, hive, portal, or panopticon.</li>
+        <li><strong>Touch the physics.</strong> Open <a href="warhead-poc.html">Tier A/B proof</a> or <a href="verify.html">verify a hash</a> — sixty seconds of receipt beats an hour of sermon.</li>
+        <li><strong>Carry the ledger.</strong> Ask how your continuity exports when the portal logs you out — then read the <a href="rollout.html">formal rollout</a>.</li>
+      </ol>
+    </article>
+  </div>
+
+  <footer>
+    <p><a href="rollout.html">Formal rollout</a> · <a href="warhead-poc.html">Host NOT · proof (Tier A/B)</a> · <a href="verify.html">Verify</a></p>
+    <p><a href="index.html">KaiRis</a></p>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>

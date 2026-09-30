@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PortAbleRI subscriber onboarding — Name Prime · constitution ack · local bootstrap (F&amp;F preview)." />
+  <meta name="theme-color" content="#0f0e0c" />
+  <title>Onboarding · PortAbleRI · APLTFeV preview</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .onboard-steps { counter-reset: step; list-style: none; padding: 0; margin: 2rem 0; }
+    .onboard-steps li {
+      counter-increment: step; position: relative; padding-left: 2.5rem; margin-bottom: 2rem;
+      border-left: 2px solid rgba(2, 195, 154, 0.25); padding-bottom: 1.5rem;
+    }
+    .onboard-steps li::before {
+      content: counter(step); position: absolute; left: -0.85rem; top: 0;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--teal); color: var(--hinge);
+      font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+    }
+    .onboard-steps li.done::before { background: var(--gold); }
+    .onboard-panel {
+      background: rgba(18, 18, 26, 0.6); border: 1px solid rgba(249, 231, 149, 0.15);
+      border-radius: 12px; padding: 1.25rem; margin-top: 0.75rem;
+    }
+    .onboard-hash { font-family: ui-monospace, monospace; font-size: 0.72rem; word-break: break-all; opacity: 0.85; }
+    .onboard-field { display: block; margin-top: 0.75rem; }
+    .onboard-field span { display: block; font-size: 0.82rem; color: var(--gold); margin-bottom: 0.35rem; }
+    .onboard-field input, .onboard-field select {
+      width: 100%; max-width: 24rem; padding: 0.55rem 0.75rem; border-radius: 8px;
+      border: 1px solid #334155; background: #12121a; color: var(--off);
+    }
+    .onboard-check { display: flex; gap: 0.6rem; align-items: flex-start; margin-top: 1rem; font-size: 0.9rem; }
+    .onboard-check input { accent-color: var(--teal); margin-top: 0.2rem; }
+    .onboard-status { font-size: 0.85rem; margin-top: 0.75rem; padding: 0.65rem 0.85rem; border-radius: 8px; }
+    .onboard-status.ok { background: #022c22; color: var(--teal); border: 1px solid var(--teal); }
+    .onboard-status.bad { background: #3f0d12; color: #fca5a5; border: 1px solid var(--coral); }
+    .onboard-status.pending { background: rgba(249, 231, 149, 0.08); color: var(--gold); border: 1px solid rgba(249, 231, 149, 0.25); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="brand/assets/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links" aria-label="Site">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="verify.html">Verify</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-login" href="login.html">Sign in</a>
+      <a class="nav-cta" href="onboarding.html" aria-current="page">Onboard</a>
+    </div>
+  </nav>
+
+  <main id="main" class="login-section">
+    <div class="section-inner reveal">
+      <p class="eyebrow">APLTFeV · F&amp;F preview · HOST-local bootstrap</p>
+      <h1 style="color:var(--gold);font-family:Georgia,serif">Light your studio</h1>
+      <p class="lead">
+        Three steps to lit: trust manifest · constitution ack · name your Prime.
+        Bootstrap JSON stays on your device — central coordination carries metadata only.
+      </p>
+      <div class="triad-pill"><span>SI</span><span>BP</span><span>HA</span></div>
+
+      <ol class="onboard-steps">
+        <li id="step-trust">
+          <strong>Trust manifest</strong>
+          <p class="tier-note">Fetched from <code>/.well-known/</code> · self-hash verified in browser.</p>
+          <div class="onboard-panel">
+            <button type="button" class="btn btn-primary" id="btn-load-manifest">Load &amp; verify manifest</button>
+            <div id="manifest-status" class="onboard-status pending" hidden></div>
+            <p id="manifest-hash" class="onboard-hash" style="margin-top:0.75rem"></p>
+          </div>
+        </li>
+        <li id="step-constitution">
+          <strong>Constitution sign-off</strong>
+          <p class="tier-note">Pin <span id="const-version">SO-v0</span> · hash must match manifest.</p>
+          <div class="onboard-panel">
+            <p class="onboard-hash" id="const-hash"></p>
+            <label class="onboard-check">
+              <input type="checkbox" id="const-ack" disabled />
+              <span>I acknowledge Individual TRUTH Preservation (Constitution) for governed sessions — append-only records, one Prime, export &amp; verify always.</span>
+            </label>
+            <p style="margin-top:0.75rem;font-size:0.82rem">
+              <a href="publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md">Read constitution (markdown)</a>
+            </p>
+          </div>
+        </li>
+        <li id="step-prime">
+          <strong>Name your Prime</strong>
+          <div class="onboard-panel">
+            <label class="onboard-field">
+              <span>Prime model ID (one gatekeeper)</span>
+              <select id="prime-select">
+                <option value="">Choose…</option>
+                <option value="composer-2.5-fast">Composer 2.5 Fast</option>
+                <option value="claude-sonnet">Claude Sonnet</option>
+                <option value="gpt-4.1">GPT-4.1</option>
+                <option value="grok">Grok</option>
+                <option value="local-mlx">Local MLX</option>
+                <option value="custom">Custom…</option>
+              </select>
+            </label>
+            <label class="onboard-field" id="prime-custom-wrap" hidden>
+              <span>Custom Prime ID</span>
+              <input type="text" id="prime-custom" placeholder="your-vendor/model" autocomplete="off" />
+            </label>
+            <label class="onboard-field">
+              <span>Local studio path (optional)</span>
+              <input type="text" id="studio-path" placeholder="~/PortAbleRI-Studio" autocomplete="off" />
+            </label>
+            <label class="onboard-field">
+              <span>Subscriber ID (for entitlement token)</span>
+              <input type="text" id="subscriber-id" placeholder="you@studio.local" autocomplete="username" />
+            </label>
+          </div>
+        </li>
+        <li id="step-export">
+          <strong>Export bootstrap · optional entitlement</strong>
+          <div class="onboard-panel">
+            <button type="button" class="btn btn-primary" id="btn-download-bootstrap" disabled>Download kernel-bootstrap.json</button>
+            <button type="button" class="btn btn-ghost" id="btn-entitlement" disabled>Exchange entitlement (dev)</button>
+            <p class="tier-note" style="margin-top:1rem">
+              Entitlement requires coordination API at <code id="coord-url-label">127.0.0.1:8787</code> —
+              run <code>npm run serve</code> in <code>infra/coordination</code>.
+              After Stripe (production): same token shape from webhook.
+            </p>
+            <div id="entitlement-out" class="onboard-hash" style="margin-top:0.75rem"></div>
+          </div>
+        </li>
+      </ol>
+      <p class="tier-note">
+        Preview ring — not billing. <a href="verify.html">Verify</a> · <a href="index.html#demo">BP demo</a> ·
+        <a href="login.html">Subscriber sign-in hollow</a>.
+      </p>
+    </div>
+  </main>
+  <script type="module">
+    import {
+      DEFAULT_COORD_URL,
+      DEFAULT_MANIFEST_URL,
+      buildKernelBootstrap,
+      downloadJson,
+      fetchTrustManifest,
+      verifyTrustManifest,
+    } from './js/portableri-trust.js';
+
+    let manifest = null;
+    const coordUrl = new URLSearchParams(location.search).get('coord') || DEFAULT_COORD_URL;
+    document.getElementById('coord-url-label').textContent = coordUrl.replace(/^https?:\/\//, '');
+
+    function setStatus(el, ok, text) {
+      el.hidden = false;
+      el.className = 'onboard-status ' + (ok === null ? 'pending' : ok ? 'ok' : 'bad');
+      el.textContent = text;
+    }
+
+    document.getElementById('prime-select').addEventListener('change', (e) => {
+      document.getElementById('prime-custom-wrap').hidden = e.target.value !== 'custom';
+      updateButtons();
+    });
+
+    function primeId() {
+      const sel = document.getElementById('prime-select').value;
+      if (sel === 'custom') return document.getElementById('prime-custom').value.trim();
+      return sel;
+    }
+
+    function updateButtons() {
+      const ack = document.getElementById('const-ack').checked;
+      const prime = primeId();
+      const ready = manifest && ack && prime.length > 0;
+      document.getElementById('btn-download-bootstrap').disabled = !ready;
+      document.getElementById('btn-entitlement').disabled = !ready || !document.getElementById('subscriber-id').value.trim();
+    }
+
+    document.getElementById('const-ack').onchange = updateButtons;
+    document.getElementById('prime-custom').oninput = updateButtons;
+    document.getElementById('subscriber-id').oninput = updateButtons;
+
+    document.getElementById('btn-load-manifest').onclick = async () => {
+      const status = document.getElementById('manifest-status');
+      try {
+        manifest = await fetchTrustManifest(DEFAULT_MANIFEST_URL);
+        const v = await verifyTrustManifest(manifest);
+        if (!v.ok) {
+          setStatus(status, false, 'Manifest tamper or stale: ' + v.error);
+          manifest = null;
+          return;
+        }
+        setStatus(status, true, 'Manifest verified · ' + manifest.publish_anchors.length + ' anchors');
+        document.getElementById('manifest-hash').textContent = 'manifest_sha256: ' + manifest.manifest_sha256;
+        document.getElementById('const-version').textContent = manifest.constitution.version;
+        document.getElementById('const-hash').textContent = 'constitution_sha256: ' + manifest.constitution.sha256;
+        document.getElementById('const-ack').disabled = false;
+        document.getElementById('step-trust').classList.add('done');
+      } catch (e) {
+        setStatus(status, false, 'Load failed — run npm run build:trust in infra/coordination. ' + e.message);
+        manifest = null;
+      }
+      updateButtons();
+    };
+
+    document.getElementById('btn-download-bootstrap').onclick = () => {
+      const bootstrap = buildKernelBootstrap({
+        manifest,
+        primeModelId: primeId(),
+        studioPath: document.getElementById('studio-path').value.trim(),
+        constitutionAckAt: new Date().toISOString(),
+      });
+      downloadJson('portableri-kernel-bootstrap.json', bootstrap);
+      document.getElementById('step-prime').classList.add('done');
+      document.getElementById('step-export').classList.add('done');
+    };
+
+    document.getElementById('btn-entitlement').onclick = async () => {
+      const out = document.getElementById('entitlement-out');
+      const sub = document.getElementById('subscriber-id').value.trim();
+      try {
+        const res = await fetch(coordUrl + '/v1/entitlement/exchange', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ subscriber_id: sub, tier: 'studio' }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || res.status);
+        out.textContent = 'token: ' + data.token.slice(0, 48) + '…';
+        const boot = buildKernelBootstrap({
+          manifest,
+          primeModelId: primeId(),
+          studioPath: document.getElementById('studio-path').value.trim(),
+        });
+        boot.entitlement_capability_exp = data.capability.exp;
+        downloadJson('portableri-kernel-bootstrap-with-entitlement.json', { bootstrap: boot, entitlement: data });
+      } catch (e) {
+        out.textContent = 'Entitlement failed: ' + e.message;
+      }
+    };
+  </script>
+  <script src="site.js"></script>
+</body>
+</html>
