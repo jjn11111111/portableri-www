@@ -127,8 +127,11 @@
           showUnlocked();
           beacon('page_view');
         } catch (_) {
-          status.textContent =
-            'Coordination server unreachable. Start: cd infra/coordination && npm run serve';
+          const onPublic =
+            location.hostname === 'portableri.com' || location.hostname === 'www.portableri.com';
+          status.textContent = onPublic
+            ? 'Family Door gate is HOST-coordinated · audit server not reachable from this shore yet. Verify still works at /verify.html.'
+            : 'Coordination server unreachable. Start: cd infra/coordination && npm run serve';
         }
       });
     })();
