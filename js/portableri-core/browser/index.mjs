@@ -18,9 +18,21 @@ export async function verifyTrustManifestInBrowser(manifest) {
 }
 
 export async function fetchTrustManifest(url = DEFAULT_MANIFEST_URL) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`manifest fetch ${res.status}`);
-  return res.json();
+  const candidates =
+    url === DEFAULT_MANIFEST_URL
+      ? [DEFAULT_MANIFEST_URL, '/trust/portableri-trust-manifest.json']
+      : [url];
+  let lastErr;
+  for (const u of candidates) {
+    try {
+      const res = await fetch(u, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`manifest fetch ${res.status}`);
+      return res.json();
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr ?? new Error('manifest fetch failed');
 }
 
 export function buildKernelBootstrap(opts) {
