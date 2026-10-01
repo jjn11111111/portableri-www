@@ -23,7 +23,7 @@
 
   <main id="main">
     <section class="login-section">
-      <div class="section-inner reveal">
+      <div class="section-inner reveal visible">
         <p class="eyebrow">HomeTill · Phase 0 · simulated</p>
         <h1>ZIP chapter instrument (preview)</h1>
         <p class="lead">
@@ -35,7 +35,12 @@
           <li>Canonical product host (future): <a href="https://www.hometillzip.com" rel="noopener noreferrer">hometillzip.com</a></li>
           <li>PortAbleRI = affiliation adapter only — not the till escrow</li>
         </ul>
-        <p class="tier-note">This page is a public preview shell on PortAbleRI. Interactive chapter record ships in Block 2C engineering slices.</p>
+        <p class="tier-note">Staging chapter record is served from HOST coordination (read-only).</p>
+        <div id="hometillLive" class="login-panel" style="margin-top:1.5rem;max-width:40rem">
+          <p class="eyebrow">Live staging · <code>/v1/hometill/chapters/demo</code></p>
+          <pre id="hometillJson" style="font-size:0.75rem;overflow:auto;max-height:14rem;opacity:0.9">Loading…</pre>
+          <p id="hometillExport" class="tier-note"></p>
+        </div>
         <p style="margin-top:1.5rem">
           <a class="btn btn-primary" href="publish/2026-09-27_HomeTill_ZIP-Brand-Layers_Public-Doctrine_v0.md">Public doctrine (markdown)</a>
           <a class="btn btn-ghost" href="publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md">PARI · Home Till concept</a>
@@ -43,5 +48,25 @@
       </div>
     </section>
   </main>
+  <script>
+    (function () {
+      const COORD = window.PORTABLERI_COORD_URL || 'http://127.0.0.1:8787';
+      const pre = document.getElementById('hometillJson');
+      const exp = document.getElementById('hometillExport');
+      fetch(COORD + '/v1/hometill/chapters/demo')
+        .then((r) => r.json())
+        .then((data) => {
+          pre.textContent = JSON.stringify(data, null, 2);
+          const pid = data.active_period?.id;
+          if (pid) {
+            exp.textContent = 'Export bundle: GET ' + COORD + '/v1/hometill/chapters/demo/export/' + pid;
+          }
+        })
+        .catch(() => {
+          pre.textContent = 'Coord unavailable. Deploy portableri-coord with staging/hometill after slice 1.';
+        });
+    })();
+  </script>
+  <script src="site.js"></script>
 </body>
 </html>
