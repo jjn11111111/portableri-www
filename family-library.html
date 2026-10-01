@@ -46,11 +46,16 @@
 
           <div class="login-panel">
             <form id="gateForm" class="login-form">
-              <label for="visitorLabel">Your name or seat (optional, hashed)</label>
-              <input id="visitorLabel" name="visitorLabel" type="text" autocomplete="name" maxlength="64" />
-
               <label for="gateCode">Family Door phrase</label>
-              <input id="gateCode" name="gateCode" type="password" autocomplete="off" required />
+              <input id="gateCode" name="gateCode" type="password" autocomplete="off" required
+                aria-describedby="gateCodeHint" />
+              <p id="gateCodeHint" class="tier-note" style="margin:0.35rem 0 1rem;font-size:0.85rem">
+                HOST-held secret · enter here only · not your name below.
+              </p>
+
+              <label for="visitorLabel">Your name or seat <span class="tier-note">(optional · audit hash only)</span></label>
+              <input id="visitorLabel" name="visitorLabel" type="text" autocomplete="name" maxlength="64"
+                placeholder="e.g. Jeremy · Uncle · visiting shore" />
 
               <button class="btn btn-primary" type="submit">Unlock · record visit</button>
               <p id="gateStatus" class="tier-note" role="status" aria-live="polite"></p>
