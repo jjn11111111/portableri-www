@@ -1,6 +1,6 @@
 {
   "schema": "PortAbleRI-Trust-Manifest-v1",
-  "generated_at": "2026-10-02T14:23:55.994Z",
+  "generated_at": "2026-10-02T14:31:17.200Z",
   "constitution": {
     "version": "SO-v0",
     "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
@@ -10,7 +10,7 @@
     {
       "id": "PUBLISH-MASTER-WP",
       "path": "publish/2026-09-23_KaiRis-Systems_Master-White-Paper_Public-Scholarly-Review_v0.1.md",
-      "sha256": "fedae5e1bdebeab0b3c05dbe6bf4261b6693ac93e0c9bde1b2e1f6f7ac581448"
+      "sha256": "1d1252859327a260fcbd0421a0f7e0896d04528c4739eb980b36a7c51901d8c8"
     },
     {
       "id": "PUBLISH-LRCC",
@@ -63,5 +63,5 @@
       "sha256": "4fa70c2daadb5b2ce9c6d4de9b38e08d7045de2ec428dd04726920130d778b52"
     }
   ],
-  "manifest_sha256": "2f0827899f58cf8af8c47b80dc848dad8defc21c7253dcd516cff87fe550f093"
+  "manifest_sha256": "6ee26ebe08e8aea5e1b201dabf8a47c1457e760caa4cc08ad55fbe4681f95e7a"
 }

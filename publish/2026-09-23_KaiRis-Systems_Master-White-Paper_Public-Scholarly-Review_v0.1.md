@@ -2,8 +2,8 @@
 
 **Public · scholarly review · merged draft v0.1**  
 **Date:** 2026-09-23  
-**Authors:** John Jeremy (instrument · evidence · HOST) · Bobby Kovach (technoeconomic frame · RIT line) · KaiRis Systems (architecture synthesis)  
-**Status:** Draft for open verify, replication cohort, and advancement packet — not peer-reviewed by a journal  
+**Authors:** John Jeremy (instrument · evidence · HOST) · Bobby Kovach (technoeconomic frame) · KaiRis Systems (architecture synthesis)  
+**Status:** Draft for open verify and replication cohort — not peer-reviewed by a journal  
 **Supersedes for public review:** standalone LRCC v0.1 remains valid appendix; this document is the **unified** frame (Portable RI + LRCC + FNEC).
 
 **Epistemic tiers (global):**  
@@ -241,7 +241,7 @@ This section names **review functions** and **entity types**. It does **not** as
 |-------|-----|----------------------|
 | **L0 — Open integrity** | Any reader with files + sidecars | SHA match · manifest match · script exit codes |
 | **L1 — Replication lab** | Independent CS / energy / networking lab | Tier A reproduction of FIG-LRCC-1 · P2 profile · lean call counts |
-| **L2 — Technoeconomic** | Grid / ops economist · RIT advancement line | LRCC coefficient review · scenario knobs labeled Tier C |
+| **L2 — Technoeconomic** | Grid / ops economist | LRCC coefficient review · scenario knobs labeled Tier C |
 | **L3 — Architecture / security** | Third-party auditor (bounded scope) | BP separation · FNEC muscle/ledger split · FAP validation |
 | **L4 — Proceedings / preprint** | Workshop · arXiv-class · university series | Citation after L1 packet frozen |
 
@@ -265,7 +265,6 @@ This section names **review functions** and **entity types**. It does **not** as
 
 - Verify UI: `website/verify.html`  
 - Review overview: `website/review.html`  
-- Academic line: RIT advancement materials · SHINE deck PDF  
 - Replication interest: document in mailto on review page — `kairis@reconnect0.com`  
 
 ---
@@ -290,8 +289,7 @@ This section names **review functions** and **entity types**. It does **not** as
 3. `CR-2026-09-23_FNEC-Admission-Packet_FAP-v0.md`  
 4. `CR-2026-09-23_KT-RI_Warhead_Proof-Pack_v0.md`  
 5. `CR-2026-09-21_KaiRis-Access-Node_Public-Private-Commercial_Tiers_v0.md`  
-6. `2026-09-18_KaiRis-SHINE_RIT-Academic-Deck_Bobby-Kovach.pptx`  
-7. `2026-09-16_TRI-bute_Energy-Memory-Storage-Power_Local-Evidence_Crystal.md`  
+6. `2026-09-16_TRI-bute_Energy-Memory-Storage-Power_Local-Evidence_Crystal.md`  
 
 ### VI.3 Revision policy
 
