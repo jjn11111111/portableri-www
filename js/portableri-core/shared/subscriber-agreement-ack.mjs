@@ -20,6 +20,13 @@ export function buildSubscriberAgreementAckV1({
   };
 }
 
+/** Append F&F SSA ack to an export bundle (new artifact · caller verifies). */
+export function attachSubscriberAgreementAckToExportBundle(bundle, overrides = {}) {
+  const next = structuredClone(bundle);
+  next.subscriber_agreement_ack = buildSubscriberAgreementAckV1(overrides);
+  return next;
+}
+
 export function verifySubscriberAgreementAckV1(ack) {
   if (ack == null) return { ok: true };
   if (typeof ack !== 'object') return { ok: false, error: 'subscriber_agreement_ack invalid' };

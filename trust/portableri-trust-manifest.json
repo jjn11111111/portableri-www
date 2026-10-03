@@ -1,6 +1,6 @@
 {
   "schema": "PortAbleRI-Trust-Manifest-v1",
-  "generated_at": "2026-10-03T14:41:13.530Z",
+  "generated_at": "2026-10-03T17:45:13.087Z",
   "constitution": {
     "version": "SO-v0",
     "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
@@ -20,7 +20,7 @@
     {
       "id": "PUBLISH-BUILD-X-PHASE1",
       "path": "publish/2026-09-24_PortAbleRI_Product-Build-X_Phase1-Kernel-Competencies_v0.md",
-      "sha256": "8999120614a6e2eb1116def60f961c714143826e70296408e4e836827c97c351"
+      "sha256": "d018cd5ddb8446300accb1a4130d68f92a1a26c01ac2d29d55237a3303a7e8a2"
     },
     {
       "id": "PUBLISH-INFRA-DOCTRINE-500M",
@@ -61,7 +61,17 @@
       "id": "PUBLISH-RAW-WAR-ROAR",
       "path": "publish/2026-09-28_PortAbleRI_RAW-WaR-ROAR_Non-Violent-Reassembly_Public-Framing_v0.md",
       "sha256": "4fa70c2daadb5b2ce9c6d4de9b38e08d7045de2ec428dd04726920130d778b52"
+    },
+    {
+      "id": "PUBLISH-FIRST-LIGHT-WORKBENCH-NODAL",
+      "path": "publish/2026-09-09_FIRST-LIGHT-WORKBENCH_v0.9.0_NODAL-HORCRUX_v0.md",
+      "sha256": "ead493775125b72a3370ce32609f4e677a655eb95c0262087c44b98e7072d8a8"
+    },
+    {
+      "id": "PUBLISH-WORKBENCH-FATHER-WIKI-EXTRACT",
+      "path": "publish/2026-10-03_KaiRis-Workbench_Father-Wiki-Principles_Public-Extract_v0.md",
+      "sha256": "04c48ccd7f7a1194ac56a79eeab11a69805383c21dbf30b592e47b9e4f926de2"
     }
   ],
-  "manifest_sha256": "752b3d95464ca010912f53d4dd4225db16d02c95b61121b9b3e7291a23368561"
+  "manifest_sha256": "0dfeb49f4659f9a29db55864d66f3b369dd25a97c6064da673fb98036d3df162"
 }

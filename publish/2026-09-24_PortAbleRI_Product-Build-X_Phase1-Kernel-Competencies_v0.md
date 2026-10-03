@@ -123,6 +123,16 @@ Phase 1 is **DONE** when:
 | Fortress | `publish/2026-09-23_Cloud-Fortress_Operational-Doc_v0.md` |
 | CC Supreme | `processes/CC-SUPREME-PRIME-GATEKEEPER.md` |
 
+---
+
+## Append · Wave B closeout (2026-10-03)
+
+**Engineering proof:** `bash processes/scripts/verify_wave_b_closeout.sh` · `portableri-host wave-b-closeout-check --file export.json`
+
+**Competencies checked:** P4 `prime_history` · P5 `head_count_timeline` · P9 `tool_policy_log` (≥1) · P10 `seat_check` · P11 factory metadata when `mode=factory` · F&F `subscriber_agreement_ack` via `export-bundle --ff-preview true`.
+
+**HomeTill pilot:** `GET /v1/hometill/pilot-binding` · primary **03878** · `host_ack: false` until HOST marks selection doc — see `processes/BRICK-19-PARI-WAVE-B-CLOSEOUT-PILOT-BINDING.md`.
+
 **Version:** `PORTABLERI-BUILD-X-PHASE1-v0` · 2026-09-24
 
 ---
