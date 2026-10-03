@@ -5,6 +5,8 @@ export {
   verifyTrustManifestInBrowser as verifyTrustManifest,
   fetchTrustManifest,
   buildKernelBootstrap,
+  buildExportBundleV1,
+  verifyExportBundleV1,
   downloadJson,
   DEFAULT_MANIFEST_URL,
   DEFAULT_COORD_URL,

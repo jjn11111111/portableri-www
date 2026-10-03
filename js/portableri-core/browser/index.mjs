@@ -42,6 +42,8 @@ export function buildKernelBootstrap(opts) {
   });
 }
 
+export { buildExportBundleV1, verifyExportBundleV1 } from '../shared/export-bundle.mjs';
+
 export function downloadJson(filename, obj) {
   const blob = new Blob([`${JSON.stringify(obj, null, 2)}\n`], { type: 'application/json' });
   const a = document.createElement('a');

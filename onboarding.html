@@ -120,10 +120,12 @@
           </div>
         </li>
         <li id="step-export">
-          <strong>Export bootstrap · optional entitlement</strong>
+          <strong>Export · P7 bundle · optional entitlement</strong>
           <div class="onboard-panel">
-            <button type="button" class="btn btn-primary" id="btn-download-bootstrap" disabled>Download kernel-bootstrap.json</button>
+            <button type="button" class="btn btn-primary" id="btn-download-export" disabled>Download export-bundle.json (P7)</button>
+            <button type="button" class="btn btn-ghost" id="btn-download-bootstrap" disabled>Download kernel-bootstrap only</button>
             <button type="button" class="btn btn-ghost" id="btn-entitlement" disabled>Exchange entitlement (dev)</button>
+            <p id="export-verify-hint" class="tier-note" style="margin-top:0.75rem" hidden></p>
             <p class="tier-note" style="margin-top:1rem">
               Entitlement requires coordination API at <code id="coord-url-label">127.0.0.1:8787</code> —
               run <code>npm run serve</code> in <code>infra/coordination</code>.
@@ -143,9 +145,11 @@
     import {
       DEFAULT_COORD_URL,
       DEFAULT_MANIFEST_URL,
+      buildExportBundleV1,
       buildKernelBootstrap,
       downloadJson,
       fetchTrustManifest,
+      verifyExportBundleV1,
       verifyTrustManifest,
     } from './js/portableri-trust.js';
 
@@ -174,8 +178,18 @@
       const ack = document.getElementById('const-ack').checked;
       const prime = primeId();
       const ready = manifest && ack && prime.length > 0;
+      document.getElementById('btn-download-export').disabled = !ready;
       document.getElementById('btn-download-bootstrap').disabled = !ready;
       document.getElementById('btn-entitlement').disabled = !ready || !document.getElementById('subscriber-id').value.trim();
+    }
+
+    function makeBootstrap() {
+      return buildKernelBootstrap({
+        manifest,
+        primeModelId: primeId(),
+        studioPath: document.getElementById('studio-path').value.trim(),
+        constitutionAckAt: new Date().toISOString(),
+      });
     }
 
     document.getElementById('const-ack').onchange = updateButtons;
@@ -205,14 +219,28 @@
       updateButtons();
     };
 
-    document.getElementById('btn-download-bootstrap').onclick = () => {
-      const bootstrap = buildKernelBootstrap({
-        manifest,
-        primeModelId: primeId(),
-        studioPath: document.getElementById('studio-path').value.trim(),
-        constitutionAckAt: new Date().toISOString(),
+    document.getElementById('btn-download-export').onclick = () => {
+      const bootstrap = makeBootstrap();
+      const bundle = buildExportBundleV1({
+        kernelBootstrap: bootstrap,
+        trustManifestSha256: manifest.manifest_sha256,
+        constitutionSha256: manifest.constitution.sha256,
       });
-      downloadJson('portableri-kernel-bootstrap.json', bootstrap);
+      const v = verifyExportBundleV1(bundle);
+      const hint = document.getElementById('export-verify-hint');
+      hint.hidden = false;
+      if (!v.ok) {
+        hint.textContent = 'Export verify failed: ' + v.error;
+        return;
+      }
+      hint.textContent = 'P7 verify OK · worldline_id ' + v.worldline_id + ' · verify offline with portableri-host verify-export-bundle';
+      downloadJson('portableri-export-bundle.json', bundle);
+      document.getElementById('step-prime').classList.add('done');
+      document.getElementById('step-export').classList.add('done');
+    };
+
+    document.getElementById('btn-download-bootstrap').onclick = () => {
+      downloadJson('portableri-kernel-bootstrap.json', makeBootstrap());
       document.getElementById('step-prime').classList.add('done');
       document.getElementById('step-export').classList.add('done');
     };
