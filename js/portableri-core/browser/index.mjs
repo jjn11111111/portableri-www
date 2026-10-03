@@ -43,6 +43,22 @@ export function buildKernelBootstrap(opts) {
 }
 
 export { buildExportBundleV1, verifyExportBundleV1 } from '../shared/export-bundle.mjs';
+export {
+  validateHeadCountState,
+  validateHeadCountTurn,
+  verifyHeadCountTimelineV1,
+} from '../shared/head-count-mode.mjs';
+export {
+  buildToolPolicyBlockV1,
+  classifyToolBlockFromMessage,
+  verifyToolPolicyBlockV1,
+} from '../shared/tool-policy-broker.mjs';
+export {
+  assertPrimeDeclared,
+  normalizePrimeModelId,
+  validatePrimeTurn,
+  verifyPrimeHistoryV1,
+} from '../shared/prime-registry.mjs';
 
 export function downloadJson(filename, obj) {
   const blob = new Blob([`${JSON.stringify(obj, null, 2)}\n`], { type: 'application/json' });

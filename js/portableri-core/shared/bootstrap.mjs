@@ -1,4 +1,5 @@
 import { SCHEMA_KERNEL_BOOTSTRAP } from './constants.mjs';
+import { assertPrimeDeclared } from './prime-registry.mjs';
 
 export function newWorldlineId(randomUuid) {
   if (randomUuid) return `wl-${randomUuid()}`;
@@ -12,6 +13,8 @@ export function buildKernelBootstrap({
   constitutionAckAt,
   randomUuid,
 }) {
+  const prime = assertPrimeDeclared(primeModelId);
+  if (!prime.ok) throw new Error(prime.error);
   return {
     schema: SCHEMA_KERNEL_BOOTSTRAP,
     created_at: new Date().toISOString(),
@@ -20,7 +23,7 @@ export function buildKernelBootstrap({
     constitution_sha256: manifest.constitution.sha256,
     trust_manifest_sha256: manifest.manifest_sha256,
     constitution_ack_at: constitutionAckAt || new Date().toISOString(),
-    prime_model_id: primeModelId,
+    prime_model_id: primeModelId.trim(),
     mode: 'hearth',
     head_count: 1,
     studio_path: studioPath,

@@ -126,6 +126,17 @@
             <button type="button" class="btn btn-ghost" id="btn-download-bootstrap" disabled>Download kernel-bootstrap only</button>
             <button type="button" class="btn btn-ghost" id="btn-entitlement" disabled>Exchange entitlement (dev)</button>
             <p id="export-verify-hint" class="tier-note" style="margin-top:0.75rem" hidden></p>
+            <details class="onboard-panel" style="margin-top:1rem">
+              <summary style="cursor:pointer;font-size:0.9rem;color:var(--gold)">P9 · Tool blocks · KeyFormHer checklist</summary>
+              <ul class="hero-bullets" style="margin-top:0.75rem;font-size:0.85rem">
+                <li>If MCP says <em>denied by the user</em> on Drive — treat as <strong>policy + fix</strong>, not HOST refusal.</li>
+                <li>Repair MCP tool group / Reload Window first · lawful mirror: KeyFormHer OAuth CLI (same Drive account).</li>
+                <li>Log blocks on export: <code>portableri-host append-tool-policy</code> → <code>tool_policy_log[]</code>.</li>
+              </ul>
+              <p style="margin-top:0.75rem;font-size:0.82rem">
+                <a href="../processes/KEYFORMHER-Drive-Conduit.md">KeyFormHer conduit (law repo)</a>
+              </p>
+            </details>
             <p class="tier-note" style="margin-top:1rem">
               Entitlement requires coordination API at <code id="coord-url-label">127.0.0.1:8787</code> —
               run <code>npm run serve</code> in <code>infra/coordination</code>.

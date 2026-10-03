@@ -1,4 +1,7 @@
 import { SCHEMA_EXPORT_BUNDLE, SCHEMA_SEAT_CHECK } from './constants.mjs';
+import { verifyHeadCountTimelineV1 } from './head-count-mode.mjs';
+import { verifyPrimeHistoryV1 } from './prime-registry.mjs';
+import { verifyToolPolicyBlockV1 } from './tool-policy-broker.mjs';
 
 /** P10 · SEAT CHECK snapshot at export time — must align with kernel_bootstrap. */
 export function buildSeatCheckV1(kernelBootstrap, overrides = {}) {
@@ -98,12 +101,10 @@ export function verifyExportBundleV1(bundle) {
     return { ok: false, error: 'constitution_sha256 pin mismatch' };
   }
   if (!kb.prime_model_id) return { ok: false, error: 'prime_model_id missing' };
-  if (!Array.isArray(bundle.prime_history) || bundle.prime_history.length < 1) {
-    return { ok: false, error: 'prime_history empty' };
-  }
-  if (!Array.isArray(bundle.head_count_timeline) || bundle.head_count_timeline.length < 1) {
-    return { ok: false, error: 'head_count_timeline empty' };
-  }
+  const ph = verifyPrimeHistoryV1(bundle.prime_history, kb.prime_model_id);
+  if (!ph.ok) return ph;
+  const ht = verifyHeadCountTimelineV1(bundle.head_count_timeline, kb.mode, kb.head_count);
+  if (!ht.ok) return ht;
   const sc = bundle.seat_check;
   if (sc) {
     if (sc.schema !== SCHEMA_SEAT_CHECK) return { ok: false, error: 'seat_check schema mismatch' };
@@ -123,6 +124,16 @@ export function verifyExportBundleV1(bundle) {
       }
       if (c.at < lastAt) return { ok: false, error: 'corrections not monotonic by at' };
       lastAt = c.at;
+    }
+  }
+  if (bundle.tool_policy_log != null) {
+    if (!Array.isArray(bundle.tool_policy_log)) return { ok: false, error: 'tool_policy_log must be array' };
+    let lastAt = '';
+    for (const e of bundle.tool_policy_log) {
+      const tv = verifyToolPolicyBlockV1(e);
+      if (!tv.ok) return tv;
+      if (e.at < lastAt) return { ok: false, error: 'tool_policy_log not monotonic by at' };
+      lastAt = e.at;
     }
   }
   return { ok: true, worldline_id: bundle.worldline_id };
