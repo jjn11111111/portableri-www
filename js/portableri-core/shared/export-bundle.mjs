@@ -1,4 +1,20 @@
-import { SCHEMA_EXPORT_BUNDLE } from './constants.mjs';
+import { SCHEMA_EXPORT_BUNDLE, SCHEMA_SEAT_CHECK } from './constants.mjs';
+
+/** P10 · SEAT CHECK snapshot at export time — must align with kernel_bootstrap. */
+export function buildSeatCheckV1(kernelBootstrap, overrides = {}) {
+  const kb = kernelBootstrap;
+  return {
+    schema: SCHEMA_SEAT_CHECK,
+    at: overrides.at ?? kb.created_at,
+    foreground_model_id: overrides.foreground_model_id ?? kb.prime_model_id,
+    prime_model_id: kb.prime_model_id,
+    mode: kb.mode ?? 'hearth',
+    head_count: kb.head_count ?? 1,
+    subagents: overrides.subagents ?? 'off',
+    continuing: overrides.continuing ?? 'fresh',
+    constitution_version: kb.constitution_version,
+  };
+}
 
 /**
  * P7 · portable HOST artifact — verify without provider login.
@@ -15,10 +31,13 @@ export function buildExportBundleV1({
   if (!kernelBootstrap?.worldline_id) {
     throw new Error('kernelBootstrap with worldline_id required');
   }
+  const created_at = new Date().toISOString();
+  const seat_check = buildSeatCheckV1(kernelBootstrap, { at: created_at });
   return {
     schema: SCHEMA_EXPORT_BUNDLE,
-    created_at: new Date().toISOString(),
+    created_at,
     worldline_id: kernelBootstrap.worldline_id,
+    seat_check,
     trust_manifest_sha256: trustManifestSha256,
     constitution_sha256: constitutionSha256,
     kernel_bootstrap: kernelBootstrap,
@@ -84,6 +103,16 @@ export function verifyExportBundleV1(bundle) {
   }
   if (!Array.isArray(bundle.head_count_timeline) || bundle.head_count_timeline.length < 1) {
     return { ok: false, error: 'head_count_timeline empty' };
+  }
+  const sc = bundle.seat_check;
+  if (sc) {
+    if (sc.schema !== SCHEMA_SEAT_CHECK) return { ok: false, error: 'seat_check schema mismatch' };
+    if (sc.prime_model_id !== kb.prime_model_id) return { ok: false, error: 'seat_check prime mismatch' };
+    if (sc.mode !== kb.mode) return { ok: false, error: 'seat_check mode mismatch' };
+    if (sc.head_count !== kb.head_count) return { ok: false, error: 'seat_check head_count mismatch' };
+    if (sc.constitution_version !== kb.constitution_version) {
+      return { ok: false, error: 'seat_check constitution_version mismatch' };
+    }
   }
   if (bundle.corrections != null) {
     if (!Array.isArray(bundle.corrections)) return { ok: false, error: 'corrections must be array' };

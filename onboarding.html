@@ -233,7 +233,10 @@
         hint.textContent = 'Export verify failed: ' + v.error;
         return;
       }
-      hint.textContent = 'P7 verify OK · worldline_id ' + v.worldline_id + ' · verify offline with portableri-host verify-export-bundle';
+      hint.textContent =
+        'P7 verify OK · worldline_id ' + v.worldline_id +
+        ' · SEAT CHECK: ' + bundle.seat_check.mode + ' · head ' + bundle.seat_check.head_count +
+        ' · ' + bundle.seat_check.foreground_model_id;
       downloadJson('portableri-export-bundle.json', bundle);
       document.getElementById('step-prime').classList.add('done');
       document.getElementById('step-export').classList.add('done');
