@@ -49,6 +49,11 @@ export {
   verifyHeadCountTimelineV1,
 } from '../shared/head-count-mode.mjs';
 export {
+  buildSubscriberAgreementAckV1,
+  DEFAULT_SSA_DOCUMENT_PATH,
+  DEFAULT_SSA_VERSION,
+} from '../shared/subscriber-agreement-ack.mjs';
+export {
   buildToolPolicyBlockV1,
   classifyToolBlockFromMessage,
   verifyToolPolicyBlockV1,

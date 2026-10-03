@@ -76,7 +76,7 @@
       <p class="eyebrow">APLTFeV · F&amp;F preview · HOST-local bootstrap</p>
       <h1 style="color:var(--gold);font-family:Georgia,serif">Light your studio</h1>
       <p class="lead">
-        Three steps to lit: trust manifest · constitution ack · name your Prime.
+        Four steps to lit: trust manifest · constitution · subscriber terms · name your Prime.
         Bootstrap JSON stays on your device — central coordination carries metadata only.
       </p>
       <div class="triad-pill"><span>SI</span><span>BP</span><span>HA</span></div>
@@ -103,6 +103,22 @@
             <p style="margin-top:0.75rem;font-size:0.82rem">
               <a href="publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md">Read constitution (markdown)</a>
             </p>
+          </div>
+        </li>
+        <li id="step-agreement">
+          <strong>Subscriber terms (F&amp;F preview)</strong>
+          <p class="tier-note">Draft SSA · counsel review · indemnity &amp; hold harmless — read before export.</p>
+          <div class="onboard-panel">
+            <label class="onboard-check">
+              <input type="checkbox" id="ssa-ack" disabled />
+              <span>
+                I have read the
+                <a href="publish/2026-10-03_PortAbleRI_Subscriber-Service-Agreement_Draft-v0.md">Subscriber Service Agreement (draft v0)</a>,
+                the
+                <a href="publish/2026-09-23_Portable-RI_Prime-Gatekeeper_Subscriber-Law-FAQ_v0.md">Prime Gatekeeper FAQ</a>,
+                and accept them for this preview onboarding (not legal advice · not a production clickwrap until counsel ACK).
+              </span>
+            </label>
           </div>
         </li>
         <li id="step-prime">
@@ -173,6 +189,9 @@
       DEFAULT_MANIFEST_URL,
       buildExportBundleV1,
       buildKernelBootstrap,
+      buildSubscriberAgreementAckV1,
+      DEFAULT_SSA_DOCUMENT_PATH,
+      DEFAULT_SSA_VERSION,
       downloadJson,
       fetchTrustManifest,
       verifyExportBundleV1,
@@ -202,8 +221,9 @@
 
     function updateButtons() {
       const ack = document.getElementById('const-ack').checked;
+      const ssa = document.getElementById('ssa-ack').checked;
       const prime = primeId();
-      const ready = manifest && ack && prime.length > 0;
+      const ready = manifest && ack && ssa && prime.length > 0;
       document.getElementById('btn-download-export').disabled = !ready;
       document.getElementById('btn-download-bootstrap').disabled = !ready;
       document.getElementById('btn-entitlement').disabled = !ready || !document.getElementById('subscriber-id').value.trim();
@@ -218,7 +238,18 @@
       });
     }
 
-    document.getElementById('const-ack').onchange = updateButtons;
+    document.getElementById('const-ack').onchange = () => {
+      updateButtons();
+      if (document.getElementById('const-ack').checked) {
+        document.getElementById('step-constitution').classList.add('done');
+      }
+    };
+    document.getElementById('ssa-ack').onchange = () => {
+      updateButtons();
+      if (document.getElementById('ssa-ack').checked) {
+        document.getElementById('step-agreement').classList.add('done');
+      }
+    };
     document.getElementById('prime-custom').oninput = updateButtons;
     document.getElementById('subscriber-id').oninput = updateButtons;
 
@@ -237,6 +268,7 @@
         document.getElementById('const-version').textContent = manifest.constitution.version;
         document.getElementById('const-hash').textContent = 'constitution_sha256: ' + manifest.constitution.sha256;
         document.getElementById('const-ack').disabled = false;
+        document.getElementById('ssa-ack').disabled = false;
         document.getElementById('step-trust').classList.add('done');
       } catch (e) {
         setStatus(status, false, 'Load failed — run npm run build:trust in infra/coordination. ' + e.message);
@@ -247,10 +279,17 @@
 
     document.getElementById('btn-download-export').onclick = () => {
       const bootstrap = makeBootstrap();
+      const ssaAt = new Date().toISOString();
       const bundle = buildExportBundleV1({
         kernelBootstrap: bootstrap,
         trustManifestSha256: manifest.manifest_sha256,
         constitutionSha256: manifest.constitution.sha256,
+        subscriberAgreementAck: buildSubscriberAgreementAckV1({
+          documentPath: DEFAULT_SSA_DOCUMENT_PATH,
+          version: DEFAULT_SSA_VERSION,
+          at: ssaAt,
+          ffPreview: true,
+        }),
       });
       const v = verifyExportBundleV1(bundle);
       const hint = document.getElementById('export-verify-hint');
@@ -262,7 +301,8 @@
       hint.textContent =
         'P7 verify OK · worldline_id ' + v.worldline_id +
         ' · SEAT CHECK: ' + bundle.seat_check.mode + ' · head ' + bundle.seat_check.head_count +
-        ' · ' + bundle.seat_check.foreground_model_id;
+        ' · ' + bundle.seat_check.foreground_model_id +
+        ' · SSA ack ' + (bundle.subscriber_agreement_ack?.document_version || '—');
       downloadJson('portableri-export-bundle.json', bundle);
       document.getElementById('step-prime').classList.add('done');
       document.getElementById('step-export').classList.add('done');

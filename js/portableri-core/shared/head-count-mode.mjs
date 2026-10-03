@@ -2,6 +2,8 @@
  * P5 · Head count & mode — Hearth default 1; Factory/Guest require name · task · end · ACK.
  */
 
+import { validateFactoryForkRitual } from './factory-fork.mjs';
+
 export const GOVERNED_MODES = ['hearth', 'factory', 'guest'];
 
 export function normalizeMode(mode) {
@@ -88,8 +90,11 @@ export function verifyHeadCountTimelineV1(timeline, currentMode, currentHeadCoun
         return { ok: false, error: 'P5: return-to-hearth must set head_count 1' };
       }
     } else {
-      const ritual = validateGuestFactoryAck({ ...e, mode: state.mode, head_count: state.head_count });
+      const row = { ...e, mode: state.mode, head_count: state.head_count };
+      const ritual = validateGuestFactoryAck(row);
       if (!ritual.ok) return ritual;
+      const factory = validateFactoryForkRitual(row);
+      if (!factory.ok) return factory;
     }
   }
 
@@ -144,7 +149,16 @@ export function validateHeadCountTurn({
 /** Governed fork — new artifact; updates kernel + timeline + seat_check. */
 export function appendModeForkToExportBundle(
   bundle,
-  { mode, headCount, guestName = '', task = '', endCondition = '', hostAckAt = '', note = '' },
+  {
+    mode,
+    headCount,
+    guestName = '',
+    task = '',
+    endCondition = '',
+    hostAckAt = '',
+    threadLabel = '',
+    note = '',
+  },
 ) {
   const kb = bundle?.kernel_bootstrap;
   if (!kb?.worldline_id) throw new Error('kernel_bootstrap required');
@@ -169,23 +183,37 @@ export function appendModeForkToExportBundle(
     entry.host_ack_at = String(hostAckAt).trim() || at;
     const ritual = validateGuestFactoryAck(entry);
     if (!ritual.ok) throw new Error(ritual.error);
+    if (state.mode === 'factory') {
+      entry.thread_label = String(threadLabel).trim();
+      const factory = validateFactoryForkRitual(entry);
+      if (!factory.ok) throw new Error(factory.error);
+    }
   }
 
   const next = structuredClone(bundle);
-  next.kernel_bootstrap = {
+  const kbNext = {
     ...next.kernel_bootstrap,
     mode: state.mode,
     head_count: state.head_count,
   };
+  if (state.mode === 'factory') {
+    kbNext.factory_thread_label = entry.thread_label;
+  } else {
+    delete kbNext.factory_thread_label;
+  }
+  next.kernel_bootstrap = kbNext;
   if (!Array.isArray(next.head_count_timeline)) next.head_count_timeline = [];
   next.head_count_timeline.push(entry);
   if (next.seat_check) {
-    next.seat_check = {
+    const sc = {
       ...next.seat_check,
       at,
       mode: state.mode,
       head_count: state.head_count,
     };
+    if (state.mode === 'factory') sc.factory_thread_label = entry.thread_label;
+    else delete sc.factory_thread_label;
+    next.seat_check = sc;
   }
   next.amended_at = at;
   return next;

@@ -1,6 +1,8 @@
 import { SCHEMA_EXPORT_BUNDLE, SCHEMA_SEAT_CHECK } from './constants.mjs';
+import { verifyFactorySessionMetadataV1 } from './factory-fork.mjs';
 import { verifyHeadCountTimelineV1 } from './head-count-mode.mjs';
 import { verifyPrimeHistoryV1 } from './prime-registry.mjs';
+import { verifySubscriberAgreementAckV1 } from './subscriber-agreement-ack.mjs';
 import { verifyToolPolicyBlockV1 } from './tool-policy-broker.mjs';
 
 /** P10 · SEAT CHECK snapshot at export time — must align with kernel_bootstrap. */
@@ -29,6 +31,7 @@ export function buildExportBundleV1({
   constitutionSha256,
   primeHistory = [],
   headCountTimeline = [],
+  subscriberAgreementAck = null,
   notes = '',
 }) {
   if (!kernelBootstrap?.worldline_id) {
@@ -58,6 +61,7 @@ export function buildExportBundleV1({
           },
         ],
     corrections: [],
+    ...(subscriberAgreementAck ? { subscriber_agreement_ack: subscriberAgreementAck } : {}),
     notes: notes || 'Phase 1 Wave A · HOST-local export · not a provider session dump',
   };
 }
@@ -105,6 +109,8 @@ export function verifyExportBundleV1(bundle) {
   if (!ph.ok) return ph;
   const ht = verifyHeadCountTimelineV1(bundle.head_count_timeline, kb.mode, kb.head_count);
   if (!ht.ok) return ht;
+  const ff = verifyFactorySessionMetadataV1(bundle);
+  if (!ff.ok) return ff;
   const sc = bundle.seat_check;
   if (sc) {
     if (sc.schema !== SCHEMA_SEAT_CHECK) return { ok: false, error: 'seat_check schema mismatch' };
@@ -125,6 +131,10 @@ export function verifyExportBundleV1(bundle) {
       if (c.at < lastAt) return { ok: false, error: 'corrections not monotonic by at' };
       lastAt = c.at;
     }
+  }
+  if (bundle.subscriber_agreement_ack != null) {
+    const sa = verifySubscriberAgreementAckV1(bundle.subscriber_agreement_ack);
+    if (!sa.ok) return sa;
   }
   if (bundle.tool_policy_log != null) {
     if (!Array.isArray(bundle.tool_policy_log)) return { ok: false, error: 'tool_policy_log must be array' };
