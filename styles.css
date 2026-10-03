@@ -77,7 +77,8 @@ a:hover { color: var(--gold); }
 
 .nav-toggle {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
-  width: 2.5rem; height: 2.5rem; padding: 0.4rem;
+  width: 2.75rem; height: 2.75rem; min-width: 2.75rem; min-height: 2.75rem;
+  padding: 0.4rem;
   background: transparent; border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px; cursor: pointer;
 }
@@ -189,6 +190,50 @@ h3 { font-size: 1.15rem; font-weight: 600; }
     0 0 0 1px rgba(249, 231, 149, 0.18),
     0 0 40px rgba(2, 195, 154, 0.22),
     0 24px 72px rgba(0, 0, 0, 0.5);
+}
+.hero-visual.is-static .hero-video-el { display: none; }
+.hero-orb-static {
+  display: none; width: min(100%, 380px); aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(2, 195, 154, 0.35), transparent 55%),
+    radial-gradient(circle at 70% 75%, rgba(249, 231, 149, 0.2), transparent 50%),
+    rgba(18, 18, 26, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(249, 231, 149, 0.18),
+    0 0 40px rgba(2, 195, 154, 0.15);
+}
+.hero-visual.is-static .hero-orb-static { display: block; }
+
+.verify-page main {
+  max-width: 40rem; margin: 0 auto;
+  padding: calc(var(--nav-h) + 2rem) 1.25rem 3rem;
+}
+.verify-page main h1 { font-family: Georgia, serif; color: var(--gold); }
+.verify-page main h2 { font-family: Georgia, serif; color: var(--gold); font-size: 1.15rem; margin-top: 2.5rem; }
+.verify-page textarea,
+.verify-page input[type="text"] {
+  width: 100%; font-family: ui-monospace, monospace; font-size: 0.85rem;
+  background: #12121a; color: var(--off); border: 1px solid #334155;
+  border-radius: 8px; padding: 0.75rem;
+}
+.verify-page button {
+  margin-top: 0.75rem; background: var(--teal); color: var(--hinge);
+  border: none; padding: 0.65rem 1.2rem; min-height: 2.75rem;
+  font-weight: 700; border-radius: 8px; cursor: pointer;
+}
+.verify-page button.btn-ghost-inline {
+  background: transparent; color: var(--teal); border: 1px solid rgba(2, 195, 154, 0.4);
+}
+.verify-page .result { margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 600; }
+.verify-page .ok { background: #022c22; color: var(--teal); border: 1px solid var(--teal); }
+.verify-page .bad { background: #3f0d12; color: #fca5a5; border: 1px solid var(--coral); }
+.verify-page label { display: block; margin: 1rem 0 0.35rem; color: var(--gold); font-size: 0.9rem; }
+.verify-page .mono-sm { font-family: ui-monospace, monospace; font-size: 0.72rem; word-break: break-all; opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
 }
 .hero-bullets {
   list-style: none; margin: 1.25rem 0 0; padding: 0;

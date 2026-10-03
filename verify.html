@@ -3,33 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f0e0c" />
   <title>Verify · PortAbleRI · FNEC</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    main { max-width: 40rem; margin: 6rem auto 3rem; padding: 0 1.25rem; }
-    h1, h2 { font-family: Georgia, serif; color: var(--gold); }
-    h2 { font-size: 1.15rem; margin-top: 2.5rem; }
-    textarea, input[type="text"] {
-      width: 100%; font-family: ui-monospace, monospace; font-size: 0.85rem;
-      background: #12121a; color: var(--off); border: 1px solid #334155;
-      border-radius: 8px; padding: 0.75rem;
-    }
-    button {
-      margin-top: 0.75rem; background: var(--teal); color: var(--hinge);
-      border: none; padding: 0.6rem 1.2rem; font-weight: 700; border-radius: 8px; cursor: pointer;
-    }
-    button.btn-ghost-inline {
-      background: transparent; color: var(--teal); border: 1px solid rgba(2, 195, 154, 0.4);
-    }
-    .result { margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 600; }
-    .ok { background: #022c22; color: var(--teal); border: 1px solid var(--teal); }
-    .bad { background: #3f0d12; color: #fca5a5; border: 1px solid var(--coral); }
-    label { display: block; margin: 1rem 0 0.35rem; color: var(--gold); font-size: 0.9rem; }
-    .mono-sm { font-family: ui-monospace, monospace; font-size: 0.72rem; word-break: break-all; opacity: 0.85; }
-  </style>
 </head>
-<body>
-  <main>
+<body class="verify-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="assets/nav/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links" aria-label="Site">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="onboarding.html">Onboard</a></li>
+      <li><a href="verify.html" aria-current="page">Verify</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-login" href="login.html">Sign in</a>
+      <a class="nav-cta" href="onboarding.html">Onboard</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="nav-drawer" class="nav-drawer" hidden>
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#demo">Demo</a></li>
+      <li><a href="verify.html" aria-current="page">Verify</a></li>
+      <li><a href="onboarding.html">Onboard</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li class="nav-drawer-divider"><a href="login.html">Sign in</a></li>
+    </ul>
+  </div>
+  <main id="main">
     <h1>Verify locally</h1>
     <p>Paste SHA-256 (64 hex chars) and file text to check match. Runs in your browser — nothing uploaded.</p>
 
@@ -130,5 +140,6 @@
       }
     };
   </script>
+  <script src="site.js"></script>
 </body>
 </html>

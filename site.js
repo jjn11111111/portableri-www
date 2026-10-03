@@ -31,6 +31,24 @@
     );
   }
 
+  /* Hero video · respect save-data + reduced motion (phone / accessibility) */
+  const heroWrap = document.querySelector('.hero-visual[data-hero-wrap]');
+  const heroVid = document.querySelector('.hero-video-el');
+  if (heroWrap && heroVid) {
+    const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || reduceMotion) {
+      heroWrap.classList.add('is-static');
+      heroVid.removeAttribute('src');
+      heroVid.load();
+    } else {
+      heroVid.setAttribute('autoplay', '');
+      heroVid.play().catch(() => {
+        heroWrap.classList.add('is-static');
+      });
+    }
+  }
+
   /* Mobile nav toggle */
   const toggle = document.querySelector('.nav-toggle');
   const drawer = document.getElementById('nav-drawer');
