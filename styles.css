@@ -253,6 +253,34 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .hero-bullets strong { color: var(--gold); font-weight: 700; }
 .hero-bullets .tier-hint { font-size: 0.72rem; opacity: 0.65; display: block; margin-top: 0.15rem; }
 
+.ht-state-badges {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.85rem;
+}
+.ht-badge {
+  font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.25rem 0.55rem; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(244, 246, 250, 0.55);
+}
+.ht-badge--past { border-color: rgba(2, 195, 154, 0.35); color: rgba(2, 195, 154, 0.85); }
+.ht-badge--current { background: var(--teal); color: var(--hinge); border-color: transparent; font-weight: 600; }
+.ht-badge--upcoming { opacity: 0.45; }
+.ht-route-list {
+  list-style: none; margin: 0.75rem 0 0; padding: 0;
+  font-size: 0.82rem; line-height: 1.55;
+}
+.ht-route-list li { margin-bottom: 0.35rem; }
+.ht-route-list a[aria-disabled="true"] { opacity: 0.45; pointer-events: none; }
+.ht-req-status {
+  font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.12rem 0.4rem; border-radius: 4px;
+  background: rgba(249, 231, 149, 0.15); color: var(--gold);
+  vertical-align: middle;
+}
+.ht-req-status--culled { background: rgba(249, 97, 103, 0.2); color: var(--coral); }
+.ht-req-status--on_ballot { background: rgba(2, 195, 154, 0.2); color: var(--teal); }
+.ht-req-status--rejected { opacity: 0.7; }
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
 .hero-cta-note {
   margin-top: 1rem;

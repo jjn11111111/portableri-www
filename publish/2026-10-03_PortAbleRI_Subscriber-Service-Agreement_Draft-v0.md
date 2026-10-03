@@ -19,7 +19,7 @@
 | Consumer vs B2B | `[COUNSEL: F&F preview vs paid Access Node — different regimes]` |
 | Stripe / billing | `[COUNSEL: auto-renew, refunds, chargebacks]` |
 
-**Do not publish to portableri.com or bind subscribers until counsel signs off and HOST approves a versioned CR.**
+**Public ring:** onboarding may display this **draft** with explicit counsel-review copy · `subscriber_agreement_ack.counsel_review_required` on export. **Do not remove “draft” or treat as production clickwrap** until counsel signs off and HOST approves **v0.1+** (Crystal Record).
 
 ---
 
@@ -102,7 +102,7 @@ Provider may suspend access for material breach after notice when practicable.
 
 8.1 **Minimization.** Provider aims to carry **metadata** (e.g. entitlement tokens, optional audit events) rather than full conversation bodies on Provider servers.
 
-8.2 **Subscriber controls.** Subscriber chooses what to export, mirror to Drive, or delete. See Provider privacy notice when published. `[COUNSEL: separate Privacy Policy + DPA if B2B.]`
+8.2 **Subscriber controls.** Subscriber chooses what to export, mirror to Drive, or delete. See **Provider privacy notice:** [Privacy Policy (draft v0)](2026-10-03_PortAbleRI_Privacy-Policy_Draft-v0.md) · https://portableri.com/privacy.html (interim F&amp;F · counsel review). `[COUNSEL: DPA if B2B.]`
 
 ---
 
