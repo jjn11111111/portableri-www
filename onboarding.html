@@ -108,6 +108,7 @@
         <li id="step-agreement">
           <strong>Subscriber terms (F&amp;F preview)</strong>
           <p class="tier-note">SSA v0.1 · Privacy v0.1 · HOST-prepared · counsel ACK pending — read before export.</p>
+          <div id="counsel-gate-readout" class="onboard-status pending" hidden aria-live="polite"></div>
           <div class="onboard-panel">
             <label class="onboard-check">
               <input type="checkbox" id="ssa-ack" disabled />
@@ -118,9 +119,15 @@
                 <a href="privacy.html">Privacy notice (v0.1)</a>,
                 the
                 <a href="publish/2026-09-23_Portable-RI_Prime-Gatekeeper_Subscriber-Law-FAQ_v0.md">Prime Gatekeeper FAQ</a>,
+                the public doctrine pin
+                <a href="index.html#myth-record">Myth &amp; Record</a>,
                 and accept them for this preview onboarding (not legal advice · not a production clickwrap until counsel ACK).
               </span>
             </label>
+            <p style="margin-top:0.75rem;font-size:0.82rem">
+              HomeTill operates on its own shore —
+              <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a> (affiliate link-out only on PortAbleRI).
+            </p>
           </div>
         </li>
         <li id="step-prime">
@@ -216,6 +223,31 @@
     let manifest = null;
     const coordUrl = new URLSearchParams(location.search).get('coord') || DEFAULT_COORD_URL;
     document.getElementById('coord-url-label').textContent = coordUrl.replace(/^https?:\/\//, '');
+
+    async function refreshCounselGateReadout() {
+      const el = document.getElementById('counsel-gate-readout');
+      try {
+        const res = await fetch(coordUrl + '/v1/legal/counsel-product-ack');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || String(res.status));
+        el.hidden = false;
+        const summary =
+          'Counsel gate (coord · display only) · counsel_signed=' + data.counsel_signed +
+          ' · host_production_bind_ack=' + data.host_production_bind_ack +
+          ' · counsel_review_required=' + data.counsel_review_required +
+          ' · ff_preview=' + data.ff_preview +
+          ' · status=' + (data.status || '—');
+        setStatus(el, data.counsel_review_required ? null : true, summary);
+      } catch (e) {
+        el.hidden = false;
+        setStatus(
+          el,
+          null,
+          'Counsel gate readout unavailable (' + e.message + ') — preview banners unchanged until counsel sign + HOST bind (Brick 37).',
+        );
+      }
+    }
+    refreshCounselGateReadout();
 
     function setStatus(el, ok, text) {
       el.hidden = false;
