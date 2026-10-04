@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0f0e0c" />
   <title>Verify · PortAbleRI · FNEC</title>
   <link rel="stylesheet" href="styles.css" />
+  <script data-portableri-coord-injected>window.PORTABLERI_COORD_URL="https://coord.portableri.com";</script>
 </head>
 <body class="verify-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -60,6 +61,14 @@
 
     <button type="button" id="go">Compute &amp; compare</button>
     <div id="out" class="result" hidden></div>
+
+    <h2>HomeTill hollow deploy (coord readout)</h2>
+    <p style="font-size:0.9rem;opacity:0.85">
+      Display only · <strong>HomeTill</strong> / <strong>HomeTillZip</strong> / <strong>@hometill/core</strong> on a separate shore —
+      PortAbleRI affiliate link-out · not operator.
+      <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a>
+    </p>
+    <div id="hollow-deploy-out" class="result" hidden aria-live="polite"></div>
 
     <p style="margin-top:2rem;font-size:0.85rem;color:#94a3b8;">
       <a href="onboarding.html">Onboarding</a> ·
@@ -139,6 +148,28 @@
         out.textContent = 'MISMATCH — do not admit node. Hash: ' + got.slice(0, 16) + '…';
       }
     };
+
+    (async function loadHollowDeployReadout() {
+      const out = document.getElementById('hollow-deploy-out');
+      const coord = window.PORTABLERI_COORD_URL || 'https://coord.portableri.com';
+      try {
+        const res = await fetch(coord + '/v1/hometill/hollow-deploy');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || String(res.status));
+        out.hidden = false;
+        out.className = 'result ok';
+        out.textContent =
+          'deploy_mode=' + data.deploy_mode +
+          ' · canonical=' + data.canonical_origin +
+          ' · production_https_verified=' + data.production_https_verified +
+          ' · production_live=' + data.production_live +
+          ' · phase=' + data.phase;
+      } catch (e) {
+        out.hidden = false;
+        out.className = 'result bad';
+        out.textContent = 'Hollow deploy readout unavailable (' + e.message + ') — coord redeploy or local serve.';
+      }
+    })();
   </script>
   <footer class="site-footer">
     <p class="footer-legal-honesty">
