@@ -79,9 +79,9 @@ Wide **defensible** visibility (builders + microphones + optional **Grok-class**
 
 ---
 
-## Home Till (subscription · not yet shipped)
+## HomeTill (subscription · not yet shipped)
 
-PARI subscription may include an automatic **Home Till** % to the subscriber’s home jurisdiction — **revolutionary only if lawful**. **White Flag** with government stakeholders **before** feature flag. Concept: `publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md`. Mass mic **after** remittance math is **Tier B**.
+PARI subscription may include an automatic **HomeTill** % to the subscriber’s home jurisdiction — **revolutionary only if lawful**. **White Flag** with government stakeholders **before** feature flag. Concept: `publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md`. Mass mic **after** remittance math is **Tier B**.
 
 ---
 

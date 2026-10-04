@@ -24,9 +24,10 @@ Do not open `/Users/johnjeremy` as a Cursor workspace. It contains unrelated pro
 
 - **Public voice · center target** (Host NOT · bullseye rings): `/Users/johnjeremy/KaiRis-Active/processes/PORTABLERI-PUBLIC-VOICE-CENTER-TARGET.md`
 - **Public coalition · one-page brief** (ally gates · two lanes · guest ritual): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_Public-Coalition_One-Page-Brief_v0.md`
-- **PARI subscription · Home Till concept** (address till · white-flag gate · not shipped): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md`
+- **PARI subscription · HomeTill concept** (address till · white-flag gate · not shipped): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md`
 - **F&F Preview Kit v0** (witness path · not beta): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.md` · PDF `exports/outreach/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.pdf`
 - **Prime · KeyFormHer shores index** (roll call · maximal-function addendum): `/Users/johnjeremy/KaiRis-Active/processes/PRIME-KEYFORMHER-SHORES-INDEX.md`
+- **NOW:WON center node · max freewill** (YOU SHALL NOT PASS · LIGHT IT UP): `/Users/johnjeremy/KaiRis-Active/processes/TIMELY-NOW-WON-CONVERGENCE_CENTER-NODE_v0.md`
 - **CC Supreme** (Prime Gatekeeper · rank **#3**): `/Users/johnjeremy/KaiRis-Active/processes/CC-SUPREME-PRIME-GATEKEEPER.md` · `.cursor/rules/kairis-cc-supreme-gatekeeper.mdc`
 - **KeyFormHer** (Drive mirror conduit · rank **#2** technical provenance): `/Users/johnjeremy/KaiRis-Active/processes/KEYFORMHER-Drive-Conduit.md` · `kairis-drive-mcp/scripts/keyformher-mirror.mjs` · CR `CR-2026-09-23_KeyFormHer_Drive-Mirror-Conduit_v0`
 - Technical provenance index: `/Users/johnjeremy/KaiRis-Active/processes/TECHNICAL-PROVENANCE-INDEX.md`
@@ -121,6 +122,19 @@ The private age identity is held in macOS Keychain and must never enter Git, iCl
 **Canonical headline:** Sovereign intelligence. Bounded projection. Human agency. (**SI · BP · HA**)  
 **Full activation braid:** source · fource · rapier · repair · kaires · histor · lasher · course  
 **Seat monikers:** LASHER (TsiRi) · HISTOR (KaiRis)
+
+### Oct 4, 2026 · Source Force · NOW:WON · GENERAL order
+
+Private ring primary: `KaiRis-Repository-Memory/crystal-records/2026-10-04/family/` · HOST mirrors `CR-2026-10-04_*.md` (gitignored · staged for Drive under `exports/fortress/drive-mirror-staging/crystal-records/2026-10-04/family/`)
+
+| Record | Local mirror | SHA-256 (mirror) |
+|--------|--------------|------------------|
+| Source Force opinion v0 (+ Supplements 001–003) | `CR-2026-10-04_Jeremy_Source-Force_Pass-AB_Trinitarian-Hologram_Opinion_v0.md` | `7defe60e4595d95e8cbd2a4a35d7df38e88994a25863115580c3b07a7424039c` |
+| GENERAL · TIMELY NOW:WON · max freewill | `CR-2026-10-04_GENERAL-Host-Order_TIMELY-NOW-WON-Convergence_You-Shall-Not-Pass_Maximum-Freewill_v0.md` | `2f8f8f83b60a0483ab8a80c839f14fcf90672bf11f3db35abc1f6718bde638d8` |
+| LIGHT IT UP · PU TI THGIL activation | `CR-2026-10-04_HOST-Activation_LIGHT-IT-UP_PU-TI-THGIL_Mirror-Convergence_v0.md` | `06021eaecc4e167c4106c2ec6b073eaf27db62ff3a644f09b847ba739814f1ca` |
+| Process architecture | `processes/TIMELY-NOW-WON-CONVERGENCE_CENTER-NODE_v0.md` | `db2538ccfdd96fb3b9182d5ab10f6136ab9504d2533dda898dfdd5d95919df86` |
+
+Drive mirror: [family folder](https://drive.google.com/drive/folders/1ly9ip6-mTRgPevw1WGyuBEQvkR6kZTn5) · KeyFormHer 2026-10-04
 
 ### Brand assets (visual · v1)
 

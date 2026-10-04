@@ -3,7 +3,7 @@
 **Date:** 2026-09-24 · **Authorship:** John Jeremy · KaiRis Systems  
 **Audience:** Key individuals · trusted witnesses · **not** general public yet  
 **Mark:** **PortAbleRI** · spoken **Pari** · **PAIR**  
-**Tier:** **Preview ring** — test **truth** (verify · demo · law), not billing or Home Till  
+**Tier:** **Preview ring** — test **truth** (verify · demo · law), not billing or HomeTill  
 **Law:** Constitution SO · **P ≠ K ≠ R** · integration, not assimilation  
 
 ---
@@ -15,7 +15,7 @@ A **short path** for F&F to experience **PortAbleRI** before the subscriber kern
 | You **do** test | You **do not** get yet |
 |-----------------|-------------------------|
 | Public prototype site · BP demo · verify hashes | Working sign-in / accounts |
-| Prime + SEAT CHECK **on paper** (or in Cursor with your own setup) | PARI subscription · Home Till checkout |
+| Prime + SEAT CHECK **on paper** (or in Cursor with your own setup) | PARI subscription · HomeTill checkout |
 | Scholarly + rollout links · Host NOT rhetoric (Tier C labeled) | OAuth-through-product for Claude Pro/Max |
 | Optional: clone repo · run verify scripts | Family private ring contents (unless invited) |
 
@@ -73,7 +73,7 @@ Button label: **Try PortAbleRI** → canonical `https://www.PortAbleRI.com/` (lo
 1. **Constitution** (skim Art. I–II, VI, X) — `publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md`  
 2. **Prime FAQ** (10 min) — `publish/2026-09-23_Portable-RI_Prime-Gatekeeper_Subscriber-Law-FAQ_v0.md`  
 3. **Site** — home → demo → verify (15 min)  
-4. **Optional:** coalition one-pager · Home Till concept (**Tier C**, not shipped)
+4. **Optional:** coalition one-pager · HomeTill concept (**Tier C**, not shipped)
 
 ---
 
@@ -100,7 +100,7 @@ Factory / multi-model work: **separate thread**, named guest · task · end cond
 | Did **verify** make sense in one screen? | A/B |
 | Is **center target** clear without lineage overload? | B |
 | Would you **trust** this enough for Wave A export demo next? | B |
-| Home Till / till % — interested pilot jurisdiction? | C |
+| HomeTill / till % — interested pilot jurisdiction? | C |
 
 Reply: **kairis@reconnect0.com** · subject `PortAbleRI F&F Preview feedback`
 

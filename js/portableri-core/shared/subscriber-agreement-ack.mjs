@@ -1,4 +1,5 @@
 import { SCHEMA_SUBSCRIBER_AGREEMENT_ACK } from './constants.mjs';
+import { counselReviewRequiredForExport, isFfPreviewMode } from './counsel-gate-defaults.mjs';
 
 export const DEFAULT_SSA_DOCUMENT_PATH =
   'publish/2026-10-03_PortAbleRI_Subscriber-Service-Agreement_v0.1.md';
@@ -8,15 +9,18 @@ export function buildSubscriberAgreementAckV1({
   documentPath = DEFAULT_SSA_DOCUMENT_PATH,
   version = DEFAULT_SSA_VERSION,
   at,
-  ffPreview = true,
+  ffPreview,
+  counselReviewRequired,
 }) {
+  const preview = ffPreview ?? isFfPreviewMode();
+  const counselGate = counselReviewRequired ?? counselReviewRequiredForExport();
   return {
     schema: SCHEMA_SUBSCRIBER_AGREEMENT_ACK,
     at: at ?? new Date().toISOString(),
     document_path: documentPath,
     document_version: version,
-    ff_preview: Boolean(ffPreview),
-    counsel_review_required: Boolean(ffPreview),
+    ff_preview: Boolean(preview),
+    counsel_review_required: Boolean(counselGate),
   };
 }
 
