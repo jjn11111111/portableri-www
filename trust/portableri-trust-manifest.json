@@ -1,6 +1,6 @@
 {
   "schema": "PortAbleRI-Trust-Manifest-v1",
-  "generated_at": "2026-10-04T03:45:21.102Z",
+  "generated_at": "2026-10-04T03:51:59.965Z",
   "constitution": {
     "version": "SO-v0",
     "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
@@ -20,7 +20,7 @@
     {
       "id": "PUBLISH-BUILD-X-PHASE1",
       "path": "publish/2026-09-24_PortAbleRI_Product-Build-X_Phase1-Kernel-Competencies_v0.md",
-      "sha256": "d018cd5ddb8446300accb1a4130d68f92a1a26c01ac2d29d55237a3303a7e8a2"
+      "sha256": "8a9656c0f3df3bb1c0be4f0a6b4e9ae50b3e74c5e4ab63d8aed0665ded47df10"
     },
     {
       "id": "PUBLISH-INFRA-DOCTRINE-500M",
@@ -73,5 +73,5 @@
       "sha256": "04c48ccd7f7a1194ac56a79eeab11a69805383c21dbf30b592e47b9e4f926de2"
     }
   ],
-  "manifest_sha256": "676f6de349843de6b344aa54be354393af0b3814a6df9fa096a66dff82e4ad49"
+  "manifest_sha256": "97f9eb1f0c346d0da584ddffb1c093ba5cc1e727d08de6e53f57e18e4e30796c"
 }
