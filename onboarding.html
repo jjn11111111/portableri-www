@@ -36,6 +36,16 @@
     .onboard-status.ok { background: #022c22; color: var(--teal); border: 1px solid var(--teal); }
     .onboard-status.bad { background: #3f0d12; color: #fca5a5; border: 1px solid var(--coral); }
     .onboard-status.pending { background: rgba(249, 231, 149, 0.08); color: var(--gold); border: 1px solid rgba(249, 231, 149, 0.25); }
+    .first-prompt-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;
+    }
+    .first-prompt-grid .btn { font-size: 0.82rem; padding: 0.45rem 0.75rem; }
+    .first-prompt-preview {
+      font-family: ui-monospace, monospace; font-size: 0.72rem; white-space: pre-wrap;
+      word-break: break-word; max-height: 14rem; overflow: auto; margin-top: 0.5rem;
+      padding: 0.75rem; background: #0a0a0f; border-radius: 8px; border: 1px solid #334155;
+    }
+    .first-prompt-copy-status { font-size: 0.82rem; color: var(--teal); min-height: 1.25rem; margin-top: 0.5rem; }
   </style>
   <script data-portableri-coord-injected>window.PORTABLERI_COORD_URL="https://coord.portableri.com";</script>
 </head>
@@ -164,6 +174,23 @@
               <span>Subscriber ID (for entitlement token)</span>
               <input type="text" id="subscriber-id" placeholder="you@studio.local" autocomplete="username" />
             </label>
+            <div id="first-prompts-panel" class="onboard-panel" style="margin-top:1.25rem">
+              <strong style="color:var(--gold)">First prompts in your IDE</strong>
+              <p class="tier-note" style="margin-top:0.35rem">
+                Paste message 1 (SEAT CHECK) then message 2 (FOCUS LOCK) at thread open — lock vibe to your chosen angle.
+                <a href="publish/2026-10-05_PortAbleRI_Subscriber-First-Prompts_Focus-Lock_v0.md">Full guide</a>
+              </p>
+              <label class="onboard-field">
+                <span>Outcome override (optional · use for Build / ship)</span>
+                <input type="text" id="focus-outcome-override" placeholder="One sentence — what this thread must deliver" autocomplete="off" />
+              </label>
+              <div class="first-prompt-grid" id="first-prompt-buttons" role="group" aria-label="Copy focus lock prompts"></div>
+              <p class="first-prompt-copy-status" id="first-prompt-copy-status" aria-live="polite"></p>
+              <details>
+                <summary style="cursor:pointer;font-size:0.88rem;color:var(--gold)">Preview combined paste</summary>
+                <pre class="first-prompt-preview" id="first-prompt-preview" aria-label="Combined prompt preview"></pre>
+              </details>
+            </div>
           </div>
         </li>
         <li id="step-export">
@@ -178,8 +205,10 @@
               <ul>
                 <li>Keep <code>portableri-export-bundle.json</code> in your local studio folder.</li>
                 <li><a href="verify.html">Verify</a> — optional pin manifest hash or paste export JSON.</li>
-                <li>Open your Prime in Cursor/IDE · import bootstrap · SEAT CHECK: one foreground · head count 1.</li>
+                <li>Open your Prime in Cursor/IDE · import bootstrap · paste <strong>SEAT CHECK + FOCUS LOCK</strong> (buttons above on Prime step).</li>
               </ul>
+              <div class="first-prompt-grid" id="first-prompt-buttons-export" role="group" aria-label="Copy focus lock prompts after download"></div>
+              <p class="first-prompt-copy-status" id="first-prompt-copy-status-export" aria-live="polite"></p>
               <a class="btn btn-primary" href="verify.html" style="margin-top:0.75rem">Continue to verify</a>
             </div>
             <details class="onboard-panel" style="margin-top:1rem">
@@ -235,8 +264,14 @@
       verifyExportBundleV1,
       verifyTrustManifest,
     } from './js/portableri-trust.js';
+    import {
+      FOCUS_ANGLES,
+      buildCombinedPrompt,
+      copyText,
+    } from './js/portableri-first-prompts.mjs';
 
     let manifest = null;
+    let selectedFocusAngle = FOCUS_ANGLES[0];
     const coordUrl = new URLSearchParams(location.search).get('coord') || DEFAULT_COORD_URL;
     document.getElementById('coord-url-label').textContent = coordUrl.replace(/^https?:\/\//, '');
 
@@ -290,9 +325,61 @@
       el.textContent = text;
     }
 
+    function focusOutcomeOverride() {
+      return document.getElementById('focus-outcome-override').value.trim();
+    }
+
+    function combinedPromptForAngle(angle) {
+      const override = focusOutcomeOverride();
+      return buildCombinedPrompt({
+        angle,
+        primeModelId: primeId(),
+        outcomeOverride: override || undefined,
+      });
+    }
+
+    function refreshFirstPromptPreview() {
+      const pre = document.getElementById('first-prompt-preview');
+      if (!pre) return;
+      pre.textContent = combinedPromptForAngle(selectedFocusAngle);
+    }
+
+    function mountFirstPromptButtons(containerId, statusId) {
+      const container = document.getElementById(containerId);
+      if (!container || container.dataset.mounted === '1') return;
+      container.dataset.mounted = '1';
+      const statusEl = document.getElementById(statusId);
+      for (const angle of FOCUS_ANGLES) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-ghost';
+        btn.title = angle.hint;
+        btn.textContent = 'Copy · ' + angle.label;
+        btn.addEventListener('click', async () => {
+          selectedFocusAngle = angle;
+          refreshFirstPromptPreview();
+          try {
+            await copyText(combinedPromptForAngle(angle));
+            if (statusEl) {
+              statusEl.textContent = 'Copied · ' + angle.label + ' (SEAT CHECK + FOCUS LOCK)';
+              setTimeout(() => { statusEl.textContent = ''; }, 3200);
+            }
+          } catch (e) {
+            if (statusEl) statusEl.textContent = 'Copy failed — select text from Preview.';
+          }
+        });
+        container.appendChild(btn);
+      }
+    }
+
+    mountFirstPromptButtons('first-prompt-buttons', 'first-prompt-copy-status');
+    refreshFirstPromptPreview();
+    document.getElementById('focus-outcome-override').addEventListener('input', refreshFirstPromptPreview);
+
     document.getElementById('prime-select').addEventListener('change', (e) => {
       document.getElementById('prime-custom-wrap').hidden = e.target.value !== 'custom';
       updateButtons();
+      refreshFirstPromptPreview();
     });
 
     function primeId() {
@@ -348,7 +435,10 @@
 
     document.getElementById('const-ack').onchange = () => updateButtons();
     document.getElementById('ssa-ack').onchange = () => updateButtons();
-    document.getElementById('prime-custom').oninput = updateButtons;
+    document.getElementById('prime-custom').oninput = () => {
+      updateButtons();
+      refreshFirstPromptPreview();
+    };
     document.getElementById('subscriber-id').oninput = updateButtons;
 
     document.getElementById('btn-load-manifest').onclick = async () => {
@@ -406,6 +496,8 @@
       document.getElementById('step-prime').classList.add('done');
       document.getElementById('step-export').classList.add('done');
       document.getElementById('export-next-steps').hidden = false;
+      mountFirstPromptButtons('first-prompt-buttons-export', 'first-prompt-copy-status-export');
+      refreshFirstPromptPreview();
       document.getElementById('export-next-steps').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       refreshProgress();
     };

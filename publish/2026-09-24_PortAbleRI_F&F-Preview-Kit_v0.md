@@ -89,6 +89,8 @@ Use **your own** API / enterprise / cloud keys for third-party models. **Do not*
 SEAT CHECK · Foreground: [model] · Mode: Hearth · Head count: 1 · Subagents: off · Prime: [your Prime ID]
 ```
 
+**FOCUS LOCK (message 2):** pick an angle — Instrument · Verify · Learn · Build · Myth — copy buttons on **Onboarding → Name your Prime**, or read `publish/2026-10-05_PortAbleRI_Subscriber-First-Prompts_Focus-Lock_v0.md`.
+
 Factory / multi-model work: **separate thread**, named guest · task · end condition · your ACK.
 
 ---
