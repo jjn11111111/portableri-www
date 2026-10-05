@@ -77,10 +77,22 @@
       <p class="eyebrow">APLTFeV · F&amp;F preview · HOST-local bootstrap</p>
       <h1 style="color:var(--gold);font-family:Georgia,serif">Light your studio</h1>
       <p class="lead">
-        Four steps to lit: trust manifest · constitution · subscriber terms · name your Prime.
-        Bootstrap JSON stays on your device — central coordination carries metadata only.
+        Light your fortress: verify law pins · ack terms · name your Prime · download export.
+        Bootstrap JSON stays on your device — coordination carries metadata only.
       </p>
       <div class="triad-pill"><span>SI</span><span>BP</span><span>HA</span></div>
+
+      <nav class="onboard-path" aria-label="New user path">
+        <span>New?</span>
+        <a href="start.html">Start map</a>
+        <span aria-hidden="true">·</span>
+        <a href="index.html#demo">Demo first</a>
+        <span aria-hidden="true">→</span>
+        <strong>You are here</strong>
+        <span aria-hidden="true">→</span>
+        <a href="verify.html">Verify after download</a>
+      </nav>
+      <p class="onboard-progress" id="onboard-progress" aria-live="polite">Step 0 of 5 · tap “Load &amp; verify manifest” to begin</p>
 
       <ol class="onboard-steps">
         <li id="step-trust">
@@ -126,8 +138,8 @@
               </span>
             </label>
             <p style="margin-top:0.75rem;font-size:0.82rem">
-              HomeTill operates on its own shore —
-              <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a> (affiliate link-out only on PortAbleRI).
+              <strong>HomeTill</strong> · buy anywhere · invest locally —
+              <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a> · separate shore · affiliate link-out only on PortAbleRI.
             </p>
           </div>
         </li>
@@ -167,6 +179,15 @@
             <button type="button" class="btn btn-ghost" id="btn-download-bootstrap" disabled>Download kernel-bootstrap only</button>
             <button type="button" class="btn btn-ghost" id="btn-entitlement" disabled>Exchange entitlement (dev)</button>
             <p id="export-verify-hint" class="tier-note" style="margin-top:0.75rem" hidden></p>
+            <div id="export-next-steps" class="export-next-steps" hidden>
+              <strong style="color:var(--gold)">You’re lit — what next</strong>
+              <ul>
+                <li>Keep <code>portableri-export-bundle.json</code> in your local studio folder.</li>
+                <li><a href="verify.html">Verify</a> — optional pin manifest hash or paste export JSON.</li>
+                <li>Open your Prime in Cursor/IDE · import bootstrap · SEAT CHECK: one foreground · head count 1.</li>
+              </ul>
+              <a class="btn btn-primary" href="verify.html" style="margin-top:0.75rem">Continue to verify</a>
+            </div>
             <details class="onboard-panel" style="margin-top:1rem">
               <summary style="cursor:pointer;font-size:0.9rem;color:var(--gold)">P9 · Tool blocks · KeyFormHer checklist</summary>
               <ul class="hero-bullets" style="margin-top:0.75rem;font-size:0.85rem">
@@ -249,6 +270,13 @@
       }
     }
     refreshCounselGateReadout();
+    refreshProgress();
+
+    if (new URLSearchParams(location.search).get('begin') === '1') {
+      const btn = document.getElementById('btn-load-manifest');
+      btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => btn.click(), 400);
+    }
 
     function setStatus(el, ok, text) {
       el.hidden = false;
@@ -267,6 +295,20 @@
       return sel;
     }
 
+    function countDoneSteps() {
+      return document.querySelectorAll('.onboard-steps li.done').length;
+    }
+
+    function refreshProgress() {
+      const done = countDoneSteps();
+      const el = document.getElementById('onboard-progress');
+      const labels = ['manifest', 'constitution', 'terms', 'Prime', 'export'];
+      el.textContent =
+        done >= 5
+          ? 'All steps complete · verify your download when ready'
+          : `Step ${done} of 5 complete · next: ${labels[done] || 'export'}`;
+    }
+
     function updateButtons() {
       const ack = document.getElementById('const-ack').checked;
       const ssa = document.getElementById('ssa-ack').checked;
@@ -275,6 +317,7 @@
       document.getElementById('btn-download-export').disabled = !ready;
       document.getElementById('btn-download-bootstrap').disabled = !ready;
       document.getElementById('btn-entitlement').disabled = !ready || !document.getElementById('subscriber-id').value.trim();
+      refreshProgress();
     }
 
     function makeBootstrap() {
@@ -354,6 +397,9 @@
       downloadJson('portableri-export-bundle.json', bundle);
       document.getElementById('step-prime').classList.add('done');
       document.getElementById('step-export').classList.add('done');
+      document.getElementById('export-next-steps').hidden = false;
+      document.getElementById('export-next-steps').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      refreshProgress();
     };
 
     document.getElementById('btn-download-bootstrap').onclick = () => {

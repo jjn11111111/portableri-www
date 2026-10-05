@@ -303,6 +303,36 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .ht-cycle-timeline strong { color: var(--gold); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+
+/* New user · start + onboarding path */
+.start-ladder {
+  display: grid; gap: 1rem; margin: 2rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+.start-card {
+  background: rgba(18, 18, 26, 0.55); border: 1px solid rgba(2, 195, 154, 0.2);
+  border-radius: 12px; padding: 1.25rem;
+}
+.start-card strong { color: var(--gold); display: block; margin-bottom: 0.35rem; }
+.start-card .step-num {
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--teal); opacity: 0.85;
+}
+.onboard-path {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center;
+  padding: 0.85rem 1rem; margin-bottom: 1.5rem;
+  background: rgba(2, 195, 154, 0.08); border: 1px solid rgba(2, 195, 154, 0.22);
+  border-radius: 10px; font-size: 0.85rem;
+}
+.onboard-path a { font-weight: 600; }
+.onboard-progress {
+  font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 0.75rem;
+}
+.export-next-steps {
+  margin-top: 1rem; padding: 1rem; border-radius: 10px;
+  background: rgba(249, 231, 149, 0.08); border: 1px solid rgba(249, 231, 149, 0.25);
+}
+.export-next-steps ul { margin: 0.5rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; }
 .hero-cta-note {
   margin-top: 1rem;
   max-width: 36rem;
