@@ -53,7 +53,7 @@
     </ul>
     <div class="nav-actions">
       <a class="nav-login" href="login.html">Sign in</a>
-      <a class="nav-cta" href="onboarding.html" aria-current="page">Onboard</a>
+      <a class="nav-cta" href="onboarding.html?begin=1#step-export" aria-current="page">Download PortAbleRI</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -175,7 +175,7 @@
         <li id="step-export">
           <strong>Export · P7 bundle · optional entitlement</strong>
           <div class="onboard-panel">
-            <button type="button" class="btn btn-primary" id="btn-download-export" disabled>Download export-bundle.json (P7)</button>
+            <button type="button" class="btn btn-primary" id="btn-download-export" disabled>Download PortAbleRI · export-bundle.json (P7)</button>
             <button type="button" class="btn btn-ghost" id="btn-download-bootstrap" disabled>Download kernel-bootstrap only</button>
             <button type="button" class="btn btn-ghost" id="btn-entitlement" disabled>Exchange entitlement (dev)</button>
             <p id="export-verify-hint" class="tier-note" style="margin-top:0.75rem" hidden></p>
@@ -272,10 +272,22 @@
     refreshCounselGateReadout();
     refreshProgress();
 
-    if (new URLSearchParams(location.search).get('begin') === '1') {
+    const params = new URLSearchParams(location.search);
+    const autoBegin = params.get('begin') === '1' || params.get('download') === '1';
+    const focusExport = params.get('download') === '1' || location.hash === '#step-export';
+
+    function scrollToExport() {
+      const target = document.getElementById('step-export');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (autoBegin) {
       const btn = document.getElementById('btn-load-manifest');
       btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => btn.click(), 400);
+    }
+    if (focusExport) {
+      setTimeout(scrollToExport, autoBegin ? 900 : 200);
     }
 
     function setStatus(el, ok, text) {
