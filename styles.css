@@ -333,6 +333,18 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   background: rgba(249, 231, 149, 0.08); border: 1px solid rgba(249, 231, 149, 0.25);
 }
 .export-next-steps ul { margin: 0.5rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; }
+.onboard-accordion {
+  margin-top: 1rem; border: 1px solid rgba(249, 231, 149, 0.15);
+  border-radius: 10px; padding: 0.75rem 1rem; background: rgba(0, 0, 0, 0.2);
+}
+.onboard-accordion summary {
+  cursor: pointer; font-size: 0.9rem; color: var(--gold); font-weight: 600;
+  list-style: none;
+}
+.onboard-accordion summary::-webkit-details-marker { display: none; }
+.onboard-accordion[open] summary { margin-bottom: 0.75rem; }
+.onboard-accordion .onboard-sub { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.onboard-accordion .onboard-sub:first-of-type { margin-top: 0.5rem; border-top: none; padding-top: 0; }
 .hero-cta-note {
   margin-top: 1rem;
   max-width: 36rem;

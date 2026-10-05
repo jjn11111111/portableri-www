@@ -92,55 +92,49 @@
         <span aria-hidden="true">→</span>
         <a href="verify.html">Verify after download</a>
       </nav>
-      <p class="onboard-progress" id="onboard-progress" aria-live="polite">Step 0 of 5 · tap “Load &amp; verify manifest” to begin</p>
+      <p class="onboard-progress" id="onboard-progress" aria-live="polite">Step 0 of 3 · trust &amp; terms → Prime → download</p>
 
       <ol class="onboard-steps">
-        <li id="step-trust">
-          <strong>Trust manifest</strong>
-          <p class="tier-note">Fetched from <code>/.well-known/</code> · self-hash verified in browser.</p>
+        <li id="step-trust-terms">
+          <strong>Trust &amp; terms</strong>
+          <p class="tier-note">One beat: verify law pins · ack constitution · preview SSA (counsel ACK still pending).</p>
           <div class="onboard-panel">
             <button type="button" class="btn btn-primary" id="btn-load-manifest">Load &amp; verify manifest</button>
             <div id="manifest-status" class="onboard-status pending" hidden></div>
             <p id="manifest-hash" class="onboard-hash" style="margin-top:0.75rem"></p>
-          </div>
-        </li>
-        <li id="step-constitution">
-          <strong>Constitution sign-off</strong>
-          <p class="tier-note">Pin <span id="const-version">SO-v0</span> · hash must match manifest.</p>
-          <div class="onboard-panel">
-            <p class="onboard-hash" id="const-hash"></p>
-            <label class="onboard-check">
-              <input type="checkbox" id="const-ack" disabled />
-              <span>I acknowledge Individual TRUTH Preservation (Constitution) for governed sessions — append-only records, one Prime, export &amp; verify always.</span>
-            </label>
-            <p style="margin-top:0.75rem;font-size:0.82rem">
-              <a href="publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md">Read constitution (markdown)</a>
-            </p>
-          </div>
-        </li>
-        <li id="step-agreement">
-          <strong>Subscriber terms (F&amp;F preview)</strong>
-          <p class="tier-note">SSA v0.1 · Privacy v0.1 · HOST-prepared · counsel ACK pending — read before export.</p>
-          <div id="counsel-gate-readout" class="onboard-status pending" hidden aria-live="polite"></div>
-          <div class="onboard-panel">
-            <label class="onboard-check">
-              <input type="checkbox" id="ssa-ack" disabled />
-              <span>
-                I have read the
-                <a href="publish/2026-10-03_PortAbleRI_Subscriber-Service-Agreement_v0.1.md">Subscriber Service Agreement (v0.1)</a>,
-                the
-                <a href="privacy.html">Privacy notice (v0.1)</a>,
-                the
-                <a href="publish/2026-09-23_Portable-RI_Prime-Gatekeeper_Subscriber-Law-FAQ_v0.md">Prime Gatekeeper FAQ</a>,
-                the public doctrine pin
-                <a href="index.html#myth-record">Myth &amp; Record</a>,
-                and accept them for this preview onboarding (not legal advice · not a production clickwrap until counsel ACK).
-              </span>
-            </label>
-            <p style="margin-top:0.75rem;font-size:0.82rem">
-              <strong>HomeTill</strong> · buy anywhere · invest locally —
-              <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a> · separate shore · affiliate link-out only on PortAbleRI.
-            </p>
+            <div id="counsel-gate-readout" class="onboard-status pending" hidden aria-live="polite" style="margin-top:0.75rem"></div>
+            <details class="onboard-accordion" id="trust-terms-accordion">
+              <summary>Acknowledge constitution &amp; subscriber terms</summary>
+              <div class="onboard-sub">
+                <p class="tier-note">Constitution <span id="const-version">SO-v0</span> · hash pinned to manifest.</p>
+                <p class="onboard-hash" id="const-hash"></p>
+                <label class="onboard-check">
+                  <input type="checkbox" id="const-ack" disabled />
+                  <span>I acknowledge Individual TRUTH Preservation (Constitution) — append-only records, one Prime, export &amp; verify always.</span>
+                </label>
+                <p style="margin-top:0.75rem;font-size:0.82rem">
+                  <a href="publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md">Read constitution</a>
+                </p>
+              </div>
+              <div class="onboard-sub">
+                <p class="tier-note">SSA v0.1 · Privacy v0.1 · HOST-prepared · not production clickwrap until counsel ACK.</p>
+                <label class="onboard-check">
+                  <input type="checkbox" id="ssa-ack" disabled />
+                  <span>
+                    I have read the
+                    <a href="publish/2026-10-03_PortAbleRI_Subscriber-Service-Agreement_v0.1.md">SSA (v0.1)</a>,
+                    <a href="privacy.html">Privacy (v0.1)</a>,
+                    <a href="publish/2026-09-23_Portable-RI_Prime-Gatekeeper_Subscriber-Law-FAQ_v0.md">Prime FAQ</a>,
+                    <a href="index.html#myth-record">Myth &amp; Record</a>,
+                    and accept them for this F&amp;F preview.
+                  </span>
+                </label>
+                <p style="margin-top:0.75rem;font-size:0.82rem">
+                  <strong>HomeTill</strong> ·
+                  <a href="https://www.hometillzip.com/" rel="noopener noreferrer">HomeTillZip</a> · separate shore · affiliate link-out only.
+                </p>
+              </div>
+            </details>
           </div>
         </li>
         <li id="step-prime">
@@ -173,7 +167,7 @@
           </div>
         </li>
         <li id="step-export">
-          <strong>Export · P7 bundle · optional entitlement</strong>
+          <strong>Download PortAbleRI</strong>
           <div class="onboard-panel">
             <button type="button" class="btn btn-primary" id="btn-download-export" disabled>Download PortAbleRI · export-bundle.json (P7)</button>
             <button type="button" class="btn btn-ghost" id="btn-download-bootstrap" disabled>Download kernel-bootstrap only</button>
@@ -307,18 +301,28 @@
       return sel;
     }
 
+    function refreshTrustTermsDone() {
+      const li = document.getElementById('step-trust-terms');
+      const ok =
+        manifest &&
+        document.getElementById('const-ack').checked &&
+        document.getElementById('ssa-ack').checked;
+      li.classList.toggle('done', ok);
+    }
+
     function countDoneSteps() {
-      return document.querySelectorAll('.onboard-steps li.done').length;
+      return document.querySelectorAll('.onboard-steps > li.done').length;
     }
 
     function refreshProgress() {
+      refreshTrustTermsDone();
       const done = countDoneSteps();
       const el = document.getElementById('onboard-progress');
-      const labels = ['manifest', 'constitution', 'terms', 'Prime', 'export'];
+      const labels = ['trust & terms', 'Prime', 'download'];
       el.textContent =
-        done >= 5
-          ? 'All steps complete · verify your download when ready'
-          : `Step ${done} of 5 complete · next: ${labels[done] || 'export'}`;
+        done >= 3
+          ? 'All 3 steps complete · verify your download when ready'
+          : `Step ${done} of 3 complete · next: ${labels[done] || 'download'}`;
     }
 
     function updateButtons() {
@@ -329,6 +333,7 @@
       document.getElementById('btn-download-export').disabled = !ready;
       document.getElementById('btn-download-bootstrap').disabled = !ready;
       document.getElementById('btn-entitlement').disabled = !ready || !document.getElementById('subscriber-id').value.trim();
+      document.getElementById('step-prime').classList.toggle('done', prime.length > 0);
       refreshProgress();
     }
 
@@ -341,18 +346,8 @@
       });
     }
 
-    document.getElementById('const-ack').onchange = () => {
-      updateButtons();
-      if (document.getElementById('const-ack').checked) {
-        document.getElementById('step-constitution').classList.add('done');
-      }
-    };
-    document.getElementById('ssa-ack').onchange = () => {
-      updateButtons();
-      if (document.getElementById('ssa-ack').checked) {
-        document.getElementById('step-agreement').classList.add('done');
-      }
-    };
+    document.getElementById('const-ack').onchange = () => updateButtons();
+    document.getElementById('ssa-ack').onchange = () => updateButtons();
     document.getElementById('prime-custom').oninput = updateButtons;
     document.getElementById('subscriber-id').oninput = updateButtons;
 
@@ -372,7 +367,8 @@
         document.getElementById('const-hash').textContent = 'constitution_sha256: ' + manifest.constitution.sha256;
         document.getElementById('const-ack').disabled = false;
         document.getElementById('ssa-ack').disabled = false;
-        document.getElementById('step-trust').classList.add('done');
+        const acc = document.getElementById('trust-terms-accordion');
+        if (acc) acc.open = true;
       } catch (e) {
         setStatus(status, false, 'Load failed — run npm run build:trust in infra/coordination. ' + e.message);
         manifest = null;
