@@ -27,9 +27,9 @@ body {
   margin: 0;
   font-family: Calibri, "Segoe UI", system-ui, sans-serif;
   background:
-    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(232, 93, 255, 0.07), transparent 55%),
-    radial-gradient(ellipse 70% 45% at 100% 40%, rgba(0, 232, 255, 0.06), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 0% 70%, rgba(255, 224, 102, 0.05), transparent 45%),
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(2, 195, 154, 0.08), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 40%, rgba(7, 23, 240, 0.05), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 70%, rgba(249, 231, 149, 0.06), transparent 45%),
     var(--foundry-void);
   color: var(--off);
   line-height: 1.6;
@@ -44,8 +44,8 @@ body::before {
   z-index: 0;
   opacity: 0.035;
   background-image:
-    linear-gradient(rgba(0, 232, 255, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 232, 255, 0.35) 1px, transparent 1px);
+    linear-gradient(rgba(2, 195, 154, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 195, 154, 0.28) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, #000 20%, transparent 75%);
 }
@@ -213,8 +213,8 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 }
 .hero-video-ring {
   --hero-video-zoom: 1.32;
-  --tube-color: var(--foundry-cyan);
-  --tube-accent: var(--foundry-lux);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
   width: min(100%, 380px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -250,7 +250,7 @@ h3 { font-size: 1.15rem; font-weight: 600; }
     0 0 6px var(--tube-color),
     0 0 18px var(--tube-color),
     0 0 32px var(--tube-accent);
-  animation: foundry-tube-pulse 4.2s ease-in-out infinite;
+  animation: none;
 }
 .hero-visual video.hero-video-el {
   position: absolute;
@@ -633,16 +633,16 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 }
 @media (max-width: 640px) { .phases { grid-template-columns: 1fr 1fr; } }
 .phase {
-  --tube-color: var(--foundry-cyan);
-  --tube-accent: var(--foundry-magenta);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
   text-align: center; padding: 1rem 0.65rem;
   border-radius: 14px;
   font-size: 0.8rem; letter-spacing: 0.08em;
 }
-.phase:nth-child(1) { --tube-color: var(--foundry-magenta); --tube-accent: var(--foundry-cyan); }
-.phase:nth-child(2) { --tube-color: var(--foundry-lux); --tube-accent: var(--foundry-cyan); animation-delay: 0.25s; }
-.phase:nth-child(3) { --tube-color: var(--foundry-cyan); --tube-accent: var(--foundry-lux); animation-delay: 0.5s; }
-.phase:nth-child(4) { --tube-color: var(--foundry-rebuild); --tube-accent: var(--foundry-cyan); animation-delay: 0.75s; }
+.phase:nth-child(1) { --tube-color: var(--teal); --tube-accent: var(--gold); }
+.phase:nth-child(2) { --tube-color: var(--gold); --tube-accent: var(--teal); }
+.phase:nth-child(3) { --tube-color: var(--blue); --tube-accent: var(--teal); }
+.phase:nth-child(4) { --tube-color: var(--deep); --tube-accent: var(--gold); }
 .phase em { display: block; font-style: normal; color: var(--gold); font-weight: 600; margin-bottom: 0.25rem; }
 
 /* Motion duo */
@@ -1068,38 +1068,43 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 }
 
 .light-glyph {
-  --lg-color: var(--foundry-cyan);
-  --lg-accent: var(--foundry-magenta);
+  --lg-color: var(--teal);
+  --lg-accent: var(--gold);
   color: var(--lg-color);
   font-family: ui-monospace, "SF Mono", monospace;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  animation: foundry-glyph-pulse 4.2s ease-in-out infinite;
+  animation: none;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 6px var(--lg-color),
+    0 0 14px color-mix(in srgb, var(--lg-color) 65%, transparent);
 }
-.light-glyph--si { --lg-color: var(--foundry-cyan); --lg-accent: var(--foundry-magenta); animation-delay: 0s; }
-.light-glyph--bp { --lg-color: var(--foundry-lux); --lg-accent: var(--foundry-cyan); animation-delay: 0.35s; }
-.light-glyph--ha { --lg-color: var(--foundry-magenta); --lg-accent: var(--foundry-cyan); animation-delay: 0.7s; }
-.light-glyph--ri { --lg-color: var(--foundry-lux); --lg-accent: var(--foundry-magenta); }
-.light-glyph--teal { --lg-color: var(--foundry-cyan); --lg-accent: var(--foundry-magenta); }
-.light-glyph--gold { --lg-color: var(--foundry-lux); --lg-accent: var(--foundry-cyan); }
-.light-glyph--deep { --lg-color: var(--foundry-magenta); --lg-accent: var(--foundry-cyan); }
-.light-glyph--coral { --lg-color: var(--foundry-veritas); --lg-accent: var(--foundry-magenta); }
-.light-glyph--off { --lg-color: var(--off); --lg-accent: var(--foundry-cyan); }
-.light-glyph--a { --lg-color: var(--foundry-lux); --lg-accent: var(--foundry-cyan); }
-.light-glyph--p { --lg-color: var(--foundry-cyan); --lg-accent: var(--foundry-magenta); }
-.light-glyph--l { --lg-color: var(--foundry-magenta); --lg-accent: var(--foundry-lux); }
-.light-glyph--t { --lg-color: var(--off); --lg-accent: var(--foundry-cyan); }
-.light-glyph--f { --lg-color: var(--foundry-lux); --lg-accent: var(--foundry-magenta); }
-.light-glyph--e { --lg-color: var(--foundry-rebuild); --lg-accent: var(--foundry-cyan); }
-.light-glyph--v { --lg-color: var(--foundry-cyan); --lg-accent: var(--foundry-lux); }
+.light-glyph--si { --lg-color: var(--teal); --lg-accent: var(--gold); }
+.light-glyph--bp { --lg-color: var(--gold); --lg-accent: var(--teal); }
+.light-glyph--ha { --lg-color: var(--blue); --lg-accent: var(--teal); }
+.light-glyph--ri { --lg-color: var(--gold); --lg-accent: var(--teal); }
+.light-glyph--teal { --lg-color: var(--teal); --lg-accent: var(--gold); }
+.light-glyph--gold { --lg-color: var(--gold); --lg-accent: var(--teal); }
+.light-glyph--deep { --lg-color: var(--deep); --lg-accent: var(--teal); }
+.light-glyph--blue { --lg-color: var(--blue); --lg-accent: var(--teal); }
+.light-glyph--coral { --lg-color: var(--teal); --lg-accent: var(--gold); }
+.light-glyph--off { --lg-color: var(--off); --lg-accent: var(--teal); }
+.light-glyph--a { --lg-color: var(--gold); --lg-accent: var(--teal); }
+.light-glyph--p { --lg-color: var(--teal); --lg-accent: var(--gold); }
+.light-glyph--l { --lg-color: var(--blue); --lg-accent: var(--teal); }
+.light-glyph--t { --lg-color: var(--off); --lg-accent: var(--teal); }
+.light-glyph--f { --lg-color: var(--gold); --lg-accent: var(--teal); }
+.light-glyph--e { --lg-color: var(--teal); --lg-accent: var(--gold); }
+.light-glyph--v { --lg-color: var(--deep); --lg-accent: var(--teal); }
 
 .neon-bubble,
 .triad-pill .light-glyph,
 .hero-bullet-icon.light-glyph,
 .phase {
-  --tube-color: var(--lg-color, var(--foundry-cyan));
-  --tube-accent: var(--lg-accent, var(--foundry-magenta));
+  --tube-color: var(--lg-color, var(--teal));
+  --tube-accent: var(--lg-accent, var(--gold));
   border: 3px solid var(--tube-color);
   border-color: color-mix(in srgb, var(--tube-color) 88%, #fff);
   background: rgba(4, 4, 8, 0.85);
@@ -1108,9 +1113,9 @@ h3 { font-size: 1.15rem; font-weight: 600; }
     0 0 1px #fff,
     0 0 2px #fff,
     0 0 6px var(--tube-color),
-    0 0 16px var(--tube-color),
-    0 0 28px color-mix(in srgb, var(--tube-accent, var(--tube-color)) 50%, transparent);
-  animation: foundry-tube-pulse 4.2s ease-in-out infinite;
+    0 0 14px color-mix(in srgb, var(--tube-color) 75%, transparent),
+    0 0 24px color-mix(in srgb, var(--tube-accent, var(--tube-color)) 40%, transparent);
+  animation: none;
 }
 
 .triad-pill .light-glyph {
@@ -1125,10 +1130,6 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   font-size: 0.62rem;
 }
 
-.triad-pill .light-glyph--si { animation-delay: 0s; }
-.triad-pill .light-glyph--bp { animation-delay: 0.35s; }
-.triad-pill .light-glyph--ha { animation-delay: 0.7s; }
-
 .light-rune-row {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 0.5rem;
   font-size: 0.72rem; opacity: 0.85;
@@ -1136,9 +1137,30 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .light-rune-row .light-glyph {
   font-weight: 700; font-size: 0.68rem; letter-spacing: 0.14em;
 }
+/* KaiRis rune strip under hero video · unified teal block */
+.hero-visual .light-rune-row .light-glyph {
+  --lg-color: var(--teal);
+  --lg-accent: var(--gold);
+  --tube-color: var(--teal);
+  color: var(--teal);
+}
+.hero-visual .light-rune-row .light-glyph--trail {
+  width: 1px; height: 0.85rem; margin: 0 0.1rem; align-self: center;
+  --lg-color: var(--teal);
+  animation: none;
+  text-shadow: none;
+  filter: none;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--teal) 90%, white),
+    transparent
+  );
+  box-shadow: 0 0 6px var(--teal);
+}
 .light-rune-row .light-glyph--trail {
   width: 1px; height: 0.85rem; margin: 0 0.1rem; align-self: center;
-  animation: foundry-tube-pulse 4.2s ease-in-out infinite;
+  animation: none;
   text-shadow: none;
   filter: none;
 }
@@ -1170,7 +1192,37 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   box-shadow:
     0 0 6px var(--lg-color),
     0 0 14px color-mix(in srgb, var(--lg-color) 50%, transparent);
-  animation: light-glyph-pulse 2.8s ease-in-out infinite;
+  animation: none;
+  opacity: 0.35;
+}
+/* Section color blocks · glyphs match band (teal / gold / blue only) */
+.hero .triad-pill .light-glyph,
+.hero .hero-bullet-icon.light-glyph {
+  --lg-color: var(--teal);
+  --lg-accent: var(--gold);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
+  color: var(--teal);
+}
+.section-charcoal .light-glyph:not(.light-glyph--trail) {
+  --lg-color: var(--teal);
+  --lg-accent: var(--gold);
+}
+.section-midnight .light-glyph:not(.light-glyph--trail) {
+  --lg-color: var(--gold);
+  --lg-accent: var(--teal);
+}
+.section-light .light-glyph:not(.light-glyph--trail) {
+  --lg-color: var(--deep);
+  --lg-accent: var(--teal);
+}
+#demo.section-midnight .light-glyph:not(.light-glyph--trail) {
+  --lg-color: var(--blue);
+  --lg-accent: var(--teal);
+}
+.site-footer .light-glyph:not(.light-glyph--trail) {
+  --lg-color: var(--teal);
+  --lg-accent: var(--gold);
 }
 .light-field-zone > .section-inner,
 .light-field-zone > .footer-grid,

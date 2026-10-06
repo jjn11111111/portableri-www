@@ -175,7 +175,6 @@
         trail.className = `light-glyph light-glyph--trail light-glyph--${tone}`;
         trail.style.left = `${pos[0]}%`;
         trail.style.top = `${pos[1]}%`;
-        trail.style.animationDelay = `${i * 0.65}s`;
         trail.setAttribute('aria-hidden', 'true');
         zone.insertBefore(trail, zone.firstChild);
       });
