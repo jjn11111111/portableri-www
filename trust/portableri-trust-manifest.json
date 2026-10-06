@@ -1,6 +1,6 @@
 {
   "schema": "PortAbleRI-Trust-Manifest-v1",
-  "generated_at": "2026-10-06T00:31:38.402Z",
+  "generated_at": "2026-10-06T00:49:46.502Z",
   "constitution": {
     "version": "SO-v0",
     "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
@@ -73,5 +73,5 @@
       "sha256": "04c48ccd7f7a1194ac56a79eeab11a69805383c21dbf30b592e47b9e4f926de2"
     }
   ],
-  "manifest_sha256": "327368a340260b75684b3c8a2dfe9c06bfeb5f3df777b40eaec25c4019cc7f5a"
+  "manifest_sha256": "e67969286805e484c424856272f2070db277cf575107fbd86e653271f630f063"
 }

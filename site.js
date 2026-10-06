@@ -121,4 +121,64 @@
     checkboxes.forEach((cb) => cb.addEventListener('change', update));
     update();
   }
+
+  /* Parallax + light fields (glyph sparkle = hero tunnel light) */
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionOk = !saveData && !reduceMotion;
+
+  if (motionOk) {
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    if (parallaxEls.length) {
+      let parallaxTick = false;
+      const applyParallax = () => {
+        const y = window.scrollY;
+        parallaxEls.forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-parallax') || '0.08', 10);
+          el.style.transform = `translate3d(0, ${(y * speed).toFixed(2)}px, 0)`;
+        });
+        parallaxTick = false;
+      };
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!parallaxTick) {
+            parallaxTick = true;
+            requestAnimationFrame(applyParallax);
+          }
+        },
+        { passive: true }
+      );
+      applyParallax();
+    }
+
+    const trailSets = [
+      [
+        [10, 14],
+        [86, 20],
+        [52, 6],
+        [24, 78],
+      ],
+      [
+        [8, 55],
+        [92, 48],
+        [44, 88],
+      ],
+    ];
+    document.querySelectorAll('[data-light-field]').forEach((zone, zoneIdx) => {
+      zone.classList.add('light-field-zone');
+      const palette = (zone.getAttribute('data-light-field') || 'teal,gold,deep').split(',');
+      const coords = trailSets[zoneIdx % trailSets.length];
+      coords.forEach((pos, i) => {
+        const tone = palette[i % palette.length].trim();
+        const trail = document.createElement('span');
+        trail.className = `light-glyph light-glyph--trail light-glyph--${tone}`;
+        trail.style.left = `${pos[0]}%`;
+        trail.style.top = `${pos[1]}%`;
+        trail.style.animationDelay = `${i * 0.65}s`;
+        trail.setAttribute('aria-hidden', 'true');
+        zone.insertBefore(trail, zone.firstChild);
+      });
+    });
+  }
 })();

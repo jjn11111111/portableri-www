@@ -65,7 +65,7 @@
     <!-- Hero -->
     <header class="hero" id="top">
       <div class="hero-grid section-inner">
-        <div class="reveal">
+        <div class="reveal" data-parallax="-0.045">
           <p class="eyebrow">KaiRis Systems · TsiRiaK · NOW:WON</p>
           <h1>They can't erase what they don't host.</h1>
           <p class="hero-mission" style="margin-top:1rem;max-width:40rem">
@@ -73,21 +73,21 @@
           </p>
           <p class="tier-note" style="margin-top:0.5rem">Local first · verify · export always.</p>
           <div class="triad-pill" style="margin-top:1rem" aria-label="Mission triad">
-            <span>SI</span><span>BP</span><span>HA</span>
+            <span class="light-glyph light-glyph--si">SI</span><span class="light-glyph light-glyph--bp">BP</span><span class="light-glyph light-glyph--ha">HA</span>
           </div>
           <ul class="hero-bullets" aria-label="Why PortAbleRI">
             <li>
-              <span class="hero-bullet-icon" aria-hidden="true">BP</span>
+              <span class="hero-bullet-icon light-glyph light-glyph--bp" aria-hidden="true">BP</span>
               <span><strong>Token &amp; freight savings</strong> — send a slice, not your whole context.
                 <span class="tier-hint">~50× less network freight vs cloud-heavy paths · illustrative · try #demo</span></span>
             </li>
             <li>
-              <span class="hero-bullet-icon" aria-hidden="true">2×</span>
+              <span class="hero-bullet-icon light-glyph light-glyph--teal" aria-hidden="true">2×</span>
               <span><strong>~70% fewer model calls</strong> — 2 LLM calls/turn vs 7+ cathedral stack.
                 <span class="tier-hint">Tier A lean reference · <a href="warhead-poc.html" style="color:var(--teal)">proof</a></span></span>
             </li>
             <li>
-              <span class="hero-bullet-icon" aria-hidden="true">RI</span>
+              <span class="hero-bullet-icon light-glyph light-glyph--ri" aria-hidden="true">RI</span>
               <span><strong>RI stays on your device</strong> — lineage &amp; ledger in your studio, not parked in a datacenter pool that can be silently altered.
                 <span class="tier-hint">Verify · export always</span></span>
             </li>
@@ -108,20 +108,38 @@
             · <strong>@hometill/core</strong> · separate shore · PortAbleRI affiliate link-out only (not on PortAbleRI checkout).
           </p>
         </div>
-        <div class="hero-visual reveal" data-hero-wrap>
+        <div class="hero-visual reveal" data-hero-wrap data-parallax="0.11">
           <div class="hero-orb-static" role="img" aria-label="PortAbleRI · hero orb (static)"></div>
           <div class="hero-video-ring">
-            <video
-              class="hero-video-el"
-              src="media/PortAbleRI-Home-Hero_v4.mp4"
-              preload="metadata"
-              muted
-              loop
-              playsinline
-              aria-label="PortAbleRI · home hero"
-            ></video>
+            <div class="hero-video-disc">
+              <video
+                class="hero-video-el"
+                src="media/PortAbleRI-Home-Hero_v4.mp4"
+                preload="metadata"
+                muted
+                loop
+                playsinline
+                aria-label="PortAbleRI · home hero"
+              ></video>
+            </div>
           </div>
-          <p class="mono" style="font-size:0.72rem;opacity:0.5">K · AI · S · RI · SOURCE · FOURCE · REPAIR · COURSE</p>
+          <p class="mono light-rune-row" aria-label="KaiRis runes">
+            <span class="light-glyph light-glyph--gold">K</span>
+            <span class="light-glyph light-glyph--trail light-glyph--off" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--teal">AI</span>
+            <span class="light-glyph light-glyph--trail light-glyph--teal" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--teal">S</span>
+            <span class="light-glyph light-glyph--trail light-glyph--gold" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--ri">RI</span>
+            <span class="light-glyph light-glyph--trail light-glyph--gold" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--gold">SOURCE</span>
+            <span class="light-glyph light-glyph--trail light-glyph--coral" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--coral">FOURCE</span>
+            <span class="light-glyph light-glyph--trail light-glyph--teal" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--teal">REPAIR</span>
+            <span class="light-glyph light-glyph--trail light-glyph--deep" aria-hidden="true"></span>
+            <span class="light-glyph light-glyph--deep">COURSE</span>
+          </p>
         </div>
       </div>
     </header>
@@ -147,7 +165,7 @@
     </section>
 
     <!-- Myth & Record · center ring -->
-    <section id="myth-record" class="section-dark">
+    <section id="myth-record" class="section-dark" data-light-field="gold,teal,off">
       <div class="section-inner reveal">
         <p class="eyebrow">PortAbleRI · public doctrine</p>
         <h2>Myth orients · record attests</h2>
@@ -209,7 +227,7 @@
     </section>
 
     <!-- Mission SI BP HA -->
-    <section id="mission" class="section-charcoal">
+    <section id="mission" class="section-charcoal" data-light-field="teal,gold,deep">
       <div class="section-inner reveal">
         <p class="eyebrow">Public mission</p>
         <h2>Three beats. One spine.</h2>
@@ -223,17 +241,17 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>SI</strong></td>
+              <td><strong><span class="light-glyph light-glyph--si">SI</span></strong></td>
               <td>Sovereign intelligence</td>
               <td>Local studio · federated seats · not one brain to rule them all</td>
             </tr>
             <tr>
-              <td><strong>BP</strong></td>
+              <td><strong><span class="light-glyph light-glyph--bp">BP</span></strong></td>
               <td>Bounded projection</td>
               <td>Send summaries, not your whole house · consent-governed portals</td>
             </tr>
             <tr>
-              <td><strong>HA</strong></td>
+              <td><strong><span class="light-glyph light-glyph--ha">HA</span></strong></td>
               <td>Human agency</td>
               <td>Author, not controlled variable · you the steer</td>
             </tr>
@@ -307,9 +325,9 @@
     </section>
 
     <!-- Interactive BP demo -->
-    <section id="demo" class="section-midnight">
+    <section id="demo" class="section-midnight" data-light-field="gold,teal,gold">
       <div class="section-inner reveal">
-        <p class="eyebrow">Interactive · bounded projection</p>
+        <p class="eyebrow">Interactive · bounded projection · <span class="light-glyph light-glyph--bp">BP</span></p>
         <h2>What leaves your studio — and what stays</h2>
         <p class="lead">
           The warehouse default ships your whole context every turn.
@@ -618,13 +636,17 @@
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" data-light-field="teal,gold,deep">
     <div class="footer-grid">
       <div>
         <h4>KaiRis Systems</h4>
         <ul>
           <li>Relative Intelligence (RI)</li>
-          <li>SI · BP · HA</li>
+          <li>
+            <span class="light-glyph light-glyph--si">SI</span>
+            · <span class="light-glyph light-glyph--bp">BP</span>
+            · <span class="light-glyph light-glyph--ha">HA</span>
+          </li>
           <li><a href="lineage.html">Lineage (optional)</a></li>
           <li>PortAbleRI · verify · rollout</li>
         </ul>
