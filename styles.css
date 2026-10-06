@@ -89,8 +89,7 @@ a:hover { color: var(--gold); }
   border-radius: 999px; font-weight: 600; font-size: 0.75rem;
   letter-spacing: 0.06em;
 }
-.nav-cta:hover { color: var(--hinge) !important; }
-.nav-cta-active { color: var(--hinge) !important; }
+.nav-cta-active { color: color-mix(in srgb, var(--gold) 35%, #fff) !important; }
 
 .nav-actions {
   display: flex; align-items: center; gap: 0.65rem;
@@ -308,7 +307,6 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
   .light-glyph, .light-glyph--trail { animation: none !important; }
-  .btn, .nav-cta, .verify-page button, .login-submit,
   .neon-bubble, .triad-pill .light-glyph, .hero-bullet-icon.light-glyph, .phase, .hero-video-ring::after {
     animation: none !important;
     /* Keep tube glow visible when motion is reduced */
@@ -443,8 +441,8 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .nav-cta,
 .verify-page button,
 .login-submit {
-  --tube-color: var(--foundry-cyan);
-  --tube-accent: var(--foundry-magenta);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
   padding: 0.75rem 1.35rem; border-radius: 999px;
   font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em;
@@ -458,11 +456,17 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   box-shadow:
     0 0 1px #fff,
     0 0 2px #fff,
-    0 0 6px var(--tube-color),
-    0 0 16px var(--tube-color),
-    0 0 28px color-mix(in srgb, var(--tube-accent, var(--tube-color)) 50%, transparent);
-  animation: foundry-tube-pulse 4.2s ease-in-out infinite;
-  transition: transform 0.2s var(--ease), color 0.2s, background 0.2s, border-color 0.2s;
+    0 0 5px var(--tube-color),
+    0 0 12px color-mix(in srgb, var(--tube-color) 80%, transparent),
+    0 0 22px color-mix(in srgb, var(--tube-accent) 40%, transparent);
+  animation: none;
+  transition:
+    transform 0.2s var(--ease),
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.25s var(--ease),
+    text-shadow 0.25s var(--ease);
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -475,6 +479,15 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .verify-page button:hover,
 .login-submit:hover:not(:disabled) {
   transform: translateY(-2px);
+  box-shadow:
+    0 0 1px #fff,
+    0 0 3px #fff,
+    0 0 8px #fff,
+    0 0 14px var(--tube-color),
+    0 0 28px var(--tube-color),
+    0 0 44px color-mix(in srgb, var(--tube-accent) 70%, white),
+    inset 0 0 10px color-mix(in srgb, var(--tube-color) 14%, transparent);
+  text-shadow: 0 0 12px var(--tube-color);
 }
 .btn:disabled,
 .login-submit:disabled,
@@ -488,42 +501,43 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .btn-primary,
 .nav-cta,
 .login-submit {
-  --tube-color: var(--foundry-cyan);
-  --tube-accent: var(--foundry-magenta);
-  color: color-mix(in srgb, var(--foundry-cyan) 35%, #fff);
-  text-shadow: 0 0 10px var(--tube-color);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
+  color: color-mix(in srgb, var(--teal) 38%, #fff);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--teal) 55%, transparent);
 }
 .btn-primary:hover,
 .nav-cta:hover,
 .login-submit:hover:not(:disabled) {
-  --tube-color: var(--foundry-lux);
-  --tube-accent: var(--foundry-cyan);
-  color: var(--foundry-lux) !important;
+  --tube-color: var(--gold);
+  --tube-accent: var(--teal);
+  color: var(--gold) !important;
 }
 .nav-cta-active {
-  --tube-color: var(--foundry-lux);
-  --tube-accent: var(--foundry-cyan);
+  --tube-color: var(--gold);
+  --tube-accent: var(--teal);
 }
 .btn-ghost {
-  --tube-color: var(--foundry-magenta);
-  --tube-accent: var(--foundry-cyan);
-  color: color-mix(in srgb, var(--foundry-magenta) 40%, #fff);
-  text-shadow: 0 0 10px var(--tube-color);
+  --tube-color: var(--blue);
+  --tube-accent: var(--teal);
+  color: color-mix(in srgb, var(--blue) 42%, #fff);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--blue) 50%, transparent);
 }
 .btn-ghost:hover {
-  --tube-color: var(--foundry-lux);
-  --tube-accent: var(--foundry-magenta);
-  color: var(--foundry-lux);
+  --tube-color: var(--gold);
+  --tube-accent: var(--blue);
+  color: var(--gold);
 }
 .verify-page button.btn-ghost-inline {
-  --tube-color: var(--foundry-cyan);
-  --tube-accent: var(--foundry-magenta);
-  color: var(--foundry-cyan);
-  text-shadow: 0 0 10px var(--tube-color);
+  --tube-color: var(--blue);
+  --tube-accent: var(--teal);
+  color: color-mix(in srgb, var(--blue) 45%, #fff);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--blue) 50%, transparent);
 }
 .verify-page button.btn-ghost-inline:hover {
-  --tube-color: var(--foundry-lux);
-  color: var(--foundry-lux);
+  --tube-color: var(--gold);
+  --tube-accent: var(--blue);
+  color: var(--gold);
 }
 
 /* Light sections */
@@ -935,18 +949,28 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 }
 .pricing-card .btn { width: 100%; justify-content: center; margin-top: auto; }
 .section-light .pricing-card .btn-ghost {
-  --tube-color: color-mix(in srgb, var(--deep) 65%, var(--teal));
+  --tube-color: var(--blue);
+  --tube-accent: var(--teal);
   color: var(--charcoal);
   background: color-mix(in srgb, var(--off) 92%, var(--teal));
+  text-shadow: none;
 }
 .section-light .pricing-card .btn-ghost:hover {
-  --tube-color: var(--teal);
+  --tube-color: var(--gold);
+  --tube-accent: var(--blue);
   color: var(--deep);
 }
 .section-light .pricing-card .btn-primary {
-  --tube-color: var(--deep);
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
   background: color-mix(in srgb, var(--teal) 65%, var(--off));
   color: var(--hinge);
+  text-shadow: none;
+}
+.section-light .pricing-card .btn-primary:hover {
+  --tube-color: var(--gold);
+  --tube-accent: var(--teal);
+  color: var(--hinge) !important;
 }
 
 /* Login hollow */
