@@ -184,6 +184,7 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   display: flex; flex-direction: column; align-items: center; gap: 1rem;
 }
 .hero-video-ring {
+  --hero-video-zoom: 1.32;
   width: min(100%, 380px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -192,6 +193,8 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   isolation: isolate;
   background: var(--hinge);
   box-shadow:
+    inset 0 0 0 2px var(--hinge),
+    inset 0 0 28px 10px rgba(15, 14, 12, 0.92),
     0 0 0 1px rgba(249, 231, 149, 0.18),
     0 0 40px rgba(2, 195, 154, 0.22),
     0 24px 72px rgba(0, 0, 0, 0.5);
@@ -206,8 +209,8 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   border-radius: 0;
   object-fit: cover;
   object-position: center center;
-  /* Slight zoom crops in-frame letterbox bars before circular clip */
-  transform: translate(-50%, -50%) scale(1.12);
+  /* Zoom past baked-in top/bottom letterbox in square export */
+  transform: translate(-50%, -50%) scale(var(--hero-video-zoom));
   box-shadow: none;
 }
 .hero-visual.is-static .hero-video-ring { display: none; }
