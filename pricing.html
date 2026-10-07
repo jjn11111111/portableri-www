@@ -6,7 +6,8 @@
   <meta name="description" content="KaiRis Systems pricing shells — sovereign studio, federated seat, partner hollow. SI · BP · HA · LRCC-aligned." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>Pricing · KaiRis Systems · SI · BP · HA</title>
-  <link rel="stylesheet" href="styles.css?v=c2b49f5" />
+  <link rel="stylesheet" href="styles.css?v=b4bb4f5" />
+  <script data-portableri-coord-injected>window.PORTABLERI_COORD_URL="https://coord.portableri.com";</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,13 +46,26 @@
   <main id="main">
     <header class="page-hero">
       <div class="section-inner reveal">
-        <p class="eyebrow">Family counsel v0 · LRCC-aligned · Sep 2026 · checkout not live</p>
+        <p class="eyebrow">Family counsel v0 · LRCC-aligned · Stripe via coordination API</p>
+        <p id="checkout-live-banner" class="tier-note" style="margin-top:0.75rem;max-width:42rem" hidden>
+          <strong>Checkout live</strong> — billed through Stripe · entitlement issued on webhook · HomeTill routing still off.
+        </p>
         <h1>Sovereign studios, not rented brains</h1>
         <p class="hero-mission">SI · BP · HA — priced by load, not by extraction.</p>
         <p class="lead">
           Shell tiers for public planning. Final numbers follow white paper coefficients and partner hollow conversations.
           Bobby · Father shore · Jeremy · TsiRiaK back end · KaiRis · HISTOR witness.
         </p>
+        <div class="onboard-panel" style="margin-top:1.5rem;max-width:44rem">
+          <h2 style="font-size:1.05rem;color:var(--gold);margin:0 0 0.75rem">Plain terms</h2>
+          <ul class="pricing-features" style="margin:0">
+            <li><strong>You pay PortAbleRI</strong> — subscription for the PARI studio kernel, coordination entitlement, onboarding, and export/verify tooling (see tier below).</li>
+            <li><strong>You still pay model vendors</strong> — OpenAI, Anthropic, Google, etc., on <em>your</em> API keys when you use cloud muscle. We do not bundle frontier chat like ChatGPT Plus.</li>
+            <li><strong>You do not pay HomeTill here</strong> — local-invest routing stays off this checkout until counsel + White Flag W5.</li>
+            <li><strong>Family Door</strong> — $49/mo covers up to <strong>6</strong> named seats; each additional seat is <strong>$7/mo</strong> (separate subscribe button).</li>
+            <li><strong>Partner pilot</strong> — listed floor <strong>$499/mo</strong> for institutional/grid pilots; scope is custom, not self-serve SaaS parity.</li>
+          </ul>
+        </div>
         <div class="triad-pill" aria-label="Mission triad">
           <span>SI</span><span>BP</span><span>HA</span>
         </div>
@@ -59,7 +73,20 @@
     </header>
 
     <section class="section-light">
-      <div class="section-inner reveal">
+      <div class="section-inner reveal" data-checkout-form>
+        <div class="onboard-path" style="margin-bottom:1.5rem">
+          <label class="onboard-field" style="flex:1;min-width:12rem;margin:0">
+            <span>Subscriber ID</span>
+            <input type="text" data-checkout-subscriber-id id="pricing-subscriber-id" placeholder="you@studio.local" autocomplete="username" />
+          </label>
+          <label class="onboard-field" style="flex:1;min-width:12rem;margin:0">
+            <span>Receipt email</span>
+            <input type="email" data-checkout-email id="checkout-email" placeholder="you@example.com" autocomplete="email" />
+          </label>
+        </div>
+        <p id="checkout-status" class="tier-note" data-checkout-disabled-note style="margin-bottom:1rem">
+          Checkout loads from coordination — if buttons stay grey, the public site or API may be updating; try again in a minute.
+        </p>
         <div class="pricing-grid">
           <article class="pricing-card">
             <p class="pricing-tier">Studio · model (c)</p>
@@ -74,8 +101,9 @@
               <li>LRCC model (c) target band · ~0.05–0.12 rel</li>
               <li>Family-guide onboarding · stellar support posture</li>
             </ul>
-            <a class="btn btn-primary" href="onboarding.html">Start onboarding (preview)</a>
-            <a class="btn btn-ghost" href="login.html" style="margin-top:0.5rem">Waitlist hollow</a>
+            <button type="button" class="btn btn-primary" data-checkout-plan="sovereign_monthly" disabled>Subscribe · $19/mo</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="sovereign_annual" disabled style="margin-top:0.5rem">Subscribe · $190/yr</button>
+            <a class="btn btn-ghost" href="onboarding.html" style="margin-top:0.5rem">Onboarding (preview)</a>
           </article>
 
           <article class="pricing-card pricing-card-featured">
@@ -90,7 +118,9 @@
               <li>Shared Horcrux restore paths</li>
               <li>LRCC model (b) target band · ~0.25–0.40 rel</li>
             </ul>
-            <a class="btn btn-primary" href="mailto:kairis@reconnect0.com?subject=KaiRis%20Family%20Door%20inquiry">Inquire</a>
+            <button type="button" class="btn btn-primary" data-checkout-plan="family_monthly" disabled>Subscribe · $49/mo</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="family_annual" disabled style="margin-top:0.5rem">Subscribe · $490/yr</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="family_extra_seat_monthly" disabled style="margin-top:0.5rem">Add seat · $7/mo</button>
           </article>
 
           <article class="pricing-card">
@@ -116,11 +146,12 @@
             Pricing follows load profiles and labeled LRCC coefficients — not seat-count extraction.
             Institutional partnerships are not listed until confirmed.
           </p>
-          <p class="pricing-price" style="margin-top:1rem"><span class="pricing-amount">from $499</span><span class="pricing-unit">/ month · custom</span></p>
+          <p class="pricing-price" style="margin-top:1rem"><span class="pricing-amount">$499</span><span class="pricing-unit">/ month · pilot floor (custom scope)</span></p>
           <p style="margin-top:1rem;font-size:0.85rem;opacity:0.65">
-            Request-shaped absence · white paper tightens bands · <a href="index.html#partner">partner line</a>.
+            Not unlimited enterprise SaaS — a billed floor for scoped pilots. White paper LRCC bands · <a href="index.html#partner">partner line</a>.
           </p>
-          <a class="btn btn-primary" href="mailto:kairis@reconnect0.com?subject=KaiRis%20Enterprise%20inquiry" style="margin-top:1.25rem">Enterprise inquiry</a>
+          <button type="button" class="btn btn-primary" data-checkout-plan="partner_pilot_monthly" disabled style="margin-top:1.25rem">Start pilot floor · $499/mo</button>
+          <a class="btn btn-ghost" href="mailto:kairis@reconnect0.com?subject=KaiRis%20Enterprise%20inquiry" style="margin-top:0.5rem">Talk before you buy</a>
         </div>
 
         <p class="tier-note" style="margin-top:2rem;max-width:42rem">
@@ -131,10 +162,11 @@
         </p>
 
         <p class="tier-note">
-          Figures from Family counsel v0 (Tier C · Sep 2026) — pending family ACK on <code>family@reconnect0.com</code>; checkout hollow until Stripe + counsel.
+          Figures from Family counsel v0 (Tier C · Sep 2026) — family ACK on <code>family@reconnect0.com</code> still gates <strong>live</strong> keys and broadcast pricing claims.
+          Test checkout may be enabled against coordination while counsel review continues.
           LRCC coefficients tighten in the white paper before broadcast mic.
           Cryptographic integrity on records ≠ proof of commercial terms.
-          Tier definitions: <a href="assets/root/CR-2026-09-21_KaiRis-Access-Node_Public-Private-Commercial_Tiers_v0.md">Access Node spec v0</a>.
+          Tier definitions: <a href="publish/2026-09-21_KaiRis-Access-Node_Public-Private-Commercial_Tiers_v0.md">Access Node spec v0</a> (public bundle).
         </p>
       </div>
     </section>
@@ -176,6 +208,11 @@
     <p style="text-align:center;margin-top:1rem;font-size:0.72rem">© 2026 KaiRis Systems · TsiRiaK</p>
   </footer>
 
-  <script src="site.js?v=c2b49f5"></script>
+  <script src="site.js?v=b4bb4f5"></script>
+  <script type="module">
+    import { bindCheckoutButtons, refreshCheckoutUi } from './js/portableri-checkout.mjs';
+    bindCheckoutButtons();
+    refreshCheckoutUi();
+  </script>
 </body>
 </html>
