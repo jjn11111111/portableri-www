@@ -64,8 +64,11 @@
             <li><strong>You do not pay HomeTill here</strong> — local-invest routing stays off this checkout until counsel + White Flag W5.</li>
             <li><strong>Family Door</strong> — $49/mo covers up to <strong>6</strong> named seats; each additional seat is <strong>$7/mo</strong> (separate subscribe button).</li>
             <li><strong>Partner pilot</strong> — listed floor <strong>$499/mo</strong> for institutional/grid pilots; scope is custom, not self-serve SaaS parity.</li>
+            <li><strong>Truth flags</strong> — when host, portal, or gate blocks a promise, we say so (policy + fix). We don’t fake “you denied it.”</li>
+            <li><strong>~50× freight</strong> — measured anchor on lean vs cloud-heavy turns — not “50× faster at everything.” <a href="publish/2026-10-07_PortAbleRI_Performance-Epistemic-Schedule_v0.md">Claims schedule (A/B/C)</a> · <a href="shock-awe.html">Four Entities</a></li>
           </ul>
         </div>
+        <div id="portableri-truth-flags" aria-live="polite" style="max-width:44rem;margin-top:0.75rem"></div>
         <div class="triad-pill" aria-label="Mission triad">
           <span>SI</span><span>BP</span><span>HA</span>
         </div>
@@ -211,7 +214,19 @@
   <script src="site.js?v=b4bb4f5"></script>
   <script type="module">
     import { initCheckoutPage } from './js/portableri-checkout.mjs';
-    initCheckoutPage();
+    import { sproutTruthFlag, buildCapabilityDegradationV1, ACTOR_CLASS, PROMISE_ID } from './js/portableri-core/shared/capability-degradation.mjs';
+    initCheckoutPage().catch((e) => {
+      sproutTruthFlag(
+        buildCapabilityDegradationV1({
+          actor_class: ACTOR_CLASS.COORD_ENTITLEMENT,
+          promise_id: PROMISE_ID.CHECKOUT,
+          policy: `Billing UI failed to initialize: ${e?.message ?? e}`,
+          fix: 'Hard refresh · confirm coord.portableri.com · see Truth flag text.',
+          fix_ref: 'publish/2026-10-07_PortAbleRI_Performance-Epistemic-Schedule_v0.md',
+          surface: 'pricing',
+        }),
+      );
+    });
   </script>
 </body>
 </html>

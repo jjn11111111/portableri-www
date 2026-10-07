@@ -54,6 +54,10 @@ If Subscriber does not agree, Subscriber must not use the Service.
 
 3.4 **Third parties.** Subscriber’s use of Cursor, cloud models, Google Drive, MCP servers, and other vendors is **between Subscriber and those vendors**, subject to their terms.
 
+3.5 **Performance & epistemics.** Marketing, LRCC, and “Four Entities” doctrine are tiered **A / B / C** in **`publish/2026-10-07_PortAbleRI_Performance-Epistemic-Schedule_v0.md`**. **Schedule B** (`publish/2026-10-07_PortAbleRI_SSA-Schedule-B-Epistemic-Performance_v0.md`) governs what is warranted vs illustrative when counsel incorporates it by reference.
+
+3.6 **Truth Flags.** Provider commits to surface **capability degradations** (schema **`PortAbleRI-Capability-Degradation-v1`**) where implemented — policy + fix, not faux HOST deny — without warranting uninterrupted third-party portals.
+
 ---
 
 ## 4. Account, eligibility, and Prime law
@@ -190,13 +194,24 @@ Provider may update this Agreement by posting a new version with a **version dat
 
 ---
 
-## Schedule A · Pricing (placeholder)
+## Schedule A · Pricing (PARI · test/live per counsel)
 
-| Tier | Status |
-|------|--------|
-| F&F preview | Invitation / no fee |
-| Studio | `[TBD]` |
-| Federated seat | `[TBD]` |
+| SKU | Label | USD (illustrative · counsel v0) |
+|-----|-------|----------------------------------|
+| `sovereign_monthly` | Sovereign seat | $19 / mo |
+| `sovereign_annual` | Sovereign annual | $190 / yr |
+| `family_monthly` | Family Door (6 seats) | $49 / mo |
+| `family_annual` | Family Door annual | $490 / yr |
+| `family_extra_seat_monthly` | Extra seat | $7 / mo |
+| `partner_pilot_monthly` | Partner pilot floor | $499 / mo (custom scope) |
+
+**BYOK:** Model vendor fees are **not** included. See Performance-Epistemic Schedule Tier A/B.
+
+---
+
+## Schedule B · Performance & Truth Flags
+
+Incorporated by reference when counsel ACKs: **`publish/2026-10-07_PortAbleRI_SSA-Schedule-B-Epistemic-Performance_v0.md`**
 
 ---
 
