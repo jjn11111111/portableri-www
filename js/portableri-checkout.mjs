@@ -84,6 +84,8 @@ export function bindCheckoutButtons(root = document) {
 export async function refreshCheckoutUi(root = document) {
   const banner = root.getElementById('checkout-live-banner');
   const disabledNote = root.querySelectorAll('[data-checkout-disabled-note]');
+  const status = root.getElementById('checkout-status');
+  const buttons = root.querySelectorAll('[data-checkout-plan]');
   try {
     const cfg = await fetchCheckoutPublicConfig();
     if (cfg.checkout_enabled) {
@@ -91,13 +93,34 @@ export async function refreshCheckoutUi(root = document) {
       disabledNote.forEach((el) => {
         el.hidden = true;
       });
-      root.querySelectorAll('[data-checkout-plan]').forEach((btn) => {
+      buttons.forEach((btn) => {
         btn.disabled = false;
       });
+      if (status?.hasAttribute('data-checkout-disabled-note')) {
+        status.textContent = 'Checkout ready — set subscriber ID and email, then choose a plan.';
+      }
     } else {
       banner?.setAttribute('hidden', '');
+      buttons.forEach((btn) => {
+        btn.disabled = true;
+      });
+      if (status) status.textContent = 'Checkout is not enabled on coordination yet.';
     }
-  } catch {
-    /* coord offline — keep preview copy */
+  } catch (e) {
+    buttons.forEach((btn) => {
+      btn.disabled = false;
+    });
+    if (status) {
+      status.textContent =
+        'Could not reach billing API — buttons will still try. Check connection or use local PortAbleRI-Start.';
+    }
   }
+}
+
+/** Bind handlers first; enable/disable after config load (disabled buttons ignore clicks). */
+export async function initCheckoutPage(root = document) {
+  bindCheckoutButtons(root);
+  const status = root.getElementById('checkout-status');
+  if (status) status.textContent = 'Connecting to billing…';
+  await refreshCheckoutUi(root);
 }

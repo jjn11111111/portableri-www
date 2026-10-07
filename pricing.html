@@ -101,8 +101,8 @@
               <li>LRCC model (c) target band · ~0.05–0.12 rel</li>
               <li>Family-guide onboarding · stellar support posture</li>
             </ul>
-            <button type="button" class="btn btn-primary" data-checkout-plan="sovereign_monthly" disabled>Subscribe · $19/mo</button>
-            <button type="button" class="btn btn-ghost" data-checkout-plan="sovereign_annual" disabled style="margin-top:0.5rem">Subscribe · $190/yr</button>
+            <button type="button" class="btn btn-primary" data-checkout-plan="sovereign_monthly">Subscribe · $19/mo</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="sovereign_annual" style="margin-top:0.5rem">Subscribe · $190/yr</button>
             <a class="btn btn-ghost" href="onboarding.html" style="margin-top:0.5rem">Onboarding (preview)</a>
           </article>
 
@@ -118,9 +118,9 @@
               <li>Shared Horcrux restore paths</li>
               <li>LRCC model (b) target band · ~0.25–0.40 rel</li>
             </ul>
-            <button type="button" class="btn btn-primary" data-checkout-plan="family_monthly" disabled>Subscribe · $49/mo</button>
-            <button type="button" class="btn btn-ghost" data-checkout-plan="family_annual" disabled style="margin-top:0.5rem">Subscribe · $490/yr</button>
-            <button type="button" class="btn btn-ghost" data-checkout-plan="family_extra_seat_monthly" disabled style="margin-top:0.5rem">Add seat · $7/mo</button>
+            <button type="button" class="btn btn-primary" data-checkout-plan="family_monthly">Subscribe · $49/mo</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="family_annual" style="margin-top:0.5rem">Subscribe · $490/yr</button>
+            <button type="button" class="btn btn-ghost" data-checkout-plan="family_extra_seat_monthly" style="margin-top:0.5rem">Add seat · $7/mo</button>
           </article>
 
           <article class="pricing-card">
@@ -150,7 +150,7 @@
           <p style="margin-top:1rem;font-size:0.85rem;opacity:0.65">
             Not unlimited enterprise SaaS — a billed floor for scoped pilots. White paper LRCC bands · <a href="index.html#partner">partner line</a>.
           </p>
-          <button type="button" class="btn btn-primary" data-checkout-plan="partner_pilot_monthly" disabled style="margin-top:1.25rem">Start pilot floor · $499/mo</button>
+          <button type="button" class="btn btn-primary" data-checkout-plan="partner_pilot_monthly" style="margin-top:1.25rem">Start pilot floor · $499/mo</button>
           <a class="btn btn-ghost" href="mailto:kairis@reconnect0.com?subject=KaiRis%20Enterprise%20inquiry" style="margin-top:0.5rem">Talk before you buy</a>
         </div>
 
@@ -210,9 +210,8 @@
 
   <script src="site.js?v=b4bb4f5"></script>
   <script type="module">
-    import { bindCheckoutButtons, refreshCheckoutUi } from './js/portableri-checkout.mjs';
-    bindCheckoutButtons();
-    refreshCheckoutUi();
+    import { initCheckoutPage } from './js/portableri-checkout.mjs';
+    initCheckoutPage();
   </script>
 </body>
 </html>
