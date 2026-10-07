@@ -2,8 +2,6 @@ export { canonicalJson } from '../shared/canonical.mjs';
 export { newWorldlineId } from '../shared/bootstrap.mjs';
 export { verifyTrustManifest } from '../shared/trust-manifest.mjs';
 export * from '../shared/constants.mjs';
-export * from '../shared/capability-degradation.mjs';
-export * from '../shared/tool-policy-broker.mjs';
 
 import { buildKernelBootstrap as buildBootstrap } from '../shared/bootstrap.mjs';
 import { DEFAULT_MANIFEST_URL } from '../shared/constants.mjs';
@@ -44,7 +42,7 @@ export function buildKernelBootstrap(opts) {
   });
 }
 
-export { buildExportBundleV1, verifyExportBundleV1 } from '../shared/export-bundle.mjs';
+export { buildExportBundleV1, verifyExportBundleV1, buildSeatCheckV1 } from '../shared/export-bundle.mjs';
 export {
   validateHeadCountState,
   validateHeadCountTurn,

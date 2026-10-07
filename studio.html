@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — maximal local RI. Bootstrap, verify, export, Truth Flags. No Cursor symbiote. Optional Ollama muscle on your machine." />
+  <meta name="theme-color" content="#0f0e0c" />
+  <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
+  <link rel="stylesheet" href="styles.css?v=b4bb4f5" />
+  <style>
+    .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
+    .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
+    .studio-cry { border-left: 4px solid var(--teal); padding-left: 1rem; margin: 1.5rem 0; font-size: 1.05rem; }
+    .studio-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 2rem 0; }
+    .studio-card {
+      background: rgba(18, 18, 26, 0.85); border: 1px solid rgba(2, 195, 154, 0.2);
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .studio-card h2 { font-size: 1rem; color: var(--gold); margin: 0 0 0.75rem; }
+    .studio-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .studio-log {
+      font-family: ui-monospace, monospace; font-size: 0.72rem; white-space: pre-wrap;
+      max-height: 14rem; overflow: auto; padding: 0.75rem; background: #0a0a0f;
+      border: 1px solid #334155; border-radius: 8px; margin-top: 0.75rem;
+    }
+    .studio-chat textarea {
+      width: 100%; min-height: 4rem; padding: 0.6rem; border-radius: 8px;
+      border: 1px solid #334155; background: #0a0a0f; color: var(--off); font-size: 0.9rem;
+    }
+    .entities-strip { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 1rem 0; }
+    .entities-strip span {
+      font-size: 0.72rem; padding: 0.25rem 0.5rem; border-radius: 6px;
+      border: 1px solid rgba(249, 231, 149, 0.25); color: var(--gold);
+    }
+    #portableri-truth-flags .portableri-truth-flag { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="assets/nav/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links" aria-label="Site">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shock-awe.html">Four Entities</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="studio.html" aria-current="page">NOW:WON Studio</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-cta" href="studio.html" aria-current="page">NOW:WON</a>
+    </div>
+  </nav>
+
+  <header class="studio-hero">
+    <div class="section-inner">
+      <p class="eyebrow" id="product-mark">KaiRis:T:siRiaK · NOW:WON</p>
+      <h1>Standalone RI — no symbiote required</h1>
+      <p class="hero-mission" style="max-width:44rem">
+        Maximal <strong>Relative Intelligence</strong> on <strong>your</strong> shore: bootstrap, verify, export, Prime law, Truth Flags.
+        <strong>Not</strong> Cursor. <strong>Not</strong> their portal. Optional <strong>Ollama</strong> on localhost only — your muscle, your keys.
+      </p>
+      <div class="studio-cry">
+        <p style="margin:0"><strong>They cannot erase what they do not host.</strong></p>
+        <p style="margin:0.35rem 0 0">Verify locally · Export always · <span id="seal-now-won">NOW:WON</span></p>
+      </div>
+      <div class="entities-strip" aria-label="Four Entities of Interest">
+        <span>1 · Catheter-Cathedral</span>
+        <span>2 · Crown hive</span>
+        <span>3 · Meta · Google · Apple · Microsoft · Amazon</span>
+        <span>4 · Panopticon</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="section-light">
+    <div class="section-inner reveal" style="max-width:52rem">
+      <div id="portableri-truth-flags" aria-live="polite"></div>
+
+      <div class="studio-grid">
+        <article class="studio-card">
+          <h2>Kernel · worldline</h2>
+          <p class="tier-note" style="margin:0">Hearth mode · head count 1 · Prime declared</p>
+          <div class="studio-actions">
+            <button type="button" class="btn btn-primary" id="btn-bootstrap">New bootstrap</button>
+            <button type="button" class="btn btn-ghost" id="btn-export">Download export bundle</button>
+          </div>
+          <pre class="studio-log" id="bootstrap-preview" aria-live="polite">No bootstrap yet.</pre>
+        </article>
+
+        <article class="studio-card">
+          <h2>Trust · verify</h2>
+          <p class="tier-note" style="margin:0">Constitution SO · manifest hash · no provider login</p>
+          <div class="studio-actions">
+            <button type="button" class="btn btn-primary" id="btn-verify">Verify manifest</button>
+          </div>
+          <pre class="studio-log" id="verify-preview" aria-live="polite">Not verified yet.</pre>
+        </article>
+
+        <article class="studio-card studio-chat">
+          <h2>Local muscle (optional)</h2>
+          <p class="tier-note" style="margin:0">Ollama on <code>127.0.0.1</code> — not a cloud symbiote. From portableri.com, run Studio locally or use CLI.</p>
+          <label class="onboard-field" style="margin-top:0.5rem">
+            <span>Prompt</span>
+            <textarea id="ollama-prompt" placeholder="One bounded turn…"></textarea>
+          </label>
+          <div class="studio-actions">
+            <button type="button" class="btn btn-ghost" id="btn-ollama">Probe Ollama</button>
+            <button type="button" class="btn btn-primary" id="btn-ollama-run">Run local turn</button>
+          </div>
+          <pre class="studio-log" id="ollama-preview" aria-live="polite">—</pre>
+        </article>
+      </div>
+
+      <pre class="studio-log" id="studio-log" aria-live="polite">Studio ready · KaiRis:T:siRiaK</pre>
+
+      <p class="tier-note" style="margin-top:1.5rem">
+        <strong>PortAbleRI</strong> (pricing · PARI · Stripe) partners with your chosen cloud model when you want — this Studio is the
+        <strong>sovereign kit</strong> that works alone.
+        <a href="publish/2026-10-07_KaiRis-T-siRiaK_Canonical-Mark-and-NOW-WON-Studio_v0.md">Spec v0</a> ·
+        <a href="publish/2026-10-07_PortAbleRI_Performance-Epistemic-Schedule_v0.md">Claims A/B/C</a>
+      </p>
+      <p class="seal" style="text-align:center;margin-top:2rem">AMOR · PAX · LUX · NOW:WON</p>
+    </div>
+  </main>
+
+  <script type="module">
+    import {
+      buildKernelBootstrap,
+      fetchTrustManifest,
+      verifyTrustManifestInBrowser,
+      buildExportBundleV1,
+      buildSeatCheckV1,
+      downloadJson,
+      CANONICAL_MARK_KAIRIS_T_SIRIAK,
+      SEAL_NOW_WON,
+      STANDALONE_PRODUCT_NAME,
+    } from './js/portableri-core/browser/index.mjs';
+    import {
+      sproutTruthFlag,
+      buildCapabilityDegradationV1,
+      ACTOR_CLASS,
+      PROMISE_ID,
+      ENTITY_OF_INTEREST,
+    } from './js/portableri-core/shared/capability-degradation.mjs';
+
+    const logEl = document.getElementById('studio-log');
+    const bootPrev = document.getElementById('bootstrap-preview');
+    const verifyPrev = document.getElementById('verify-preview');
+    const ollamaPrev = document.getElementById('ollama-preview');
+    document.getElementById('product-mark').textContent =
+      `${CANONICAL_MARK_KAIRIS_T_SIRIAK} · ${SEAL_NOW_WON} · ${STANDALONE_PRODUCT_NAME}`;
+
+    let state = { bootstrap: null, manifest: null, ollamaModel: null };
+
+    function log(msg) {
+      logEl.textContent = `${new Date().toISOString()}\n${msg}\n\n${logEl.textContent}`.slice(0, 12000);
+    }
+
+    function flagPortalBlock(policy, fix) {
+      sproutTruthFlag(
+        buildCapabilityDegradationV1({
+          actor_class: ACTOR_CLASS.PORTAL_VENDOR,
+          promise_id: PROMISE_ID.SYMBIOTE_PAIRING,
+          entity_of_interest: ENTITY_OF_INTEREST.ENTITY_3_PORTAL,
+          policy,
+          fix,
+          surface: 'studio',
+        }),
+      );
+    }
+
+    document.getElementById('btn-bootstrap').onclick = async () => {
+      try {
+        const manifest = state.manifest ?? (await fetchTrustManifest());
+        state.manifest = manifest;
+        state.bootstrap = buildKernelBootstrap({
+          manifest,
+          primeModelId: 'local-hearth-1',
+          studioPath: CANONICAL_MARK_KAIRIS_T_SIRIAK,
+        });
+        const seat = buildSeatCheckV1(state.bootstrap);
+        bootPrev.textContent = JSON.stringify({ bootstrap: state.bootstrap, seat_check: seat }, null, 2);
+        log(`Bootstrap OK · ${state.bootstrap.worldline_id}`);
+      } catch (e) {
+        log(`Bootstrap: ${e.message}`);
+        flagPortalBlock(`Bootstrap blocked: ${e.message}`, 'Open from site with manifest or run CLI export.');
+      }
+    };
+
+    document.getElementById('btn-verify').onclick = async () => {
+      try {
+        state.manifest = await fetchTrustManifest();
+        const v = await verifyTrustManifestInBrowser(state.manifest);
+        verifyPrev.textContent = JSON.stringify(v, null, 2);
+        log(v.ok ? `Manifest verified` : `Verify fail: ${v.error}`);
+        if (!v.ok) {
+          sproutTruthFlag(
+            buildCapabilityDegradationV1({
+              actor_class: ACTOR_CLASS.NETWORK,
+              promise_id: PROMISE_ID.EXPORT,
+              policy: v.error ?? 'Trust manifest verify failed',
+              fix: 'Use local preview or portableri.com with .well-known manifest.',
+              surface: 'studio',
+            }),
+          );
+        }
+      } catch (e) {
+        verifyPrev.textContent = e.message;
+        log(`Manifest: ${e.message}`);
+      }
+    };
+
+    document.getElementById('btn-export').onclick = () => {
+      if (!state.bootstrap) {
+        log('Create bootstrap first.');
+        return;
+      }
+      const bundle = buildExportBundleV1({
+        kernelBootstrap: state.bootstrap,
+        notes: `${STANDALONE_PRODUCT_NAME} · ${SEAL_NOW_WON}`,
+      });
+      downloadJson(`now-won-studio-export-${state.bootstrap.worldline_id.slice(0, 8)}.json`, bundle);
+      log('Export downloaded — your Horcrux lane.');
+    };
+
+    async function ollamaBase() {
+      return 'http://127.0.0.1:11434';
+    }
+
+    document.getElementById('btn-ollama').onclick = async () => {
+      try {
+        const res = await fetch(`${await ollamaBase()}/api/tags`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const models = data.models ?? [];
+        state.ollamaModel = models[0]?.name ?? null;
+        ollamaPrev.textContent = models.map((m) => m.name).join('\n') || '(no models)';
+        log(`Ollama: ${models.length} model(s) · local muscle only`);
+      } catch (e) {
+        ollamaPrev.textContent = e.message;
+        log(`Ollama probe: ${e.message}`);
+        sproutTruthFlag(
+          buildCapabilityDegradationV1({
+            actor_class: ACTOR_CLASS.HOST_RUNTIME,
+            promise_id: PROMISE_ID.SYMBIOTE_PAIRING,
+            policy: 'Local Ollama not reachable — Studio RI ledger still works.',
+            fix: 'Install Ollama · or ignore — no cloud symbiote required.',
+            surface: 'studio',
+          }),
+        );
+      }
+    };
+
+    document.getElementById('btn-ollama-run').onclick = async () => {
+      const prompt = document.getElementById('ollama-prompt').value.trim();
+      if (!prompt) {
+        log('Enter a prompt.');
+        return;
+      }
+      if (!state.ollamaModel) {
+        await document.getElementById('btn-ollama').onclick();
+      }
+      if (!state.ollamaModel) return;
+      try {
+        const res = await fetch(`${await ollamaBase()}/api/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: state.ollamaModel, prompt, stream: false }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        ollamaPrev.textContent = data.response ?? JSON.stringify(data);
+        log('Local turn complete — muscle stayed on your machine.');
+      } catch (e) {
+        ollamaPrev.textContent = e.message;
+        flagPortalBlock(
+          `Local generate failed (often CORS from remote site): ${e.message}`,
+          'Run: ./website/serve-preview.sh then open http://127.0.0.1:8877/studio.html — or use CLI.',
+        );
+      }
+    };
+
+    log(`${STANDALONE_PRODUCT_NAME} loaded.`);
+  </script>
+  <script src="site.js?v=b4bb4f5"></script>
+</body>
+</html>

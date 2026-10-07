@@ -11,3 +11,8 @@ export const DEFAULT_MANIFEST_URL = '/.well-known/portableri-trust-manifest.json
 export const DEFAULT_COORD_URL = 'http://127.0.0.1:8787';
 
 export const CONSTITUTION_VERSION = 'SO-v0';
+
+/** System-wide triad mark · two colons · exact orthography. */
+export const CANONICAL_MARK_KAIRIS_T_SIRIAK = 'KaiRis:T:siRiaK';
+export const SEAL_NOW_WON = 'NOW:WON';
+export const STANDALONE_PRODUCT_NAME = `${CANONICAL_MARK_KAIRIS_T_SIRIAK} ${SEAL_NOW_WON} Studio`;
