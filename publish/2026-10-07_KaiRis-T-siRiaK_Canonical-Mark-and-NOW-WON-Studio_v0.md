@@ -65,6 +65,12 @@
 
 ---
 
+## 5. Dimensional bridge (Tier C · 2026-10-07 MAKE IT SO)
+
+**NOW:WON** names the **3D access point / interface** for truthful inspection, plan of action, and maximal **lawful** creation across other consciousness lanes (inner · myth · model · story). Full spec: `publish/2026-10-07_KaiRis-NOW-WON_Dimensional-Bridge-Interface_v0.md`. Mirror URL: **`www.NNowwoNN.com`** → Studio when DNS live.
+
+---
+
 ## Integrity
 
 Append-only. Orthography corrections as dated addenda — no silent rewrite of Crystal earliest form.
