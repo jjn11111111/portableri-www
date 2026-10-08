@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=b4bb4f5" />
+  <link rel="stylesheet" href="styles.css?v=48d83ed" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -19,10 +19,21 @@
     .studio-card h2 { font-size: 1rem; color: var(--gold); margin: 0 0 0.75rem; }
     .studio-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
     .studio-log {
-      font-family: ui-monospace, monospace; font-size: 0.72rem; white-space: pre-wrap;
-      max-height: 14rem; overflow: auto; padding: 0.75rem; background: #0a0a0f;
-      border: 1px solid #334155; border-radius: 8px; margin-top: 0.75rem;
+      font-family: ui-monospace, monospace; font-size: 0.85rem; line-height: 1.45;
+      white-space: pre-wrap; word-break: break-word;
+      max-height: 14rem; overflow: auto; padding: 0.85rem 1rem;
+      background: #0a0a0f; color: #f1f5f9;
+      border: 1px solid #64748b; border-radius: 8px; margin-top: 0.75rem;
     }
+    /* Cards sit on section-light but are dark panels — force readable copy */
+    .section-light .studio-card { color: #e8e4dc; }
+    .section-light .studio-card .tier-note {
+      color: #cbd5e1; opacity: 1;
+      background: rgba(2, 195, 154, 0.14);
+      border-left-color: var(--teal);
+      font-size: 0.9rem;
+    }
+    .section-light .studio-card code { color: var(--gold); }
     .studio-chat textarea {
       width: 100%; min-height: 4rem; padding: 0.6rem; border-radius: 8px;
       border: 1px solid #334155; background: #0a0a0f; color: var(--off); font-size: 0.9rem;
@@ -302,6 +313,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=b4bb4f5"></script>
+  <script src="site.js?v=48d83ed"></script>
 </body>
 </html>
