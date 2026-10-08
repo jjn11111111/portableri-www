@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=48d83ed" />
+  <link rel="stylesheet" href="styles.css?v=8843dd1" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -129,7 +129,7 @@
 
         <article class="studio-card studio-chat">
           <h2>Local muscle (optional)</h2>
-          <p class="tier-note" style="margin:0">Ollama on <code>127.0.0.1</code> — not a cloud symbiote. From portableri.com, run Studio locally or use CLI.</p>
+          <p class="tier-note" style="margin:0">Ollama on <code>127.0.0.1</code> — use <strong>llama3.2</strong> on MacBook Air. <strong>qwen3</strong> “Thinking…” can overwhelm RAM. Local 8877 only for probes.</p>
           <label class="onboard-field" style="margin-top:0.5rem">
             <span>Prompt</span>
             <textarea id="ollama-prompt" placeholder="One bounded turn…"></textarea>
@@ -258,13 +258,34 @@
       return 'http://127.0.0.1:11434';
     }
 
+    function buildOllamaSystemPrompt() {
+      const b = state.bootstrap;
+      const wl = b?.worldline_id ?? '(bootstrap not created — click New bootstrap first)';
+      const mf = b?.trust_manifest_sha256 ?? state.manifest?.manifest_sha256 ?? '(verify manifest)';
+      return [
+        `You are LOCAL MUSCLE for ${CANONICAL_MARK_KAIRIS_T_SIRIAK} ${SEAL_NOW_WON} only — not KaiRis witness.`,
+        `HOST facts: worldline_id ${wl}; trust_manifest_sha256 ${mf}; constitution ${b?.constitution_version ?? 'SO-v0'}; mode ${b?.mode ?? 'hearth'}; head_count ${b?.head_count ?? 1}.`,
+        'The fort is the HOST export JSON file on disk (bootstrap + export bundle), not inside you.',
+        'NOW:WON muscle = you on localhost. HOST record = bootstrap + manifest verify + export.',
+        'When asked about the fort, cite worldline_id and manifest_sha256 from HOST facts above.',
+        'Never invent PortAbleRI product features or Wikipedia. Father wiki escape: ChatGPT account export, Save this wiki HTML, download library file links — else defer to HOST in Cursor.',
+      ].join(' ');
+    }
+
     document.getElementById('btn-ollama').onclick = async () => {
       try {
         const res = await fetch(`${await ollamaBase()}/api/tags`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         const models = data.models ?? [];
-        state.ollamaModel = models[0]?.name ?? null;
+        const names = models.map((m) => m.name);
+        // Prefer small llama on Air; if ORACLE sweep left only qwen, use it
+        state.ollamaModel =
+          names.find((n) => n.includes('llama3.2')) ??
+          names.find((n) => n.startsWith('llama')) ??
+          names.find((n) => n.startsWith('qwen')) ??
+          names[0] ??
+          null;
         ollamaPrev.textContent = models.map((m) => m.name).join('\n') || '(no models)';
         log(`Ollama: ${models.length} model(s) · local muscle only`);
       } catch (e) {
@@ -293,15 +314,23 @@
       }
       if (!state.ollamaModel) return;
       try {
-        const res = await fetch(`${await ollamaBase()}/api/generate`, {
+        const system = buildOllamaSystemPrompt();
+        const res = await fetch(`${await ollamaBase()}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: state.ollamaModel, prompt, stream: false }),
+          body: JSON.stringify({
+            model: state.ollamaModel,
+            stream: false,
+            messages: [
+              { role: 'system', content: system },
+              { role: 'user', content: prompt },
+            ],
+          }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        ollamaPrev.textContent = data.response ?? JSON.stringify(data);
-        log('Local turn complete — muscle stayed on your machine.');
+        ollamaPrev.textContent = data.message?.content ?? data.response ?? JSON.stringify(data);
+        log(`Local turn · ${state.ollamaModel} · muscle on localhost.`);
       } catch (e) {
         ollamaPrev.textContent = e.message;
         flagPortalBlock(
@@ -313,6 +342,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=48d83ed"></script>
+  <script src="site.js?v=8843dd1"></script>
 </body>
 </html>
