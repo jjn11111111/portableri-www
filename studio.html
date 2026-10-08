@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=8843dd1" />
+  <link rel="stylesheet" href="styles.css?v=91c6fd6" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -56,6 +56,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="shock-awe.html">Four Entities</a></li>
       <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="now-won-start.html">Start</a></li>
       <li><a href="studio.html" aria-current="page">NOW:WON Studio</a></li>
     </ul>
     <div class="nav-actions">
@@ -113,7 +114,9 @@
           <p class="tier-note" style="margin:0">Hearth mode · head count 1 · Prime declared</p>
           <div class="studio-actions">
             <button type="button" class="btn btn-primary" id="btn-bootstrap">New bootstrap</button>
+            <button type="button" class="btn btn-ghost" id="btn-import">Load export</button>
             <button type="button" class="btn btn-ghost" id="btn-export">Download export bundle</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden />
           </div>
           <pre class="studio-log" id="bootstrap-preview" aria-live="polite">No bootstrap yet.</pre>
         </article>
@@ -241,6 +244,34 @@
       }
     };
 
+    document.getElementById('btn-import').onclick = () => document.getElementById('import-file').click();
+
+    document.getElementById('import-file').onchange = async (ev) => {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+      try {
+        const bundle = JSON.parse(await file.text());
+        const kb = bundle.kernel_bootstrap;
+        if (!kb?.worldline_id) throw new Error('Not a NOW:WON export — missing kernel_bootstrap.worldline_id');
+        state.bootstrap = kb;
+        const seat = bundle.seat_check ?? buildSeatCheckV1(kb);
+        bootPrev.textContent = JSON.stringify({ loaded: file.name, bootstrap: kb, seat_check: seat }, null, 2);
+        log(`Loaded export · ${kb.worldline_id} · ${file.name}`);
+      } catch (e) {
+        log(`Import: ${e.message}`);
+        sproutTruthFlag(
+          buildCapabilityDegradationV1({
+            actor_class: ACTOR_CLASS.HOST_RUNTIME,
+            promise_id: PROMISE_ID.EXPORT,
+            policy: `Export load failed: ${e.message}`,
+            fix: 'Use now-won-studio-export-*.json from Downloads or CLI export.',
+            surface: 'studio',
+          }),
+        );
+      }
+      ev.target.value = '';
+    };
+
     document.getElementById('btn-export').onclick = () => {
       if (!state.bootstrap) {
         log('Create bootstrap first.');
@@ -342,6 +373,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=8843dd1"></script>
+  <script src="site.js?v=91c6fd6"></script>
 </body>
 </html>

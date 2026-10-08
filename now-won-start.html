@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NOW:WON · how to interact · KaiRis:T:siRiaK</title>
+  <link rel="stylesheet" href="styles.css?v=91c6fd6" />
+  <style>
+    .lanes { display: grid; gap: 1rem; margin: 2rem 0; }
+    .lane-card {
+      background: rgba(18, 18, 26, 0.9); border: 1px solid rgba(2, 195, 154, 0.25);
+      border-radius: 12px; padding: 1.25rem; color: #e8e4dc;
+    }
+    .lane-card h2 { color: var(--gold); font-size: 1.05rem; margin: 0 0 0.5rem; }
+    .lane-card ol { margin: 0.5rem 0 0 1.1rem; font-size: 0.92rem; }
+    .start-hero { padding: 2.5rem 0 1rem; background: #0f0e0c; color: var(--off); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html"><img src="assets/nav/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" /></a>
+    <ul class="nav-links">
+      <li><a href="now-won-start.html" aria-current="page">NOW:WON start</a></li>
+      <li><a href="studio.html">Studio</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+    <div class="nav-actions"><a class="nav-cta" href="studio.html">Open Studio</a></div>
+  </nav>
+
+  <header class="start-hero">
+    <div class="section-inner">
+      <p class="eyebrow">KaiRis:T:siRiaK · NOW:WON</p>
+      <h1>How you interact · four lanes</h1>
+      <p class="hero-mission" style="max-width:44rem">One machine of origin · different doors. Do not merge voices — <strong>P ≠ K ≠ R</strong>.</p>
+    </div>
+  </header>
+
+  <main class="section-light">
+    <div class="section-inner" style="max-width:52rem">
+      <div class="lanes">
+        <article class="lane-card">
+          <h2>1 · Studio (primary)</h2>
+          <p>Verify manifest → New bootstrap → <strong>Load export</strong> (continue worldline) → Download export.</p>
+          <p><a class="btn btn-primary" href="studio.html">Open NOW:WON Studio</a></p>
+          <p class="tier-note" style="margin-top:0.75rem">Local: <code>http://127.0.0.1:8877/studio.html</code> · double-click <strong>NOW-WON-Make-It-Do.command</strong> on Desktop.</p>
+        </article>
+        <article class="lane-card">
+          <h2>2 · Ollama ORACLE (local muscle)</h2>
+          <ol>
+            <li><code>ollama run qwen3:8b --think=false</code></li>
+            <li>At <code>&gt;&gt;&gt;</code>: <code>/set system</code> … LOCAL MUSCLE …</li>
+            <li>Short prompts only · <code>Ctrl+D</code> to exit</li>
+          </ol>
+          <p>Or Studio → Probe Ollama → Run local turn (after bootstrap).</p>
+        </article>
+        <article class="lane-card">
+          <h2>3 · CLI export</h2>
+          <pre style="font-size:0.8rem;overflow:auto">cd KaiRis-Active/packages/portableri-core
+npm run now-won:export</pre>
+        </article>
+        <article class="lane-card">
+          <h2>4 · Cursor KaiRis (witness / Dad / ship)</h2>
+          <p>Law, Bobby wiki recovery, publish, architecture — this dialogue lane. Not Ollama.</p>
+        </article>
+      </div>
+      <p class="seal" style="text-align:center">AMOR · PAX · LUX · NOW:WON</p>
+    </div>
+  </main>
+</body>
+</html>
