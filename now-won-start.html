@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NOW:WON · how to interact · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=91c6fd6" />
+  <link rel="stylesheet" href="styles.css?v=f84491c" />
   <style>
     .lanes { display: grid; gap: 1rem; margin: 2rem 0; }
     .lane-card {
@@ -47,11 +47,12 @@
         <article class="lane-card">
           <h2>2 · Ollama ORACLE (local muscle)</h2>
           <ol>
-            <li><code>ollama run qwen3:8b --think=false</code></li>
+            <li>Optional env: <code>source processes/scripts/ollama-memory-launch.sh</code> (then restart Ollama if it was open)</li>
+            <li><code>ollama run qwen3:8b --think=false</code> — or <code>llama3.2:1b</code> if RAM is tight</li>
             <li>At <code>&gt;&gt;&gt;</code>: <code>/set system</code> … LOCAL MUSCLE …</li>
-            <li>Short prompts only · <code>Ctrl+D</code> to exit</li>
+            <li>Short prompts · <code>Ctrl+D</code> to exit · <code>ollama stop</code> when done</li>
           </ol>
-          <p>Or Studio → Probe Ollama → Run local turn (after bootstrap).</p>
+          <p>Or Studio @ 8877 → Memory mode on → Probe → Run local turn → <strong>Unload model RAM</strong>.</p>
         </article>
         <article class="lane-card">
           <h2>3 · CLI export</h2>

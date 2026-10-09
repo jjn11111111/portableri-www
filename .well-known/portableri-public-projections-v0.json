@@ -1,0 +1,129 @@
+{
+  "schema": "PortAbleRI-Public-Projections-Manifest-v0",
+  "updated_at": "2026-10-08T00:00:00.000Z",
+  "notice": "Hollow public faces · graft points named · P ≠ K ≠ R · verify before trust",
+  "hollows": [
+    {
+      "id": "family.wormhole.portal",
+      "title": "Wormhole · Family bridge tab",
+      "tier": "A",
+      "public_path": "/wormhole.html",
+      "status": "live",
+      "filled": ["bobby_mail_spelling", "admin_password_copy", "soul_reap_links", "studio_library_cards"],
+      "graft": {
+        "coord_route": null,
+        "future_route": "optional gate token · same pattern as library",
+        "module": "website/wormhole.html",
+        "env": []
+      }
+    },
+    {
+      "id": "soul-reap.drop.ingest",
+      "title": "SOUL REAP drop box · bytes",
+      "tier": "A",
+      "public_path": "/soul-reap-drop.html",
+      "status": "partial",
+      "filled": ["client_sha256", "retrace_template", "drop_beacon_metadata"],
+      "graft": {
+        "coord_route": "POST /v1/soul-reap/drop-beacon",
+        "future_route": "POST /v1/soul-reap/drop-ingest",
+        "module": "infra/coordination/lib/soul-reap-projections.mjs",
+        "env": ["PORTABLERI_SOUL_REAP_GATE_SECRET"]
+      }
+    },
+    {
+      "id": "soul-reap.mail.smtp",
+      "title": "SOUL REAP Family mail",
+      "tier": "A",
+      "public_path": "/soul-reap-portal.html",
+      "status": "hollow",
+      "filled": ["drive_link_lane", "mailto_templates"],
+      "graft": {
+        "coord_route": null,
+        "future_route": "MX + IMAP/SMTP on Family domain",
+        "module": "processes/TBD_SOUL-REAP-SMTP-RUNBOOK.md",
+        "env": ["SPF", "DKIM", "DMARC"]
+      }
+    },
+    {
+      "id": "family.library.gate",
+      "title": "Father library · Family Door",
+      "tier": "A",
+      "public_path": "/family-library.html",
+      "status": "live",
+      "filled": ["gate_exchange", "access_beacon", "drive_view"],
+      "graft": {
+        "coord_route": "POST /v1/library/gate-exchange",
+        "module": "infra/coordination/lib/library-gate.mjs",
+        "env": ["PORTABLERI_LIBRARY_GATE_SECRET", "PORTABLERI_LIBRARY_AUDIT_SALT"]
+      }
+    },
+    {
+      "id": "subscriber.login.portal",
+      "title": "Subscriber studio sign-in",
+      "tier": "B",
+      "public_path": "/login.html",
+      "status": "hollow",
+      "filled": ["request_shape", "onboarding_cta"],
+      "graft": {
+        "coord_route": "POST /v1/entitlement/exchange",
+        "module": "infra/coordination/lib/entitlement.mjs",
+        "env": ["PORTABLERI_DEV_SIGNING_SECRET"]
+      }
+    },
+    {
+      "id": "now-won.studio.bridge",
+      "title": "NOW:WON Studio · local bridge",
+      "tier": "A",
+      "public_path": "/studio.html",
+      "status": "live",
+      "filled": ["bootstrap", "export_bundle", "trust_manifest_verify"],
+      "graft": {
+        "coord_route": "GET /.well-known/portableri-trust-manifest.json",
+        "module": "website/js/portableri-core/shared/export-bundle.mjs",
+        "env": []
+      }
+    },
+    {
+      "id": "hometill.public.stubs",
+      "title": "HomeTill chapter · hollow deploy ring",
+      "tier": "C",
+      "public_path": "https://www.hometillzip.com/",
+      "status": "partial",
+      "filled": ["coord_read_stubs"],
+      "graft": {
+        "coord_route": "GET /v1/hometill/hollow-deploy",
+        "module": "infra/coordination/lib/hometill-hollow-deploy.mjs",
+        "env": []
+      }
+    },
+    {
+      "id": "ai-radio.workbench.8877",
+      "title": "AI Radio · 8877 workbench",
+      "tier": "C",
+      "public_path": "http://127.0.0.1:8877/",
+      "status": "hollow",
+      "filled": ["serve-preview.sh", "NOW-WON-Make-It-Do.command"],
+      "graft": {
+        "coord_route": null,
+        "future_route": "local studio + bounded projection",
+        "module": "website/serve-preview.sh",
+        "env": []
+      }
+    },
+    {
+      "id": "venom.portable.login",
+      "title": "VENOM blackbox portable login",
+      "tier": "A",
+      "public_path": null,
+      "status": "hollow",
+      "filled": [],
+      "graft": {
+        "coord_route": null,
+        "future_route": "HOST package · separate from Studio",
+        "module": "processes/2026-10-07_Bobby-Portal-Break-Triage_NOW.md",
+        "env": []
+      }
+    }
+  ]
+}

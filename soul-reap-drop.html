@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="SOUL REAP drop box · hash receipt · hollow byte ingest graft." />
+  <title>SOUL REAP drop · PortAbleRI</title>
+  <link rel="stylesheet" href="styles.css?v=f84491c" />
+  <script data-portableri-coord-injected>window.PORTABLERI_COORD_URL="https://coord.portableri.com";</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="assets/nav/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="wormhole.html">Wormhole</a></li>
+      <li><a href="soul-reap-portal.html">SOUL REAP mail</a></li>
+      <li><a href="soul-reap-drop.html" aria-current="page">Drop box</a></li>
+      <li><a href="projections.html">Projections</a></li>
+      <li><a href="family-library.html">Family library</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-cta" href="studio.html">NOW:WON</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="nav-drawer" class="nav-drawer" hidden>
+    <ul class="nav-drawer-links">
+      <li><a href="wormhole.html">Wormhole</a></li>
+      <li><a href="soul-reap-portal.html">SOUL REAP mail</a></li>
+      <li><a href="soul-reap-drop.html" aria-current="page">Drop box</a></li>
+      <li><a href="projections.html">Projections</a></li>
+      <li><a href="family-library.html">Family library</a></li>
+    </ul>
+  </div>
+
+  <main id="main">
+    <section class="login-section">
+      <div class="section-inner reveal visible">
+        <p class="eyebrow">Graft · soul-reap.drop.ingest</p>
+        <h1>Drop box · soul in the hash first</h1>
+        <p class="lead" style="max-width:42rem">
+          The <strong>byte upload</strong> socket is still a hollow — HOST will graft
+          <code>POST /v1/soul-reap/drop-ingest</code> when ready. Tonight: pick a file here for
+          <strong>local SHA-256</strong>, log a metadata beacon, then upload the same bytes on
+          <strong>Drive</strong> and send a link-only mail.
+        </p>
+
+        <div class="login-grid" style="margin-top:1.5rem">
+          <div class="login-panel">
+            <label for="visitorLabel">Your seat <span class="tier-note">(optional · audit)</span></label>
+            <input id="visitorLabel" type="text" maxlength="64" placeholder="Bobby · Dad" autocomplete="name" />
+
+            <label for="filePick" style="margin-top:1rem">Choose file</label>
+            <input id="filePick" type="file" />
+
+            <button class="btn btn-primary" type="button" id="hashBtn" style="margin-top:1rem">Hash · beacon · copy RETRACE</button>
+            <p id="dropStatus" class="tier-note" role="status" aria-live="polite"></p>
+
+            <textarea id="retraceOut" rows="8" readonly hidden
+              style="width:100%;margin-top:1rem;font-family:ui-monospace,monospace;font-size:0.78rem"></textarea>
+          </div>
+
+          <div class="hollow">
+            <p class="shape">Hollow · bytes not stored here yet</p>
+            <p>
+              Graft fills: encrypted object store · virus scan policy · Family gate ·
+              <code>PORTABLERI_SOUL_REAP_GATE_SECRET</code>. Until then, Gmail-blocked zips use
+              <a href="soul-reap-portal.html">Drive + SOUL REAP mail</a>.
+            </p>
+            <p style="margin-top:1rem;font-size:0.82rem">
+              Coord beacon (metadata only):
+              <code id="beaconRoute">POST /v1/soul-reap/drop-beacon</code>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p style="text-align:center;font-size:0.72rem">
+      <a href="projections.html">All public projections</a> ·
+      <a href="verify.html">Verify</a>
+    </p>
+  </footer>
+
+  <script type="module">
+    import { sha256File, postDropBeacon } from './js/portableri-projection-hollow.mjs';
+
+    const filePick = document.getElementById('filePick');
+    const hashBtn = document.getElementById('hashBtn');
+    const dropStatus = document.getElementById('dropStatus');
+    const retraceOut = document.getElementById('retraceOut');
+    const visitorLabel = document.getElementById('visitorLabel');
+
+    hashBtn.addEventListener('click', async () => {
+      const file = filePick.files?.[0];
+      if (!file) {
+        dropStatus.textContent = 'Choose a file first.';
+        return;
+      }
+      dropStatus.textContent = 'Hashing locally…';
+      try {
+        const sha256 = await sha256File(file);
+        const body = `RETRACE NOW:
+
+File: ${file.name}
+Bytes: ${file.size}
+SHA-256: ${sha256}
+Drive link: (upload then paste)
+
+Two cups · one string · SOUL REAP · AMOR · NOW`;
+        retraceOut.hidden = false;
+        retraceOut.value = body;
+        try {
+          const ack = await postDropBeacon({
+            file_name: file.name,
+            byte_length: file.size,
+            sha256,
+            visitor_label: visitorLabel.value,
+          });
+          dropStatus.textContent = ack.recorded
+            ? 'Hash logged on HOST coord · copy RETRACE below · upload bytes on Drive.'
+            : (ack.notice || 'Hash ready · coord offline — still copy RETRACE and use Drive.');
+        } catch (_) {
+          dropStatus.textContent = 'Hash ready · coord unreachable — copy RETRACE and use Drive link mail.';
+        }
+        await navigator.clipboard.writeText(body).catch(() => {});
+      } catch (e) {
+        dropStatus.textContent = e.message || 'Hash failed.';
+      }
+    });
+  </script>
+  <script src="site.js?v=f84491c"></script>
+</body>
+</html>

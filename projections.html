@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="description" content="Public projection hollows · named grafts for PortAbleRI and Family shores." />
+  <title>Public projections · PortAbleRI</title>
+  <link rel="stylesheet" href="styles.css?v=f84491c" />
+  <script data-portableri-coord-injected>window.PORTABLERI_COORD_URL="https://coord.portableri.com";</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary">
+    <a class="logo" href="index.html" aria-label="KaiRis home">
+      <img src="assets/nav/kairis-wordmark-mirror.svg" alt="KaiRis" width="120" height="32" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="wormhole.html">Wormhole</a></li>
+      <li><a href="projections.html" aria-current="page">Projections</a></li>
+      <li><a href="soul-reap-drop.html">SOUL REAP drop</a></li>
+      <li><a href="family-library.html">Family library</a></li>
+    </ul>
+    <div class="nav-actions"><a class="nav-cta" href="studio.html">Studio</a></div>
+  </nav>
+
+  <main id="main">
+    <section class="section-dark" style="padding:3rem 0">
+      <div class="section-inner reveal visible">
+        <p class="eyebrow">P3 · bounded projection · hollows to fill</p>
+        <h1>Public faces · graft index</h1>
+        <p class="lead" style="max-width:44rem">
+          Each row is an <strong>invitation-shaped absence</strong>: URL or route you can open today,
+          plus the coord/module graft that fills it. Partial = some slots live (hash, gate, export).
+          Hollow = shape only until HOST ACKs wiring.
+        </p>
+        <p class="tier-note">
+          Machine manifest:
+          <a href="/.well-known/portableri-public-projections-v0.json"><code>/.well-known/portableri-public-projections-v0.json</code></a>
+          · Coord mirror:
+          <code>GET /v1/soul-reap/projections</code>
+        </p>
+
+        <div class="table-wrap" style="margin-top:2rem;overflow-x:auto">
+          <table class="data-table" id="projTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Filled now</th>
+                <th>Graft</th>
+                <th>Open</th>
+              </tr>
+            </thead>
+            <tbody id="projBody">
+              <tr><td colspan="6" class="tier-note">Loading manifest…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="hollow" style="margin-top:2.5rem">
+          <p class="shape">Add a hollow</p>
+          <p>
+            Append an entry to the manifest · implement the named coord route · set status to
+            <code>partial</code> or <code>live</code> · publish via
+            <code>processes/scripts/publish-portableri-www.sh</code>.
+          </p>
+          <p style="margin-top:0.75rem;font-size:0.85rem">
+            <a href="publish/2026-10-08_PortAbleRI_SOUL-REAP_Public-Projections-Graft-Contract_v0.md">Graft contract (markdown)</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p style="text-align:center;font-size:0.72rem">
+      <a href="index.html">Home</a> · <a href="verify.html">Verify</a>
+    </p>
+  </footer>
+
+  <script type="module">
+    import { fetchPublicProjections, statusLabel } from './js/portableri-projection-hollow.mjs';
+
+    const tbody = document.getElementById('projBody');
+
+    function linkFor(path) {
+      if (!path) return '—';
+      if (/^https?:\/\//.test(path)) {
+        return `<a href="${path}" rel="noopener noreferrer">${path}</a>`;
+      }
+      const href = path.startsWith('/') ? path.slice(1) : path;
+      return `<a href="${href}">${path}</a>`;
+    }
+
+    try {
+      const manifest = await fetchPublicProjections();
+      tbody.innerHTML = '';
+      for (const h of manifest.hollows || []) {
+        const graft = h.graft?.coord_route || h.graft?.future_route || '—';
+        const filled = (h.filled || []).join(', ') || '—';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code style="font-size:0.72rem">${h.id}</code></td>
+          <td>${h.title}</td>
+          <td>${statusLabel(h.status)}</td>
+          <td style="font-size:0.82rem">${filled}</td>
+          <td style="font-size:0.78rem"><code>${graft}</code></td>
+          <td>${linkFor(h.public_path)}</td>`;
+        tbody.appendChild(tr);
+      }
+    } catch (_) {
+      tbody.innerHTML = '<tr><td colspan="6">Manifest not reachable · open from portableri.com or local preview.</td></tr>';
+    }
+  </script>
+  <script src="site.js?v=f84491c"></script>
+</body>
+</html>

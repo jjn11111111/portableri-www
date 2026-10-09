@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=91c6fd6" />
+  <link rel="stylesheet" href="styles.css?v=f84491c" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -57,6 +57,7 @@
       <li><a href="shock-awe.html">Four Entities</a></li>
       <li><a href="pricing.html">Pricing</a></li>
       <li><a href="now-won-start.html">Start</a></li>
+      <li><a href="wormhole.html">Wormhole</a></li>
       <li><a href="studio.html" aria-current="page">NOW:WON Studio</a></li>
     </ul>
     <div class="nav-actions">
@@ -132,7 +133,15 @@
 
         <article class="studio-card studio-chat">
           <h2>Local muscle (optional)</h2>
-          <p class="tier-note" style="margin:0">Ollama on <code>127.0.0.1</code> — use <strong>llama3.2</strong> on MacBook Air. <strong>qwen3</strong> “Thinking…” can overwhelm RAM. Local 8877 only for probes.</p>
+          <p class="tier-note" style="margin:0">Ollama on <code>127.0.0.1</code> — prefer <strong>llama3.2:1b/3b</strong> on Air. <strong>qwen3</strong> + thinking + long context can spike unified memory. Local <strong>8877</strong> only. Repo: <code>processes/NOW-WON-OLLAMA-MEMORY-DISCIPLINE.md</code>.</p>
+          <label class="onboard-field" style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem">
+            <input type="checkbox" id="ollama-memory-mode" checked />
+            <span>Memory mode — small context, no thinking, unload weights after each turn</span>
+          </label>
+          <label class="onboard-field" style="margin-top:0.5rem">
+            <span>Model (after probe)</span>
+            <select id="ollama-model-select" disabled><option value="">Probe Ollama first</option></select>
+          </label>
           <label class="onboard-field" style="margin-top:0.5rem">
             <span>Prompt</span>
             <textarea id="ollama-prompt" placeholder="One bounded turn…"></textarea>
@@ -140,6 +149,7 @@
           <div class="studio-actions">
             <button type="button" class="btn btn-ghost" id="btn-ollama">Probe Ollama</button>
             <button type="button" class="btn btn-primary" id="btn-ollama-run">Run local turn</button>
+            <button type="button" class="btn btn-ghost" id="btn-ollama-unload">Unload model RAM</button>
           </div>
           <pre class="studio-log" id="ollama-preview" aria-live="polite">—</pre>
         </article>
@@ -289,6 +299,72 @@
       return 'http://127.0.0.1:11434';
     }
 
+    const OLLAMA_MEMORY = {
+      num_ctx: 2048,
+      num_predict: 384,
+      num_batch: 128,
+    };
+
+    function ollamaMemoryModeOn() {
+      return document.getElementById('ollama-memory-mode')?.checked !== false;
+    }
+
+    function buildOllamaRequestBody(model, messages) {
+      const body = { model, stream: false, messages };
+      if (ollamaMemoryModeOn()) {
+        body.options = { ...OLLAMA_MEMORY };
+        body.keep_alive = 0;
+        if (/qwen/i.test(model)) body.think = false;
+      }
+      return body;
+    }
+
+    function pickDefaultOllamaModel(models) {
+      if (!models?.length) return null;
+      const scored = [...models].sort((a, b) => {
+        const sa = a.size ?? Number.MAX_SAFE_INTEGER;
+        const sb = b.size ?? Number.MAX_SAFE_INTEGER;
+        if (sa !== sb) return sa - sb;
+        const na = a.name ?? '';
+        const nb = b.name ?? '';
+        const llamaA = na.includes('llama') ? 0 : 1;
+        const llamaB = nb.includes('llama') ? 0 : 1;
+        if (llamaA !== llamaB) return llamaA - llamaB;
+        return na.localeCompare(nb);
+      });
+      return scored[0]?.name ?? null;
+    }
+
+    function modelHasThinking(m) {
+      const caps = m?.capabilities ?? m?.details?.capabilities ?? [];
+      return caps.includes('thinking');
+    }
+
+    function formatModelLine(m) {
+      const gb = m.size ? `${(m.size / 1e9).toFixed(1)} GB` : '?';
+      const think = modelHasThinking(m) ? ' · thinking-capable' : '';
+      return `${m.name} (${gb})${think}`;
+    }
+
+    async function ollamaUnloadLoaded({ updatePreview = true } = {}) {
+      const base = await ollamaBase();
+      const model = state.ollamaModel ?? document.getElementById('ollama-model-select')?.value;
+      if (!model) {
+        log('Unload: probe or pick a model first.');
+        return;
+      }
+      const res = await fetch(`${base}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, keep_alive: 0 }),
+      });
+      if (!res.ok) throw new Error(`unload HTTP ${res.status}`);
+      const ps = await fetch(`${base}/api/ps`).then((r) => r.json()).catch(() => ({}));
+      const running = (ps.models ?? []).map((m) => m.name).join(', ') || '(none)';
+      if (updatePreview) ollamaPrev.textContent = `Unloaded ${model} · running: ${running}`;
+      log(`Ollama unload · ${model} · ps: ${running}`);
+    }
+
     function buildOllamaSystemPrompt() {
       const b = state.bootstrap;
       const wl = b?.worldline_id ?? '(bootstrap not created — click New bootstrap first)';
@@ -303,22 +379,58 @@
       ].join(' ');
     }
 
+    document.getElementById('ollama-model-select').onchange = (ev) => {
+      state.ollamaModel = ev.target.value || null;
+    };
+
+    document.getElementById('btn-ollama-unload').onclick = async () => {
+      try {
+        await ollamaUnloadLoaded();
+      } catch (e) {
+        ollamaPrev.textContent = e.message;
+        log(`Ollama unload: ${e.message}`);
+      }
+    };
+
     document.getElementById('btn-ollama').onclick = async () => {
       try {
-        const res = await fetch(`${await ollamaBase()}/api/tags`);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const base = await ollamaBase();
+        const [tagsRes, psRes] = await Promise.all([
+          fetch(`${base}/api/tags`),
+          fetch(`${base}/api/ps`).catch(() => null),
+        ]);
+        if (!tagsRes.ok) throw new Error(`HTTP ${tagsRes.status}`);
+        const data = await tagsRes.json();
         const models = data.models ?? [];
-        const names = models.map((m) => m.name);
-        // Prefer small llama on Air; if ORACLE sweep left only qwen, use it
-        state.ollamaModel =
-          names.find((n) => n.includes('llama3.2')) ??
-          names.find((n) => n.startsWith('llama')) ??
-          names.find((n) => n.startsWith('qwen')) ??
-          names[0] ??
-          null;
-        ollamaPrev.textContent = models.map((m) => m.name).join('\n') || '(no models)';
-        log(`Ollama: ${models.length} model(s) · local muscle only`);
+        state.ollamaModel = pickDefaultOllamaModel(models);
+        const sel = document.getElementById('ollama-model-select');
+        sel.innerHTML = '';
+        for (const m of models) {
+          const opt = document.createElement('option');
+          opt.value = m.name;
+          opt.textContent = formatModelLine(m);
+          if (m.name === state.ollamaModel) opt.selected = true;
+          sel.appendChild(opt);
+        }
+        sel.disabled = models.length === 0;
+        if (!models.length) sel.innerHTML = '<option value="">(no models)</option>';
+
+        let psLine = '';
+        if (psRes?.ok) {
+          const ps = await psRes.json();
+          const loaded = ps.models ?? [];
+          psLine = loaded.length
+            ? `\n\nLoaded in RAM now:\n${loaded.map((m) => `${m.name} · ${m.size_vram ?? m.size ?? '?'}`).join('\n')}`
+            : '\n\nLoaded in RAM now: (none)';
+        }
+        ollamaPrev.textContent =
+          (models.length ? models.map(formatModelLine).join('\n') : '(no models)') +
+          psLine +
+          (state.ollamaModel ? `\n\nStudio default: ${state.ollamaModel}` : '');
+        if (state.ollamaModel && models.some((m) => m.name === state.ollamaModel && (m.size ?? 0) > 4e9)) {
+          log('Ollama: large model on disk — keep Memory mode on or pull llama3.2:1b');
+        }
+        log(`Ollama: ${models.length} model(s) · pick ${state.ollamaModel ?? '—'} · local muscle only`);
       } catch (e) {
         ollamaPrev.textContent = e.message;
         log(`Ollama probe: ${e.message}`);
@@ -340,28 +452,36 @@
         log('Enter a prompt.');
         return;
       }
+      state.ollamaModel = document.getElementById('ollama-model-select')?.value || state.ollamaModel;
       if (!state.ollamaModel) {
         await document.getElementById('btn-ollama').onclick();
       }
       if (!state.ollamaModel) return;
       try {
         const system = buildOllamaSystemPrompt();
+        const model = state.ollamaModel;
         const res = await fetch(`${await ollamaBase()}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: state.ollamaModel,
-            stream: false,
-            messages: [
+          body: JSON.stringify(
+            buildOllamaRequestBody(model, [
               { role: 'system', content: system },
               { role: 'user', content: prompt },
-            ],
-          }),
+            ]),
+          ),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         ollamaPrev.textContent = data.message?.content ?? data.response ?? JSON.stringify(data);
-        log(`Local turn · ${state.ollamaModel} · muscle on localhost.`);
+        const mem = ollamaMemoryModeOn() ? ' · memory mode (unload scheduled)' : '';
+        log(`Local turn · ${model}${mem} · muscle on localhost.`);
+        if (ollamaMemoryModeOn()) {
+          try {
+            await ollamaUnloadLoaded({ updatePreview: false });
+          } catch {
+            /* keep_alive: 0 on chat usually enough */
+          }
+        }
       } catch (e) {
         ollamaPrev.textContent = e.message;
         flagPortalBlock(
@@ -373,6 +493,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=91c6fd6"></script>
+  <script src="site.js?v=f84491c"></script>
 </body>
 </html>
