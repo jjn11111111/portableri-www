@@ -31,6 +31,12 @@ Optional query for analytics: `?shore=nnowwonn` (Tier B telemetry only if you lo
 
 ---
 
+**Runbook (HOST):** `processes/BRICK-58-NNOWWONN-CLOUDFLARE-REDIRECT.md` · `processes/BRICK-59-NNOWWONN-OPEN-ACCESS-HTML.md` · verify: `bash processes/scripts/verify_nnowwonn_redirect.sh`
+
+**Live (2026-10-09):** `www.nnowwonn.com` → GitHub Pages **`nnowwonn-www`** · open-access door (Brick 59) · **Enforce HTTPS** when GitHub cert green.
+
+---
+
 ## Registrar checklist
 
 1. **Auto-renew ON** · lock domain · save receipt to Crystal.  

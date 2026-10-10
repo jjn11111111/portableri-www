@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=f84491c" />
+  <link rel="stylesheet" href="styles.css?v=e53a298" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -117,6 +117,7 @@
             <button type="button" class="btn btn-primary" id="btn-bootstrap">New bootstrap</button>
             <button type="button" class="btn btn-ghost" id="btn-import">Load export</button>
             <button type="button" class="btn btn-ghost" id="btn-export">Download export bundle</button>
+            <a class="btn btn-ghost" href="bring-home.html">Bring everybody home</a>
             <input type="file" id="import-file" accept=".json,application/json" hidden />
           </div>
           <pre class="studio-log" id="bootstrap-preview" aria-live="polite">No bootstrap yet.</pre>
@@ -198,6 +199,11 @@
 
     function log(msg) {
       logEl.textContent = `${new Date().toISOString()}\n${msg}\n\n${logEl.textContent}`.slice(0, 12000);
+      try {
+        localStorage.setItem('now-won-studio-log', logEl.textContent);
+      } catch {
+        /* private mode */
+      }
     }
 
     function flagPortalBlock(policy, fix) {
@@ -493,6 +499,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=f84491c"></script>
+  <script src="site.js?v=e53a298"></script>
 </body>
 </html>

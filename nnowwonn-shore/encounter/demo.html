@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carbon 60 · encounter</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body.page-encounter { background: #0a0908; min-height: 100vh; }
+    .gold-burst {
+      text-align: center; padding: 2rem 1rem;
+      background: radial-gradient(circle, rgba(255,248,220,0.15), transparent 70%);
+      border: 1px solid rgba(255, 235, 180, 0.35);
+      border-radius: 16px; margin: 1rem 0;
+    }
+    .gold-burst h2 { color: #fff8dc; font-family: Georgia, serif; margin: 0 0 0.5rem; }
+    .face-hearth { border-left: 4px solid var(--hearth-glow); }
+    .face-forge { border-left: 4px solid var(--forge-glow); }
+    .token-box { word-break: break-all; font-size: 0.8rem; color: var(--muted); }
+    label.check { display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; margin: 0.75rem 0; }
+  </style>
+</head>
+<body class="page-encounter">
+  <nav class="top">
+    <div class="wrap wrap-nav">
+      <a href="../index.html">← NOW:WON</a>
+      <span class="nav-path nav-path-hearth">Carbon 60</span>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap" id="app">
+      <p class="eyebrow">Encounter demo · law repo · serverless later</p>
+      <h1 id="title">Scan received</h1>
+      <div id="content"></div>
+    </div>
+  </main>
+
+  <script>
+    const TTL_MS = 15 * 60 * 1000;
+    const params = new URLSearchParams(location.search);
+    const serial = params.get('serial') || 'C60-DEMO';
+    const face = (params.get('face') || 'hearth').toLowerCase();
+    const pairIn = params.get('pair') || '';
+
+    const LORE = {
+      hearth: {
+        title: 'Ember side · Hearth',
+        body: 'You found the warm half. Now find a human with the iron half — or the other side of this same piece — and scan again within fifteen minutes.',
+      },
+      forge: {
+        title: 'Iron side · Forge',
+        body: 'You found the proof half. Pair with an ember scan — another person or the other face — to fuse white powder gold.',
+      },
+    };
+
+    function storageKey(s) {
+      return `c60_pair_${s}`;
+    }
+
+    function mintToken(s, f) {
+      const token = crypto.randomUUID();
+      const payload = { token, face: f, at: Date.now(), serial: s };
+      localStorage.setItem(storageKey(s), JSON.stringify(payload));
+      return token;
+    }
+
+    function readToken(s) {
+      try {
+        const raw = localStorage.getItem(storageKey(s));
+        if (!raw) return null;
+        const p = JSON.parse(raw);
+        if (Date.now() - p.at > TTL_MS) {
+          localStorage.removeItem(storageKey(s));
+          return null;
+        }
+        return p;
+      } catch {
+        return null;
+      }
+    }
+
+    function renderFusion() {
+      document.getElementById('title').textContent = 'White powder gold';
+      document.getElementById('content').innerHTML = `
+        <div class="gold-burst">
+          <h2>White powder gold · Bucky Ballz fused</h2>
+          <p>Serial <strong>${serial}</strong> · you jitterbugged out of solo mode (demo).</p>
+          <p>Production: geofence · two devices · export JSON to your machine.</p>
+        </div>
+        <p class="seal"><a href="../hearth.html">Hearth</a> · <a href="../forge.html">Forge</a> · <a href="../index.html">Two doors</a></p>`;
+    }
+
+    function render() {
+      const app = document.getElementById('content');
+      const lore = LORE[face] || LORE.hearth;
+      document.getElementById('title').textContent = lore.title;
+
+      if (face === 'forge' && pairIn) {
+        const stored = readToken(serial);
+        if (stored && stored.token === pairIn && stored.face !== face) {
+          renderFusion();
+          return;
+        }
+        if (stored && stored.token === pairIn && stored.face === face) {
+          app.innerHTML = `<article class="card face-forge"><p>Need the <strong>other</strong> face first — scan ember, then iron with the pair link.</p></article>`;
+          return;
+        }
+        app.innerHTML = `<article class="card face-forge"><p>Pair token missing or expired. Scan <strong>hearth</strong> first on this serial.</p></article>`;
+        return;
+      }
+
+      if (face === 'hearth') {
+        const token = mintToken(serial, face);
+        const forgeUrl = `${location.pathname}?serial=${encodeURIComponent(serial)}&face=forge&pair=${encodeURIComponent(token)}`;
+        app.innerHTML = `
+          <article class="card face-hearth">
+            <p>${lore.body}</p>
+            <p><strong>Your pair link</strong> (show partner or open other side):</p>
+            <p class="token-box"><a href="${forgeUrl}">${location.origin}${forgeUrl}</a></p>
+            <p class="fine">Demo: same phone works. Live events: two people, two phones, optional location once.</p>
+          </article>
+          <label class="check"><input type="checkbox" id="geo" /> Individual yes only: I choose to share location once for a stamp (optional · revocable when live).</label>
+          <p class="fine" style="margin-top:1rem">Talisman, not trap. <a href="charter.html">Inception charter</a> — individual yes only.</p>
+          <p class="seal"><a href="../index.html">Back to two doors</a></p>`;
+        return;
+      }
+
+      // forge without pair
+      const stored = readToken(serial);
+      if (stored && stored.face === 'hearth') {
+        const forgeUrl = `${location.pathname}?serial=${encodeURIComponent(serial)}&face=forge&pair=${encodeURIComponent(stored.token)}`;
+        app.innerHTML = `
+          <article class="card face-forge">
+            <p>${lore.body}</p>
+            <p><a class="btn btn-primary" href="${forgeUrl}">Complete fusion on this device</a></p>
+          </article>`;
+        return;
+      }
+
+      app.innerHTML = `
+        <article class="card face-forge">
+          <p>Scan the <strong>hearth</strong> face first for serial <strong>${serial}</strong>.</p>
+          <p><a href="?serial=${encodeURIComponent(serial)}&face=hearth">Open ember side</a></p>
+        </article>`;
+    }
+
+    render();
+  </script>
+</body>
+</html>

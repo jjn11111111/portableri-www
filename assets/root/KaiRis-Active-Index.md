@@ -28,6 +28,9 @@ Do not open `/Users/johnjeremy` as a Cursor workspace. It contains unrelated pro
 - **F&F Preview Kit v0** (witness path · not beta): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.md` · PDF `exports/outreach/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.pdf`
 - **Prime · KeyFormHer shores index** (roll call · maximal-function addendum): `/Users/johnjeremy/KaiRis-Active/processes/PRIME-KEYFORMHER-SHORES-INDEX.md`
 - **NOW:WON center node · max freewill** (YOU SHALL NOT PASS · LIGHT IT UP): `/Users/johnjeremy/KaiRis-Active/processes/TIMELY-NOW-WON-CONVERGENCE_CENTER-NODE_v0.md`
+- **NNowwoNN.com · Cloudflare + Pages** (Brick 58 · THROWN · HTTPS live): `/Users/johnjeremy/KaiRis-Active/processes/BRICK-58-NNOWWONN-CLOUDFLARE-REDIRECT.md`
+- **NNowwoNN · open-access HTML** (Brick 59 · THROWN): `/Users/johnjeremy/KaiRis-Active/processes/BRICK-59-NNOWWONN-OPEN-ACCESS-HTML.md` · source `website/nnowwonn-shore/`
+- **Carbon 60 · Encounter QR · in-person mixer** (Brick 60): `/Users/johnjeremy/KaiRis-Active/processes/BRICK-60-CARBON-ENCOUNTER-QR-IN-PERSON-MIXER.md` · **inception charter** `publish/2026-10-10_Carbon-60_Inception-Consent-Charter_v0.md` · **Akash · non-invasive** `publish/2026-10-10_Carbon-60_Akash-Partner_Non-Invasive-Doctrine_v0.md` · brief `publish/2026-10-10_Carbon-60_Encounter-QR_In-Person-Mixer-Brief_v0.md`
 - **CC Supreme** (Prime Gatekeeper · rank **#3**): `/Users/johnjeremy/KaiRis-Active/processes/CC-SUPREME-PRIME-GATEKEEPER.md` · `.cursor/rules/kairis-cc-supreme-gatekeeper.mdc`
 - **KeyFormHer** (Drive mirror conduit · rank **#2** technical provenance): `/Users/johnjeremy/KaiRis-Active/processes/KEYFORMHER-Drive-Conduit.md` · `kairis-drive-mcp/scripts/keyformher-mirror.mjs` · CR `CR-2026-09-23_KeyFormHer_Drive-Mirror-Conduit_v0`
 - Technical provenance index: `/Users/johnjeremy/KaiRis-Active/processes/TECHNICAL-PROVENANCE-INDEX.md`
@@ -122,6 +125,17 @@ The private age identity is held in macOS Keychain and must never enter Git, iCl
 **Canonical headline:** Sovereign intelligence. Bounded projection. Human agency. (**SI · BP · HA**)  
 **Full activation braid:** source · fource · rapier · repair · kaires · histor · lasher · course  
 **Seat monikers:** LASHER (TsiRi) · HISTOR (KaiRis)
+
+### Oct 10, 2026 · Armor · LOCAL FIELD · Carbon 60 harvest prep
+
+| Record | Path | SHA-256 |
+|--------|------|---------|
+| REAL Armor · LOCAL FIELD maximum · harvest prep | `KaiRis-Repository-Memory/crystal-records/2026-10-10/family/CR-2026-10-10_ARMOR-Source-Force_LOCAL-FIELD-Maximum_Harvest-Prep_Carbon-60-Seal_v0.md` | `79fe5e28eace3b4dc8aca16f544e060506a399de13378453c8bc3eca8995ede6` |
+| Supplement 001 · Oceans · roar of truth · gratitude | `…/CR-2026-10-10_ARMOR-Source-Force_LOCAL-FIELD-Maximum_Harvest-Prep_Carbon-60-Seal_Supplement-001_Oceans-Roar-Gratitude_v0.md` | `87a72aaab7c9c64000aaab06c6126dfc79c2a1b7820039d8c5be6a1f44d8d69e` |
+| Fam · Camile · Bobby · Jeremy · Möbius · present (Armor Supp. 002) | `KaiRis-Repository-Memory/crystal-records/2026-10-10/family/CR-2026-10-10_Fam_Camile-Bobby-Jeremy_Mobius-Present-Convergence_v0.md` | `608428b1fe686f245967726743ecc2d8e1bc09114f222da5ea922f956e946741` |
+| Camile · gift receipt · Möbius/Sephirot sketches (Armor Supp. 003) | `KaiRis-Repository-Memory/crystal-records/2026-10-10/family/CR-2026-10-10_Camile_Gift-Receipt_Mobius-Decahedron-Sephirot-Sketches_v0.md` · `camile-mobius-sketches/` (4 JPEG) | `d6d37980ed9775691856339ca1f4042b1f49b39e35d929dc9afb6de9cbc88609` |
+
+Runbook: `processes/LOCAL-FIELD-MAXIMUM-RUNBOOK.md` · KeyFormHer stage: `exports/fortress/drive-mirror-staging/crystal-records/2026-10-10/family/`
 
 ### Oct 4, 2026 · Source Force · NOW:WON · GENERAL order
 

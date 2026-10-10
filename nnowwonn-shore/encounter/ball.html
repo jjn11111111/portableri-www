@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bucky Ballz — Carbon 60. Hex hello, pent gold, jitterbug out of the pod. Play in person." />
+  <title>Bucky Ballz · jitterbuggin · Carbon 60</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body.page-ball { background: #0a0c0a; }
+    .ball-hero { text-align: center; padding: 1rem 0 0.5rem; }
+    .ball-svg { max-width: 280px; margin: 0 auto; display: block; }
+    .legend { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 1.5rem 0; }
+    .legend span { font-size: 0.85rem; padding: 0.35rem 0.65rem; border-radius: 8px; }
+    .leg-hex { background: rgba(2, 195, 154, 0.15); border: 1px solid rgba(2, 195, 154, 0.4); }
+    .leg-pent { background: rgba(249, 231, 149, 0.12); border: 1px solid rgba(249, 231, 149, 0.4); color: var(--gold); }
+    .honey { opacity: 0.12; position: fixed; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath fill='none' stroke='%2302c39a' stroke-width='1' d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100L0 84L0 50M28 66L56 50L56 84L28 100'/%3E%3C/svg%3E"); }
+    .vibe-line {
+      font-family: Georgia, serif; font-size: 1.2rem; color: var(--gold);
+      text-align: center; margin: 1rem auto 0; max-width: 28rem; line-height: 1.4;
+    }
+    .jitter { animation: jitter 2.5s ease-in-out infinite; }
+    @keyframes jitter {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-1.2deg) translateX(-1px); }
+      75% { transform: rotate(1.2deg) translateX(1px); }
+    }
+  </style>
+</head>
+<body class="page-ball">
+  <div class="honey" aria-hidden="true"></div>
+  <nav class="top">
+    <div class="wrap wrap-nav">
+      <a href="../index.html">← Two ways in</a>
+      <span class="nav-path nav-path-forge">Bucky Ballz</span>
+    </div>
+  </nav>
+
+  <header class="hero hero-split ball-hero">
+    <div class="wrap">
+      <p class="eyebrow">Bucky Ballz · Carbon 60 · jitterbuggin</p>
+      <h1>Out of the pod · onto the floor</h1>
+      <p class="lead" style="margin:0 auto; text-align:center; max-width:36rem">
+        Fuller’s cage. Soccer’s skin. Same ball the world watches — same molecule in the sky of chemistry.
+        <strong>Hex</strong> is the shuffle. <strong>Pent</strong> is the pivot. Pair up, scan, fuse — that’s the dance.
+      </p>
+      <p class="vibe-line jitter">Jitterbuggin’ = leave the ME-bubble · bug a human · roll home with your ball.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <svg class="ball-svg jitter" viewBox="0 0 200 200" role="img" aria-label="Stylized Bucky ball pattern">
+        <circle cx="100" cy="100" r="96" fill="#12121a" stroke="#333" stroke-width="1"/>
+        <polygon points="100,28 118,42 112,62 88,62 82,42" fill="#f9e795" stroke="#0a0a0f" stroke-width="1.5"/>
+        <polygon points="100,172 88,158 112,158" fill="#02c39a" stroke="#0a0a0f" opacity="0.9"/>
+        <polygon points="40,75 55,65 70,75 65,95 45,95" fill="#02c39a" stroke="#0a0a0f" opacity="0.7"/>
+        <polygon points="160,75 145,65 130,75 135,95 155,95" fill="#02c39a" stroke="#0a0a0f" opacity="0.7"/>
+        <polygon points="55,130 70,120 85,130 80,150 60,150" fill="#02c39a" stroke="#0a0a0f" opacity="0.6"/>
+        <polygon points="145,130 130,120 115,130 120,150 140,150" fill="#02c39a" stroke="#0a0a0f" opacity="0.6"/>
+        <text x="100" y="105" text-anchor="middle" fill="#0a0a0f" font-size="11" font-weight="bold">PENT</text>
+      </svg>
+
+      <div class="legend">
+        <span class="leg-hex">Hex · hello · common stamp</span>
+        <span class="leg-pent">Pent · portal · fusion gold</span>
+      </div>
+
+      <article class="card">
+        <h2>Bucky Ballz night</h2>
+        <p>Host says: <em>“We’re jitterbuggin’.”</em> Hex scans fill your sphere. Pent portals force a <strong>real pair</strong>. When the planet watches a match on TV, <strong>your room</strong> still plays the human game — export optional, joy mandatory.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="demo.html?serial=C60-BALL&face=hearth&tile=hex">Try hex scan</a>
+          <a class="btn btn-secondary" href="demo.html?serial=C60-BALL&face=forge&tile=pent">Try pent portal</a>
+        </div>
+      </article>
+
+      <p class="seal">
+        Talisman · shield · <strong>individual yes</strong> only<br />
+        <a href="demo.html">Encounter demo</a> · <a href="../index.html">Home</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
