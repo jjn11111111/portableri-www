@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=30f962f" />
+  <link rel="stylesheet" href="styles.css?v=26bf7fd" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -295,6 +295,8 @@
       }
       const bundle = buildExportBundleV1({
         kernelBootstrap: state.bootstrap,
+        trustManifestSha256: state.bootstrap.trust_manifest_sha256,
+        constitutionSha256: state.bootstrap.constitution_sha256,
         notes: `${STANDALONE_PRODUCT_NAME} · ${SEAL_NOW_WON}`,
       });
       downloadJson(`now-won-studio-export-${state.bootstrap.worldline_id.slice(0, 8)}.json`, bundle);
@@ -499,6 +501,6 @@
 
     log(`${STANDALONE_PRODUCT_NAME} loaded.`);
   </script>
-  <script src="site.js?v=30f962f"></script>
+  <script src="site.js?v=26bf7fd"></script>
 </body>
 </html>

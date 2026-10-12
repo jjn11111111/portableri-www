@@ -242,3 +242,128 @@ body.page-forge .card h2 {
 .steps-plain li { margin-bottom: 0.85rem; font-size: 1.02rem; }
 .fine { font-size: 0.88rem; color: var(--muted); margin: 1rem 0 0; }
 body.page-hearth .fine { color: rgba(240, 230, 220, 0.65); }
+
+/* —— Workbench v0 —— */
+body.page-workbench { background: #0a0908; }
+.hero-wb {
+  background:
+    radial-gradient(ellipse 50% 70% at 20% 30%, rgba(232, 168, 124, 0.1), transparent 50%),
+    radial-gradient(ellipse 50% 70% at 80% 30%, rgba(126, 184, 255, 0.08), transparent 50%),
+    linear-gradient(180deg, #0f0e0c, #12121a);
+}
+.wb-layout {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .wb-layout { grid-template-columns: 1.35fr 1fr; align-items: start; }
+}
+.wb-input-card textarea {
+  width: 100%;
+  min-height: 11rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(2, 195, 154, 0.35);
+  background: #0a0a0f;
+  color: var(--off);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+.wb-field { display: block; margin-bottom: 0.85rem; }
+.wb-field span { display: block; font-size: 0.82rem; color: var(--gold); margin-bottom: 0.35rem; }
+.wb-field input, .wb-field select {
+  width: 100%;
+  max-width: 24rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #12121a;
+  color: var(--off);
+}
+.wb-log {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 12rem;
+  overflow: auto;
+  margin-top: 0.75rem;
+  padding: 0.65rem;
+  background: #0a0a0f;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.wb-nav-alt { font-size: 0.85rem; font-weight: 500; margin-left: auto; }
+.wb-links { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; }
+.wb-links li { margin-bottom: 0.45rem; }
+body.page-workbench[data-face="forge"] .wb-input-card { border-color: rgba(126, 184, 255, 0.28); }
+button.btn { cursor: pointer; border: none; font: inherit; }
+button.btn-secondary { border: 1px solid rgba(249, 231, 149, 0.35); color: var(--gold); background: transparent; }
+
+/* —— Onboarding ladder —— */
+body.page-onboard .onboard-ladder {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 720px) {
+  body.page-onboard .onboard-ladder { grid-template-columns: 1fr 1fr; }
+}
+.onboard-step .step-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin: 0 0 0.35rem;
+}
+.onboard-pari ul { margin: 0.5rem 0 0 1rem; font-size: 0.92rem; }
+
+.onboard-coach-banner {
+  margin: 1rem 0 0;
+  padding: 1rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid rgba(2, 195, 154, 0.35);
+  background: rgba(2, 195, 154, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.onboard-coach-banner p { margin: 0; font-size: 0.95rem; max-width: 36rem; }
+
+.wb-stepper { padding: 0.5rem 0 0; }
+.wb-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.wb-step {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.wb-step span {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  border: 1px solid #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+}
+.wb-step-active { color: var(--gold); }
+.wb-step-active span { border-color: var(--teal); background: rgba(2, 195, 154, 0.15); }
+.wb-step-done { color: var(--teal); }
+.wb-step-done span { background: var(--teal); color: #0a0a0f; border-color: var(--teal); }
+.wb-substep { font-size: 0.95rem; color: var(--gold); margin: 1.25rem 0 0.5rem; font-weight: 600; }
