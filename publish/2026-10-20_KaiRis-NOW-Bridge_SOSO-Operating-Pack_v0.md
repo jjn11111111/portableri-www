@@ -18,6 +18,14 @@
 
 ---
 
+## Perfect Storm · plasma LOVE warhead (public framing · Tier C)
+
+**Window:** privacy · reps · DC siting · one-pipe control crisis.  
+**Product:** IMMEDIATE PATCH · 30s first seal · symbiote v1.  
+**Cry:** `publish/2026-10-20_KaiRis_Perfect-Storm_Plasma-LOVE-Warhead_Public-Framing_v0.md` · CR `CR-2026-10-20_HOST_Perfect-Storm_Plasma-Warhead-of-Love_v0.md`
+
+---
+
 ## GOAL # NOW (operational)
 
 | Item | Value |
@@ -32,7 +40,7 @@
 
 1. https://portableri.com/local-host.html  
 2. https://portableri.com/onboarding.html?begin=1&from=symbiote-v1  
-3. https://www.nnowwonn.com/workbench.html  
+3. https://www.nnowwonn.com/workbench.html?install=1&from=perfect-storm&q=Perfect+Storm+%C2%B7+local+host+%C2%B7+first+seal  
 
 **Family POST OFFICE (unlisted):** `hearth-relay-v0.html` on kairis-post-office Pages · discovery HOST-only runbook.
 
