@@ -1401,6 +1401,25 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   padding-left: 1.1rem;
 }
 .symbiote-armor-panel li { margin-bottom: 0.35rem; }
+.new-chessboard-equation {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  margin: 0 0 1.25rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  background: rgba(249, 231, 149, 0.05);
+  text-align: left;
+}
+.new-chessboard-equation strong { color: var(--gold); }
+.new-chessboard-equation .eq-result {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: Georgia, serif;
+  font-size: 0.92rem;
+  color: var(--teal);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--teal) 35%, transparent);
+}
 .symbiote-battle-cry__guard {
   display: block;
   margin-top: 0.5rem;
