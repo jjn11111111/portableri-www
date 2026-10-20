@@ -1430,6 +1430,47 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   margin-top: 0.5rem;
   text-shadow: 0 0 8px color-mix(in srgb, var(--teal) 40%, transparent);
 }
+.symbiote-battle-cry {
+  text-align: center;
+  margin: 0 0 1.25rem;
+  padding: 1rem 0.5rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 0 12px color-mix(in srgb, var(--foundry-veritas) 12%, transparent),
+    inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.symbiote-battle-cry__pass {
+  display: block;
+  margin: 0 0 0.55rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--foundry-veritas);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 10px var(--foundry-veritas),
+    0 0 22px color-mix(in srgb, var(--foundry-magenta) 45%, transparent);
+}
+.symbiote-battle-cry__host {
+  display: block;
+  margin: 0;
+  font-size: clamp(0.82rem, 3.8vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  color: var(--gold);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--gold) 35%, transparent);
+}
+.symbiote-battle-cry__host em {
+  font-style: normal;
+  color: #fff;
+  text-shadow:
+    0 0 6px var(--teal),
+    0 0 14px color-mix(in srgb, var(--teal) 50%, transparent);
+}
 
 [data-parallax] {
   will-change: transform;
