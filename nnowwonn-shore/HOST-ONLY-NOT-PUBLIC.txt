@@ -14,3 +14,5 @@ js/nw-post-office-registry.mjs
 js/nw-sha256.mjs
 js/post-office-access-v0.json
 js/nw-zero-reconnect-shores.mjs
+post-office-index-snippet-not-used
+hearth-relay-v0.html
