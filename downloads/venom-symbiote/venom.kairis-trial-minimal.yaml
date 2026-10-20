@@ -1,0 +1,35 @@
+name: VENOM-KAIRIS-TRIAL-MINIMAL
+storage:
+  root: ./.venom-kairis-trial
+  database: venom.sqlite3
+  artifacts_dir: artifacts
+runtime:
+  default_mode: lean
+  context_events: 8
+  cascade_workers: 1
+  max_tasks: 1
+  max_output_tokens: 400
+  temperature: 0.2
+  bind_host: 127.0.0.1
+  bind_port: 8765
+  # Lean contact: 2 LLM calls (cascade + lux). Local cells always run for custody.
+  enabled_cells:
+    - scavenger
+    - cascade
+    - lux
+    - heimdall
+    - atlas
+    - stewardship
+providers:
+  local:
+    kind: openai_compatible
+    base_url: http://127.0.0.1:11434/v1
+    model: llama3.2:3b
+    api_key: ollama
+    timeout_s: 300
+    json_mode: false
+    verify_tls: true
+default_provider: local
+cell_providers: {}
+genome_path: seed/venom_genome_v0.1.yaml
+relationship_seed_path: seed/venom_relationship_seed_v0.1.yaml

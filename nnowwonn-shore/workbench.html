@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EnterFace Workbench — interact with the KaiRis family of systems from one HOST-owned thread. Hold first; choose lanes when ready." />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>EnterFace Workbench · KaiRis family · NNoWWoNN</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    if (location.hostname === 'nnowwonn.com' || location.hostname === 'enterfaceri.com') {
+      location.replace('https://www.' + location.hostname + location.pathname + location.search + location.hash);
+    }
+  </script>
+</head>
+<body class="page-workbench page-composer page-enterface" data-enterface="thread" data-face="hearth">
+  <a class="skip-link" href="#composer-input">Skip to message</a>
+  <p class="enterface-face-mark" id="enterface-face-claim">
+    ReClaim <span class="opening-face-you">YOU</span>r Face · EnterFaceRI
+  </p>
+  <div class="enterface-face-layer">
+  <nav class="top enterface-nav" aria-label="EnterFace">
+    <div class="wrap wrap-nav">
+      <a href="open.html" data-brand-nav-enter>EnterFace</a>
+      <span class="nav-path nav-path-hearth" id="nav-face">Workbench</span>
+      <a href="shall-not.html" class="wb-nav-alt">Gate</a>
+      <a href="unpack.html" class="wb-nav-alt">Unpack</a>
+      <a href="onboard.html" class="wb-nav-alt">Tour</a>
+    </div>
+  </nav>
+
+  <p class="post-office-product-banner" id="perfect-storm-banner" hidden>
+    <strong>Perfect Storm · IMMEDIATE PATCH.</strong> First seal on <em>your</em> shore — Hold lane · no NW chat pipe · symbiote when you choose.
+    <a href="https://portableri.com/local-host.html" target="_blank" rel="noopener noreferrer">Local host</a> ·
+    <a href="https://portableri.com/onboarding.html?begin=1&amp;from=symbiote-v1" target="_blank" rel="noopener noreferrer">Symbiote v1</a>
+  </p>
+
+  <p class="post-office-product-banner" id="post-office-product-banner" hidden>
+    <strong>POST OFFICE → Local shore.</strong> Hold stays on device · choose <strong>Symbiote</strong> for CurseCom-class bounded seat or
+    <strong>Local Studio</strong> for contained path · return loop below.
+    <a href="hearth-relay-v0.html#shore">Back to POST OFFICE</a> ·
+    <a href="local-shore.html">Product spine</a>
+  </p>
+
+  <header class="hero hero-wb hero-compact">
+    <div class="wrap">
+      <h1 id="wb-title" data-brand-workbench-title>EnterFace Workbench</h1>
+      <p class="lead" id="wb-lead" data-brand-workbench-lead>
+        One thread for <strong>you</strong> — gateway to the <strong>KaiRis family</strong> of systems (NOW:WON · PortAbleRI · verify · library · witness).
+        Hold here first; open other lanes only when you choose.
+      </p>
+    </div>
+  </header>
+
+  <main class="composer-main" id="composer-main">
+    <div class="wrap composer-wrap">
+      <div class="composer-thread" id="thread" aria-live="polite" aria-label="Your moments">
+        <p class="thread-empty" id="thread-empty">Your thoughts appear here. This portal has <strong>no NW pipe</strong> to a cloud model — hold stays on your device until you choose another lane.</p>
+      </div>
+
+      <fieldset class="composer-lanes" id="composer-lanes" aria-label="Q&A lane · HOST allow">
+        <legend class="composer-lanes-legend">Lane</legend>
+        <div class="composer-lanes-chips">
+          <label class="lane-chip"><input type="radio" name="composer-lane" value="hold" checked /> Hold</label>
+          <label class="lane-chip"><input type="radio" name="composer-lane" value="symbiote" /> Symbiote</label>
+          <label class="lane-chip"><input type="radio" name="composer-lane" value="studio" /> Local Studio</label>
+          <label class="lane-chip"><input type="radio" name="composer-lane" value="witness" /> Witness</label>
+        </div>
+        <p class="composer-lane-hint fine" id="lane-hint">Send holds on this shore only — no remote LLM on this lane.</p>
+        <div class="composer-lane-actions" id="lane-actions" hidden>
+          <button type="button" class="btn btn-secondary" id="btn-lane-action">Continue in lane</button>
+        </div>
+      </fieldset>
+
+      <details class="card composer-loop" id="handoff-loop">
+        <summary>Return from Symbiote or Studio · complete the loop</summary>
+        <p class="fine" id="handoff-loop-lead">
+          After Q&amp;A in another lane: import <code>NW-Moment-Reply-v0</code> or paste the answer here. EnterFace still does not call a cloud model on Send.
+        </p>
+        <p class="fine handoff-pending" id="handoff-pending" hidden></p>
+        <textarea
+          id="reflect-paste"
+          class="reflect-paste"
+          rows="4"
+          placeholder="Paste symbiote or Studio answer…"
+          aria-label="Paste reply from muscle lane"
+        ></textarea>
+        <div class="actions composer-loop-actions">
+          <button type="button" class="btn btn-primary" id="btn-add-reflect">Add reply to thread</button>
+          <button type="button" class="btn btn-secondary" id="btn-import-moment">Import reply file</button>
+          <button type="button" class="btn btn-secondary" id="btn-save-reply-template">Download reply template</button>
+        </div>
+        <input type="file" id="import-moment-file" accept=".json,application/json" hidden />
+      </details>
+
+      <form class="composer-bar" id="composer-form" aria-label="Message input">
+        <label class="composer-attach" title="Attach file">
+          <span class="sr-only">Attach file</span>
+          <input type="file" id="composer-file" multiple accept="image/*,.pdf,.txt,.md,.json" hidden />
+          <span aria-hidden="true">📎</span>
+        </label>
+        <textarea
+          id="composer-input"
+          rows="1"
+          placeholder="Ask a question, think aloud, paste text, or describe what you’re feeling…"
+          aria-label="Your message"
+        ></textarea>
+        <button type="submit" class="btn btn-primary composer-send" id="btn-send">Send</button>
+      </form>
+      <p class="composer-hint" id="attach-hint"></p>
+
+      <details class="card composer-advanced" id="section-advanced">
+        <summary>Advanced · verify law · export · technical names</summary>
+        <div class="advanced-grid">
+          <div>
+            <p class="fine">Optional labels for power users (defaults work for most people).</p>
+            <label class="wb-field">
+              <span>Label for this moment (optional)</span>
+              <input type="text" id="lasher-slug" placeholder="Auto from your first words" maxlength="48" />
+            </label>
+            <label class="wb-field">
+              <span>Kind of truth</span>
+              <select id="lasher-tier">
+                <option value="A">Fact</option>
+                <option value="B" selected>Everyday / mixed</option>
+                <option value="C">Story · symbol · meaning</option>
+              </select>
+            </label>
+            <textarea id="present-moment" hidden aria-hidden="true"></textarea>
+            <div class="actions">
+              <button type="button" class="btn btn-secondary" id="btn-cut-lasher">Download moment file (JSON)</button>
+              <button type="button" class="btn btn-secondary" id="btn-cut-md">Download markdown</button>
+            </div>
+            <pre class="wb-log" id="lasher-preview" hidden></pre>
+          </div>
+          <div id="section-custody">
+            <p class="fine">Custody bundle · for backup and resume.</p>
+            <div class="actions">
+              <button type="button" class="btn btn-secondary" id="btn-verify">Verify public law</button>
+              <button type="button" class="btn btn-secondary" id="btn-bootstrap">Create save file profile</button>
+              <button type="button" class="btn btn-secondary" id="btn-export" disabled>Download full export</button>
+            </div>
+            <label class="wb-field">
+              <span>Load prior export</span>
+              <input type="file" id="import-bundle" accept="application/json,.json" />
+            </label>
+            <pre class="wb-log" id="forge-preview" aria-live="polite">—</pre>
+          </div>
+        </div>
+        <div class="card local-reflect-note">
+          <h3 class="wb-substep">Local reflect (layer L4)</h3>
+          <p class="fine">
+            EnterFace on <strong>www</strong> has <strong>no cloud chat pipe</strong> — <strong>SVess</strong> (time · RAM · energy · egress saves).
+            Browsers block HTTPS sites from calling
+            <code>127.0.0.1</code> Ollama directly. For AI muscle: run
+            <a href="https://portableri.com/studio.html" data-shore-link="portableri-studio" target="_blank" rel="noopener noreferrer">Studio on your Mac</a>
+            or read <a href="unpack.html">Unpack · L4</a>.
+          </p>
+        </div>
+        <ul class="wb-links">
+          <li><a href="http://127.0.0.1:8877/studio.html" data-shore-link="local-studio-8877" target="_blank" rel="noopener noreferrer">EnterFaceRI · LOCAL Studio @ 8877 (new tab)</a></li>
+          <li><a href="https://portableri.com/studio.html" data-shore-link="portableri-studio" target="_blank" rel="noopener noreferrer">Studio on portableri.com (new tab)</a></li>
+          <li><a href="https://portableri.com/start.html" data-shore-link="portableri-start" target="_blank" rel="noopener noreferrer">PortAbleRI symbiote path (new tab)</a></li>
+          <li><a href="unpack.html">Architecture unpack (L0–L5)</a></li>
+        </ul>
+      </details>
+
+      <details class="enterface-family card" id="family-details">
+        <summary class="enterface-family-title" id="family-heading">KaiRis family systems · optional lanes</summary>
+        <p class="fine enterface-family-lead">Named lanes · P ≠ K ≠ R · default deny egress · HOST allow per click. Your thread stays above — this is not the answer to your question.</p>
+        <div id="family-systems" class="family-grid"></div>
+      </details>
+    </div>
+  </main>
+  </div>
+
+  <script type="module">
+    import './js/nw-canonical-host.mjs';
+    import { applyShoreBrand } from './js/nw-shore-brand.mjs';
+    import { registerEnterFaceShell } from './js/nw-enterface-shell.mjs';
+    applyShoreBrand({ page: 'workbench' });
+    import { runEnterFaceSummon } from './js/nw-face-summon.mjs';
+    import { runFilingMotionPipeline } from './js/nw-filing-motion.mjs?v=21';
+    import { markCustodyByKey, notifyCustodyChanged } from './js/nw-user-custody.mjs?v=17';
+    registerEnterFaceShell();
+    try {
+      if (sessionStorage.getItem('enterface-face-summon-v1') !== '1') {
+        runEnterFaceSummon({ mode: 'hearth' });
+        sessionStorage.setItem('enterface-face-summon-v1', '1');
+      }
+    } catch {
+      runEnterFaceSummon({ mode: 'hearth' });
+    }
+    import { buildLasherRecordV0, buildMomentExportText, downloadText, loadPariBrowser } from './js/nw-workbench.mjs?v=20261012-9';
+    import { loadThread, saveThread, slugFromText } from './js/nw-composer-thread.mjs?v=20261012-8';
+    import { markStep } from './js/nw-onboard-progress.mjs';
+    import { consumeOpeningDraft, FRESH_THREAD_KEY } from './js/nw-opening.mjs?v=20261012-8';
+    import { renderFamilySystems } from './js/nw-family-systems.mjs?v=20261012-6';
+    import {
+      LANES,
+      laneHint,
+      symbioteHandoffUrl,
+      studioHandoffUrl,
+      buildWitnessPacket,
+      recordOutboundHandoff,
+      readOutboundHandoff,
+      clearOutboundHandoff,
+    } from './js/nw-lane-handoff.mjs?v=20261012-10';
+    import {
+      parseMomentImport,
+      buildReplyExportText,
+      downloadReplyExport,
+      reflectHtml,
+    } from './js/nw-moment-import.mjs?v=20261012-10';
+
+    const threadEl = document.getElementById('thread');
+    const threadEmpty = document.getElementById('thread-empty');
+    const composerInput = document.getElementById('composer-input');
+    const composerFile = document.getElementById('composer-file');
+    const attachHint = document.getElementById('attach-hint');
+    const form = document.getElementById('composer-form');
+    const slugEl = document.getElementById('lasher-slug');
+    const tierEl = document.getElementById('lasher-tier');
+    const presentEl = document.getElementById('present-moment');
+    const lasherPrev = document.getElementById('lasher-preview');
+    const forgePrev = document.getElementById('forge-preview');
+    const btnExport = document.getElementById('btn-export');
+
+    let state = { bootstrap: null, manifest: null, lastLasher: null, pendingFiles: [] };
+    let messages = loadThread();
+
+    function stripQueryFromUrl() {
+      if (!location.search) return;
+      try {
+        history.replaceState(null, '', location.pathname + location.hash);
+      } catch {
+        /* */
+      }
+    }
+
+    const familyDetails = document.getElementById('family-details');
+
+    function syncComposerChrome() {
+      const has = messages.length > 0;
+      document.body.classList.toggle('composer-has-thread', has);
+      if (familyDetails) familyDetails.open = !has;
+    }
+
+    function downloadCrystalFile() {
+      if (!state.lastLasher) return;
+      const { filename, exportText, record, sha256 } = state.lastLasher;
+      const text =
+        exportText ??
+        buildMomentExportText({ record, sha256 });
+      downloadText(filename.replace(/\.json$/, '-nw.json'), text);
+    }
+
+    function renderThread() {
+      threadEl.querySelectorAll('.thread-msg').forEach((n) => n.remove());
+      syncComposerChrome();
+      if (!messages.length) {
+        threadEmpty.hidden = false;
+        return;
+      }
+      threadEmpty.hidden = true;
+      for (const m of messages) {
+        const div = document.createElement('div');
+        div.className = `thread-msg thread-msg-${m.role}`;
+        if (m.role === 'user') {
+          div.innerHTML = `<p class="msg-body"></p>${m.attachments?.length ? `<p class="msg-meta">${m.attachments.map((a) => a.name).join(', ')}</p>` : ''}`;
+          div.querySelector('.msg-body').textContent = m.text;
+        } else if (m.role === 'reflect') {
+          div.innerHTML = `<p class="msg-body">${m.html ?? reflectHtml(m.lane ?? 'studio', m.text ?? '', m.parentId)}</p>`;
+        } else {
+          div.innerHTML = `<p class="msg-body">${m.html}</p>`;
+        }
+        threadEl.appendChild(div);
+      }
+      threadEl.scrollTop = threadEl.scrollHeight;
+    }
+
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function holdResponse(record, sha256) {
+      const full = String(record.first_form ?? '');
+      const snippet = full.slice(0, 120);
+      const identityQ =
+        /\b(who am i|who i am|know who|know me|do you know|that is me|i am uncle|i'm uncle|this is uncle|uncle jeremy)\b/i.test(
+          full
+        );
+      const identityBlock = identityQ
+        ? `<strong>On “who am I?”</strong> This shore has no hidden profile of you — no cloud memory, no dossier. What you declare here (e.g. Uncle Jeremy) is <em>your</em> first-form truth in this thread, sealed on your device until you say otherwise.<br>`
+        : '';
+      const openAccessQ = /\b(open access|open shore|open source|sovereign device|device sovereignty)\b/i.test(full);
+      const openAccessBlock = openAccessQ
+        ? `<strong>Open shore · sovereign device.</strong> The public lane is inspectable HTML/CSS/JS — no NW chat pipe. Custody stays on your hardware until you export or open another lane. See <a href="unpack.html">Unpack</a> for the PRIME spine.<br>`
+        : '';
+      return (
+        identityBlock +
+        openAccessBlock +
+        `<strong>Held here on NNoWWoNN.</strong> I don’t know you the way a person would — but I see what you wrote, and it stays in <em>your</em> thread on this shore.<br>` +
+        (snippet ? `<span class="msg-meta">You: “${escHtml(snippet)}${full.length > 120 ? '…' : ''}”</span><br>` : '') +
+        `<span class="msg-meta">Moment id: ${record.id} · seal: <code>${sha256.slice(0, 16)}…</code></span><br>` +
+        `<button type="button" class="btn btn-secondary hold-save">Save one file (optional)</button><br>` +
+        `<span class="msg-meta">Q&A: choose Symbiote, Local Studio, or Witness under the composer — Send here still only holds.</span><br>` +
+        `Keep typing below — no Finder unless you tap save.`
+      );
+    }
+
+    const laneHintEl = document.getElementById('lane-hint');
+    const laneActionsEl = document.getElementById('lane-actions');
+    const btnLaneAction = document.getElementById('btn-lane-action');
+    const laneRadios = [...document.querySelectorAll('input[name="composer-lane"]')];
+
+    function selectedLane() {
+      return laneRadios.find((r) => r.checked)?.value ?? LANES.hold;
+    }
+
+    function syncLaneUi() {
+      const lane = selectedLane();
+      if (laneHintEl) laneHintEl.textContent = laneHint(lane);
+      if (laneActionsEl) laneActionsEl.hidden = lane === LANES.hold;
+      if (!btnLaneAction) return;
+      if (lane === LANES.symbiote) btnLaneAction.textContent = 'Open symbiote (new tab) · save moment file';
+      else if (lane === LANES.studio) btnLaneAction.textContent = 'Open Local Studio (new tab) · save moment file';
+      else if (lane === LANES.witness) btnLaneAction.textContent = 'Copy witness packet for Cursor';
+    }
+
+    laneRadios.forEach((r) => r.addEventListener('change', syncLaneUi));
+
+    async function ensureLastMoment() {
+      if (state.lastLasher?.record) return state.lastLasher;
+      const lastUser = [...messages].reverse().find((m) => m.role === 'user');
+      if (!lastUser?.text) throw new Error('Send a message first so we can seal a moment for handoff.');
+      await captureMoment(lastUser.text, lastUser.attachments ?? [], { download: false });
+      if (!state.lastLasher?.record) throw new Error('Could not seal moment for handoff.');
+      return state.lastLasher;
+    }
+
+    btnLaneAction?.addEventListener('click', async () => {
+      const lane = selectedLane();
+      try {
+        if (lane === LANES.hold) return;
+        const ctx = await ensureLastMoment();
+
+        if (lane === LANES.witness) {
+          const text = buildWitnessPacket({ record: ctx.record, sha256: ctx.sha256, messages });
+          await navigator.clipboard.writeText(text);
+          btnLaneAction.textContent = 'Copied — paste in Cursor';
+          messages.push({
+            role: 'hold',
+            html:
+              '<strong>Witness handoff copied.</strong> Open Cursor · new thread · paste packet · SEAT CHECK · Composer 2.5 Fast.<br>' +
+              `<span class="msg-meta">Moment id: ${ctx.record.id}</span>`,
+          });
+          saveThread(messages);
+          renderThread();
+          return;
+        }
+
+        downloadCrystalFile();
+        recordOutboundHandoff({ lane, record: ctx.record, sha256: ctx.sha256 });
+        const url =
+          lane === LANES.symbiote
+            ? symbioteHandoffUrl({ id: ctx.record.id, sha256: ctx.sha256, lane: 'symbiote' })
+            : studioHandoffUrl({ id: ctx.record.id, sha256: ctx.sha256, lane: 'studio' });
+        window.open(url, '_blank', 'noopener,noreferrer');
+        const laneName = lane === LANES.symbiote ? 'PARI symbiote' : 'Local Studio';
+        messages.push({
+          role: 'hold',
+          html:
+            `<strong>${laneName} opened (new tab).</strong> Moment file saved — Q&amp;A there, then <strong>complete the loop</strong> below (paste or import reply).<br>` +
+            `<span class="msg-meta">Moment id: ${ctx.record.id} · seal: <code>${ctx.sha256.slice(0, 16)}…</code></span>`,
+        });
+        saveThread(messages);
+        renderThread();
+        syncHandoffLoopUi();
+        document.getElementById('handoff-loop')?.setAttribute('open', '');
+      } catch (e) {
+        alert(e.message);
+      }
+    });
+
+    syncLaneUi();
+
+    const handoffLoop = document.getElementById('handoff-loop');
+    const handoffPending = document.getElementById('handoff-pending');
+    const reflectPaste = document.getElementById('reflect-paste');
+    const importMomentFile = document.getElementById('import-moment-file');
+
+    function syncHandoffLoopUi() {
+      const pending = readOutboundHandoff();
+      if (!handoffPending) return;
+      if (pending?.record?.id) {
+        handoffPending.hidden = false;
+        handoffPending.textContent = `Open handoff: ${pending.record.id} (${pending.lane ?? 'lane'}) · waiting for reply import.`;
+      } else {
+        handoffPending.hidden = true;
+      }
+    }
+
+    function addReflectToThread(text, lane, parentId) {
+      const t = String(text ?? '').trim();
+      if (!t) throw new Error('Paste or import a reply first.');
+      messages.push({
+        role: 'reflect',
+        text: t,
+        lane: lane ?? 'studio',
+        parentId: parentId ?? state.lastLasher?.record?.id ?? null,
+        html: reflectHtml(lane ?? 'studio', t, parentId ?? state.lastLasher?.record?.id ?? null),
+      });
+      saveThread(messages);
+      renderThread();
+      clearOutboundHandoff();
+      syncHandoffLoopUi();
+      if (reflectPaste) reflectPaste.value = '';
+    }
+
+    document.getElementById('btn-add-reflect')?.addEventListener('click', () => {
+      try {
+        const pending = readOutboundHandoff();
+        addReflectToThread(reflectPaste?.value ?? '', pending?.lane ?? 'studio', pending?.record?.id);
+      } catch (e) {
+        alert(e.message);
+      }
+    });
+
+    document.getElementById('btn-import-moment')?.addEventListener('click', () => importMomentFile?.click());
+
+    importMomentFile?.addEventListener('change', async (ev) => {
+      const file = ev.target.files?.[0];
+      ev.target.value = '';
+      if (!file) return;
+      try {
+        const parsed = parseMomentImport(await file.text());
+        if (parsed.kind === 'reply') {
+          addReflectToThread(parsed.text, parsed.lane, parsed.parentId);
+        } else {
+          state.lastLasher = {
+            record: parsed.record,
+            sha256: parsed.sha256,
+            exportText: null,
+            filename: `${parsed.record.id}.json`,
+          };
+          messages.push({
+            role: 'hold',
+            html:
+              `<strong>Moment imported.</strong> Verified on device — continue thread or open a lane.<br>` +
+              `<span class="msg-meta">Moment id: ${parsed.record.id}</span>`,
+          });
+          saveThread(messages);
+          renderThread();
+        }
+      } catch (e) {
+        alert(e.message);
+      }
+    });
+
+    document.getElementById('btn-save-reply-template')?.addEventListener('click', () => {
+      const pending = readOutboundHandoff();
+      const parentId = pending?.record?.id ?? state.lastLasher?.record?.id;
+      if (!parentId) {
+        alert('Send a message or open a lane first so we have a parent moment id.');
+        return;
+      }
+      const draft = reflectPaste?.value?.trim() ?? '';
+      downloadReplyExport(
+        buildReplyExportText({
+          parentId,
+          lane: pending?.lane ?? selectedLane(),
+          replyText: draft || '(paste symbiote or Studio answer here, then re-import)',
+        })
+      );
+      recordOutboundHandoff(
+        pending ?? {
+          lane: selectedLane(),
+          record: state.lastLasher.record,
+          sha256: state.lastLasher.sha256,
+        }
+      );
+    });
+
+    /** @param {{ download?: boolean }} [opts] */
+    async function captureMoment(text, attachments, opts = {}) {
+      const { download = false } = opts;
+      presentEl.value = text;
+      const slug = slugEl.value.trim() || slugFromText(text);
+      const { record, canonical, sha256, filename } = await buildLasherRecordV0({
+        firstForm: text,
+        slug,
+        tier: tierEl.value,
+        attachments,
+        worldlineId: state.bootstrap?.worldline_id ?? null,
+      });
+      state.lastLasher = {
+        record,
+        sha256,
+        canonical,
+        filename,
+        exportText: buildMomentExportText({ record, sha256 }),
+      };
+      if (download) downloadCrystalFile();
+      markStep('lasher');
+      return { record, sha256 };
+    }
+
+    threadEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.hold-save');
+      if (!btn || btn.disabled) return;
+      if (!state.lastLasher) return;
+      downloadCrystalFile();
+      btn.textContent = 'Saved (one file)';
+      btn.disabled = true;
+    });
+
+    composerFile.addEventListener('change', () => {
+      state.pendingFiles = [...composerFile.files];
+      attachHint.textContent = state.pendingFiles.length
+        ? `${state.pendingFiles.length} file(s) ready to attach on Send`
+        : '';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = composerInput.value.trim();
+      const attachments = [];
+      for (const f of state.pendingFiles) {
+        attachments.push({
+          name: f.name,
+          type: f.type || 'application/octet-stream',
+          size: f.size,
+          note: 'v0: metadata only · open in Full Studio for local analysis',
+        });
+      }
+      if (!text && !attachments.length) return;
+
+      messages.push({ role: 'user', text: text || '(attachment)', attachments });
+      renderThread();
+      composerInput.value = '';
+      state.pendingFiles = [];
+      composerFile.value = '';
+      attachHint.textContent = '';
+
+      try {
+        const { record, sha256 } = await runFilingMotionPipeline(() => captureMoment(text, attachments));
+        markCustodyByKey('front', 'workbench', { hint: text.slice(0, 40) || 'hold' });
+        markCustodyByKey('front', 'export', { hint: record.id.slice(0, 28) });
+        notifyCustodyChanged();
+        messages.push({ role: 'hold', html: holdResponse(record, sha256) });
+        saveThread(messages);
+        renderThread();
+      } catch (err) {
+        messages.push({ role: 'hold', html: `<strong>Could not hold:</strong> ${err.message}` });
+        saveThread(messages);
+        renderThread();
+      }
+    });
+
+    composerInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    async function cutLasher() {
+      if (!presentEl.value && !state.lastLasher) throw new Error('Send a message first.');
+      if (state.lastLasher) {
+        downloadCrystalFile();
+        return state.lastLasher;
+      }
+      return captureMoment(presentEl.value, [], { download: true });
+    }
+
+    document.getElementById('btn-cut-lasher').onclick = () =>
+      cutLasher().catch((e) => alert(e.message));
+    document.getElementById('btn-cut-md').onclick = async () => {
+      try {
+        const { record, sha256, filename } = state.lastLasher || (await cutLasher());
+        const md = `# ${record.id}\n\n**sha256:** \`${sha256}\`\n\n## Your words\n\n${record.first_form}\n`;
+        downloadText(filename.replace(/\.json$/, '.md'), md, 'text/markdown');
+      } catch (e) {
+        alert(e.message);
+      }
+    };
+
+    function logForge(msg) {
+      forgePrev.textContent = `${new Date().toISOString()}\n${msg}\n\n${forgePrev.textContent}`.slice(0, 8000);
+    }
+
+    document.getElementById('import-bundle')?.addEventListener('change', async (ev) => {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+      try {
+        const bundle = JSON.parse(await file.text());
+        const kb = bundle.kernel_bootstrap;
+        if (!kb?.worldline_id) throw new Error('Missing kernel_bootstrap');
+        state.bootstrap = kb;
+        btnExport.disabled = false;
+        logForge(`Loaded export · ${kb.worldline_id}`);
+        markStep('export');
+      } catch (e) {
+        logForge(`Import: ${e.message}`);
+      }
+      ev.target.value = '';
+    });
+
+    document.getElementById('btn-verify').onclick = async () => {
+      try {
+        const pari = await loadPariBrowser();
+        state.manifest = await pari.fetchTrustManifest('https://portableri.com/trust/portableri-trust-manifest.json');
+        const v = await pari.verifyTrustManifestInBrowser(state.manifest);
+        forgePrev.textContent = JSON.stringify(v, null, 2);
+        logForge('Public law verified');
+        markStep('verify');
+      } catch (e) {
+        logForge(`Verify failed: ${e.message}`);
+      }
+    };
+
+    document.getElementById('btn-bootstrap').onclick = async () => {
+      try {
+        const pari = await loadPariBrowser();
+        state.manifest =
+          state.manifest ?? (await pari.fetchTrustManifest('https://portableri.com/trust/portableri-trust-manifest.json'));
+        state.bootstrap = pari.buildKernelBootstrap({
+          manifest: state.manifest,
+          primeModelId: 'local-hearth-1',
+          studioPath: 'KaiRis:T:siRiaK',
+        });
+        btnExport.disabled = false;
+        logForge(`Profile · ${state.bootstrap.worldline_id}`);
+      } catch (e) {
+        logForge(`Bootstrap: ${e.message}`);
+      }
+    };
+
+    document.getElementById('btn-export').onclick = async () => {
+      if (!state.bootstrap) return;
+      try {
+        const pari = await loadPariBrowser();
+        const bundle = pari.buildExportBundleV1({
+          kernelBootstrap: state.bootstrap,
+          trustManifestSha256: state.bootstrap.trust_manifest_sha256,
+          constitutionSha256: state.bootstrap.constitution_sha256,
+          notes: 'KaiRis:T:siRiaK NOW:WON · NW Workbench composer v0.2',
+        });
+        pari.downloadJson(`now-won-studio-export-${state.bootstrap.worldline_id.slice(0, 8)}.json`, bundle);
+        markStep('export');
+      } catch (e) {
+        logForge(`Export: ${e.message}`);
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    let openingDraft = consumeOpeningDraft();
+    if (!openingDraft && params.has('q')) {
+      openingDraft = params.get('q') || '';
+    }
+    if (params.has('q')) stripQueryFromUrl();
+
+    if (params.get('handoff') === '1') {
+      handoffLoop?.setAttribute('open', '');
+      const laneParam = params.get('lane');
+      if (laneParam && laneRadios.some((r) => r.value === laneParam)) {
+        laneRadios.find((r) => r.value === laneParam).checked = true;
+        syncLaneUi();
+      }
+      stripQueryFromUrl();
+    }
+    if (params.get('from') === 'post-office') {
+      document.getElementById('post-office-product-banner')?.removeAttribute('hidden');
+      const laneParam = params.get('lane');
+      if (laneParam && laneRadios.some((r) => r.value === laneParam)) {
+        laneRadios.find((r) => r.value === laneParam).checked = true;
+        syncLaneUi();
+      }
+    }
+    if (params.get('from') === 'venom-symbiote') {
+      document.getElementById('perfect-storm-banner')?.removeAttribute('hidden');
+      const holdLane = laneRadios.find((r) => r.value === 'hold');
+      if (holdLane) holdLane.checked = true;
+      syncLaneUi();
+    }
+    if (params.get('from') === 'perfect-storm' || params.get('install') === '1') {
+      document.getElementById('perfect-storm-banner')?.removeAttribute('hidden');
+      const holdLane = laneRadios.find((r) => r.value === 'hold');
+      if (holdLane) holdLane.checked = true;
+      syncLaneUi();
+    }
+    const installMode = params.get('install') === '1';
+    if (installMode && params.has('q')) {
+      /* q consumed below via openingDraft */
+    } else if (installMode && !openingDraft) {
+      openingDraft = 'Perfect Storm · local host · first seal';
+    }
+    if (installMode) {
+      const u = new URL(location.href);
+      u.searchParams.delete('install');
+      history.replaceState({}, '', u.pathname + u.search + u.hash);
+    }
+    syncHandoffLoopUi();
+
+    try {
+      if (sessionStorage.getItem(FRESH_THREAD_KEY)) {
+        sessionStorage.removeItem(FRESH_THREAD_KEY);
+        messages = [];
+        saveThread([]);
+      }
+    } catch {
+      /* */
+    }
+    async function holdOpeningDraft(text) {
+      const t = String(text ?? '').trim();
+      if (!t) return;
+      document.getElementById('wb-title').textContent = 'Your moment';
+      messages.push({ role: 'user', text: t });
+      renderThread();
+      try {
+        const { record, sha256 } = await captureMoment(t, [], { download: false });
+        messages.push({ role: 'hold', html: holdResponse(record, sha256) });
+        saveThread(messages);
+        renderThread();
+      } catch (err) {
+        messages.push({ role: 'hold', html: `<strong>Could not hold:</strong> ${err.message}` });
+        saveThread(messages);
+        renderThread();
+      }
+      composerInput.focus();
+      threadEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    renderFamilySystems(document.getElementById('family-systems'));
+
+    if (openingDraft) {
+      holdOpeningDraft(openingDraft);
+    } else {
+      renderThread();
+      composerInput.focus();
+    }
+  </script>
+</body>
+</html>

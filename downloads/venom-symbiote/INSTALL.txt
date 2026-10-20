@@ -1,0 +1,35 @@
+VENOM symbiote · starter · v0 · KaiRis Family lane
+==================================================
+
+One download. Local muscle. Your keys. Not the full PortAbleRI site.
+
+REQUIREMENTS
+  • Python 3.11+
+  • Optional: Ollama on 127.0.0.1:11434 (llama3.2:3b for minimal trial)
+
+BOND FIRST (recommended)
+  Open https://portableri.com/venom-symbiote.html
+  Create symbiote bond · download JSON · then install below.
+
+FAST PATH (when venom-portable source is on your machine)
+  cd /path/to/venom-portable
+  python3 -m venv .venv && source .venv/bin/activate
+  pip install -e .
+  export CFG="$(pwd)/venom.kairis-trial-minimal.yaml"
+  venom --help
+
+THIS ZIP
+  • venom.kairis-trial-minimal.yaml — lean 2-call trial config
+  • Copy yaml next to your venom-portable clone · point CFG at it
+
+SYMBIOTE ATOP CLOUD (optional)
+  • Edit yaml providers · use YOUR OpenAI/Anthropic keys · localhost bind stays default
+  • Pair with EnterFace Workbench: https://www.nnowwonn.com/workbench.html?from=venom-symbiote
+
+FULL SHORE (later)
+  • https://portableri.com/local-host.html
+  • https://portableri.com/onboarding.html?begin=1&from=symbiote-v1
+
+Homonym: usevenom.dev is a different product. This is KaiRis VENOM portable.
+
+P ≠ K ≠ R · AMOR · PAX

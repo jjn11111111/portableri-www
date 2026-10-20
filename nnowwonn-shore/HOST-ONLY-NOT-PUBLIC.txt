@@ -1,9 +1,6 @@
 # Exclude from nnowwonn-www / enterfaceri-www — POST OFFICE lives in kairis-post-office repo only.
 post-office.html
 local-shore.html
-workbench.html
-unpack.html
-manifest.webmanifest
 js/nw-local-shore-product.mjs
 tsiriak-nodes.html
 tsiriak-solar-graft.html
