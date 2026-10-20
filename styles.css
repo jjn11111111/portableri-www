@@ -528,6 +528,34 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   --tube-accent: var(--blue);
   color: var(--gold);
 }
+.btn-secondary {
+  --tube-color: var(--gold);
+  --tube-accent: var(--teal);
+  color: color-mix(in srgb, var(--gold) 42%, #fff);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--gold) 50%, transparent);
+}
+.btn-secondary:hover {
+  --tube-color: var(--teal);
+  --tube-accent: var(--gold);
+  color: color-mix(in srgb, var(--teal) 38%, #fff) !important;
+  text-shadow: 0 0 12px var(--teal);
+}
+.hero-actions--stack {
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-actions--stack .btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.symbiote-product-shell {
+  max-width: 28rem;
+  margin: 0 auto;
+}
 .verify-page button.btn-ghost-inline {
   --tube-color: var(--blue);
   --tube-accent: var(--teal);
@@ -1229,6 +1257,178 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 .light-field-zone > .reveal {
   position: relative;
   z-index: 1;
+}
+
+/* Lux et Veritas · Bobby command-poster · symbiote product lane */
+.foundry-command-poster {
+  position: relative;
+  text-align: center;
+  padding: 1.75rem 1.25rem 1.5rem;
+  margin: 0 0 1.5rem;
+  border-radius: 16px;
+  border: 2px solid color-mix(in srgb, var(--foundry-cyan) 35%, transparent);
+  background:
+    radial-gradient(ellipse 85% 70% at 15% 10%, rgba(0, 232, 255, 0.14), transparent 55%),
+    radial-gradient(ellipse 75% 65% at 88% 85%, rgba(232, 93, 255, 0.12), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255, 77, 109, 0.08), transparent 55%),
+    linear-gradient(165deg, rgba(4, 4, 8, 0.95) 0%, rgba(15, 14, 12, 0.88) 100%);
+  box-shadow:
+    0 0 1px #fff,
+    0 0 12px color-mix(in srgb, var(--foundry-cyan) 25%, transparent),
+    0 0 28px color-mix(in srgb, var(--foundry-magenta) 18%, transparent),
+    inset 0 0 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.foundry-command-poster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background: repeating-linear-gradient(
+    -18deg,
+    transparent,
+    transparent 12px,
+    rgba(255, 255, 255, 0.04) 12px,
+    rgba(255, 255, 255, 0.04) 13px
+  );
+}
+.foundry-command-poster > * {
+  position: relative;
+  z-index: 1;
+}
+.foundry-kicker {
+  margin: 0 0 0.65rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--foundry-cyan) 75%, #fff);
+  text-shadow: 0 0 10px var(--foundry-cyan);
+}
+.foundry-title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+  line-height: 0.92;
+}
+.foundry-word {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.foundry-word--lux {
+  font-size: clamp(2.4rem, 11vw, 3.35rem);
+  color: var(--foundry-lux);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 8px var(--foundry-lux),
+    0 0 22px color-mix(in srgb, var(--foundry-lux) 70%, transparent),
+    0 0 40px color-mix(in srgb, var(--foundry-cyan) 35%, transparent);
+}
+.foundry-word--et {
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-weight: 800;
+  letter-spacing: 0.45em;
+  margin: 0.15rem 0;
+  color: #fff;
+  text-shadow:
+    0 0 6px var(--foundry-cyan),
+    0 0 16px var(--foundry-cyan);
+}
+.foundry-word--veritas {
+  font-size: clamp(1.65rem, 8vw, 2.35rem);
+  color: var(--foundry-veritas);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 10px var(--foundry-veritas),
+    0 0 24px color-mix(in srgb, var(--foundry-magenta) 55%, transparent),
+    0 0 36px color-mix(in srgb, var(--foundry-veritas) 45%, transparent);
+}
+.foundry-sub {
+  margin: 0.85rem 0 0.65rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: rgba(244, 246, 250, 0.82);
+}
+.foundry-sub strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+.foundry-command-poster .triad-pill {
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.foundry-command-poster .light-rune-row {
+  margin-top: 0.65rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  opacity: 0.9;
+}
+.symbiote-swan-panel {
+  font-size: 0.78rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--foundry-veritas) 35%, transparent);
+  background: rgba(255, 77, 109, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.symbiote-swan-panel strong { color: var(--gold); }
+.symbiote-bond-panel {
+  margin-top: 1.25rem;
+  padding: 1.15rem;
+  border-radius: 14px;
+  border: 2px dashed color-mix(in srgb, var(--teal) 45%, transparent);
+  background: rgba(4, 4, 8, 0.65);
+  text-align: left;
+  box-shadow:
+    0 0 8px color-mix(in srgb, var(--teal) 15%, transparent),
+    inset 0 0 24px rgba(0, 0, 0, 0.35);
+}
+.symbiote-bond-panel h2 {
+  font-size: 0.78rem;
+  color: var(--teal);
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--teal) 45%, transparent);
+}
+.symbiote-bond-panel label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(244, 246, 250, 0.55);
+  margin: 0.65rem 0 0.3rem;
+}
+.symbiote-bond-panel input,
+.symbiote-bond-panel select,
+.symbiote-bond-panel textarea {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--off);
+  font: inherit;
+  font-size: 0.88rem;
+}
+.symbiote-bond-panel textarea { min-height: 3rem; resize: vertical; }
+.symbiote-bond-steps {
+  font-size: 0.72rem;
+  color: rgba(244, 246, 250, 0.55);
+  margin: 0 0 0.25rem;
+}
+#bond-status {
+  font-size: 0.78rem;
+  color: var(--teal);
+  min-height: 1.2rem;
+  margin-top: 0.5rem;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--teal) 40%, transparent);
 }
 
 [data-parallax] {
