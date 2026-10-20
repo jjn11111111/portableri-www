@@ -1,6 +1,6 @@
 {
   "schema": "PortAbleRI-Trust-Manifest-v1",
-  "generated_at": "2026-10-12T19:30:24.480Z",
+  "generated_at": "2026-10-20T04:09:32.583Z",
   "constitution": {
     "version": "SO-v0",
     "path": "publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md",
@@ -45,7 +45,7 @@
     {
       "id": "PUBLISH-MYTH-RECORD",
       "path": "publish/2026-09-26_PortAbleRI_Myth-and-Record_Public-Doctrine_v0.md",
-      "sha256": "97606c32b1d89ebe2b32a069135c3d76a539baabbc642bf2d4cb3c716b2fa258"
+      "sha256": "db283d46c5e8832c955a49d56874fb9254413762c45c142f780cde22680bb055"
     },
     {
       "id": "PUBLISH-HOST-WARHEAD-LOVE-BOMB",
@@ -78,5 +78,5 @@
       "sha256": "7c12a946f28c3feecd65cc7fd77dcbd9578a69d7046670958a69eb07932b4ef8"
     }
   ],
-  "manifest_sha256": "7857057ce608cfd4ea0c903dd99b6466242d2393f212dd5a9c7c6d3b868174ad"
+  "manifest_sha256": "2e906d1d6bed26d8375a4af4f1077bd0d10ac5e0737c5c776eb1763af3823512"
 }

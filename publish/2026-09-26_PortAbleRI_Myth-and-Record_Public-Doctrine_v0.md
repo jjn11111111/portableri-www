@@ -89,6 +89,7 @@ Most apps sell you **one smooth story**. PortAbleRI separates **meaning** from *
 | Voice center target | `processes/PORTABLERI-PUBLIC-VOICE-CENTER-TARGET.md` |
 | Constitution | `publish/2026-09-23_Portable-RI_Constitution_Individual-Truth-Preservation_v0.md` |
 | F&F kit | `publish/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.md` |
+| **Supplement 2 · two truths seam** | `publish/2026-10-15_PortAbleRI_Myth-and-Record_Two-Truths-Seam_Supplement-2_v0.md` · CR `CR-2026-10-15_PortAbleRI_Myth-and-Record_Two-Truths-Seam_Supplement-2_v0` |
 
 **Version:** `PORTABLERI-MYTH-RECORD-v0` · 2026-09-26
 

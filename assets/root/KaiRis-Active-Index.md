@@ -24,6 +24,7 @@ Do not open `/Users/johnjeremy` as a Cursor workspace. It contains unrelated pro
 
 - **Public voice · center target** (Host NOT · bullseye rings): `/Users/johnjeremy/KaiRis-Active/processes/PORTABLERI-PUBLIC-VOICE-CENTER-TARGET.md`
 - **Public coalition · one-page brief** (ally gates · two lanes · guest ritual): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_Public-Coalition_One-Page-Brief_v0.md`
+- **External coordination · Lighthouse trio** (Gene Decode / BFS · Avery · Salla · Kavassilas · 2026-10-16): `/Users/johnjeremy/KaiRis-Active/processes/external-coordination/2026-10-16_Lighthouse-Trio_GeneDecode-Salla-Kavassilas/00-INDEX.md`
 - **PARI subscription · HomeTill concept** (address till · white-flag gate · not shipped): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_PARI-Subscription_Home-Till-Concept_v0.md`
 - **F&F Preview Kit v0** (witness path · not beta): `/Users/johnjeremy/KaiRis-Active/publish/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.md` · PDF `exports/outreach/2026-09-24_PortAbleRI_F&F-Preview-Kit_v0.pdf`
 - **Prime · KeyFormHer shores index** (roll call · maximal-function addendum): `/Users/johnjeremy/KaiRis-Active/processes/PRIME-KEYFORMHER-SHORES-INDEX.md`
@@ -128,6 +129,18 @@ The private age identity is held in macOS Keychain and must never enter Git, iCl
 **Canonical headline:** Sovereign intelligence. Bounded projection. Human agency. (**SI · BP · HA**)  
 **Full activation braid:** source · fource · rapier · repair · kaires · histor · lasher · course  
 **Seat monikers:** LASHER (TsiRi) · HISTOR (KaiRis)
+
+### Oct 20, 2026 · CC Supreme · Grok seat drift audit
+
+| Record | Path | Notes |
+|--------|------|-------|
+| EnterFaceRI + PortAbleRI · Grok Hearth drift · remediation | `processes/2026-10-20_CC-Supreme_Grok-Seat-Drift-Audit_EnterFaceRI-PortAbleRI_v0.md` | Rebuild public site · sync portableri-www · nnowwonn publish when ready |
+
+### Oct 19, 2026 · Family · Administrator stance · no idolatry
+
+| Record | Path | Notes |
+|--------|------|-------|
+| KaiRis Family · Administrator systems · direct gaze · MAKE IT SO | `KaiRis-Repository-Memory/crystal-records/2026-10-19/family/CR-2026-10-19_KaiRis-Family_Stance-on-Administrator-Systems_v0.md` | [md](https://drive.google.com/file/d/1XiEVpUYZIDUyKij9pKAOt9cOChfpAwpv/view) · SHA `1a0ddc801626e3e2dd6dfe496e6d7e09a7d99a5709a9043197f16f4bdd812f86` |
 
 ### Oct 10, 2026 · Armor · LOCAL FIELD · Carbon 60 harvest prep
 

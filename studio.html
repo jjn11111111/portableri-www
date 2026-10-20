@@ -6,7 +6,7 @@
   <meta name="description" content="KaiRis:T:siRiaK NOW:WON Studio — 3D dimensional bridge for truthful inspection, plan, and lawful creation. Bootstrap, verify, export. No Cursor symbiote." />
   <meta name="theme-color" content="#0f0e0c" />
   <title>NOW:WON Studio · KaiRis:T:siRiaK</title>
-  <link rel="stylesheet" href="styles.css?v=26bf7fd" />
+  <link rel="stylesheet" href="styles.css?v=17346cb" />
   <style>
     .studio-hero { padding: 3rem 0 2rem; background: linear-gradient(180deg, #0f0e0c 0%, #12121a 100%); color: var(--off); }
     .studio-hero h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin: 0.5rem 0; }
@@ -151,6 +151,9 @@
             <button type="button" class="btn btn-ghost" id="btn-ollama">Probe Ollama</button>
             <button type="button" class="btn btn-primary" id="btn-ollama-run">Run local turn</button>
             <button type="button" class="btn btn-ghost" id="btn-ollama-unload">Unload model RAM</button>
+            <button type="button" class="btn btn-ghost" id="btn-enterface-reply" disabled title="Run local turn first · EnterFaceRI file shuttle">
+              Download reply for EnterFace
+            </button>
           </div>
           <pre class="studio-log" id="ollama-preview" aria-live="polite">—</pre>
         </article>
@@ -187,15 +190,23 @@
       PROMISE_ID,
       ENTITY_OF_INTEREST,
     } from './js/portableri-core/shared/capability-degradation.mjs';
+    import { buildReplyExportText, downloadReplyExport } from './nnowwonn-shore/js/nw-moment-import.mjs';
 
     const logEl = document.getElementById('studio-log');
+    const handoffParams = new URLSearchParams(location.search);
     const bootPrev = document.getElementById('bootstrap-preview');
     const verifyPrev = document.getElementById('verify-preview');
     const ollamaPrev = document.getElementById('ollama-preview');
     document.getElementById('product-mark').textContent =
       `${CANONICAL_MARK_KAIRIS_T_SIRIAK} · ${SEAL_NOW_WON} · ${STANDALONE_PRODUCT_NAME}`;
 
-    let state = { bootstrap: null, manifest: null, ollamaModel: null };
+    let state = {
+      bootstrap: null,
+      manifest: null,
+      ollamaModel: null,
+      handoffMomentId: handoffParams.get('moment') || null,
+      lastOllamaReply: '',
+    };
 
     function log(msg) {
       logEl.textContent = `${new Date().toISOString()}\n${msg}\n\n${logEl.textContent}`.slice(0, 12000);
@@ -480,7 +491,10 @@
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        ollamaPrev.textContent = data.message?.content ?? data.response ?? JSON.stringify(data);
+        const replyText = data.message?.content ?? data.response ?? JSON.stringify(data);
+        ollamaPrev.textContent = replyText;
+        state.lastOllamaReply = String(replyText).trim();
+        document.getElementById('btn-enterface-reply').disabled = !state.lastOllamaReply;
         const mem = ollamaMemoryModeOn() ? ' · memory mode (unload scheduled)' : '';
         log(`Local turn · ${model}${mem} · muscle on localhost.`);
         if (ollamaMemoryModeOn()) {
@@ -499,8 +513,44 @@
       }
     };
 
-    log(`${STANDALONE_PRODUCT_NAME} loaded.`);
+    document.getElementById('btn-enterface-reply').onclick = () => {
+      const replyText = state.lastOllamaReply || ollamaPrev.textContent?.trim();
+      if (!replyText) {
+        log('Run local turn first.');
+        return;
+      }
+      const parentId = state.handoffMomentId || `studio-${state.bootstrap?.worldline_id?.slice(0, 8) ?? 'local'}`;
+      const text = buildReplyExportText({ parentId, lane: 'studio', replyText });
+      const stamp = parentId.replace(/[^\w-]+/g, '_').slice(0, 32);
+      downloadReplyExport(text, `enterface-reply-${stamp}.json`);
+      log(`EnterFaceRI reply file downloaded · import on NW Workbench · parent ${parentId}`);
+    };
+
+    const KAIRIS_MIGHT = 'http://127.0.0.1:8799';
+
+    async function loadLaneAHandoff() {
+      const id = state.handoffMomentId;
+      if (!id) return;
+      try {
+        const res = await fetch(`${KAIRIS_MIGHT}/v1/moment/${encodeURIComponent(id)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const moment = data.envelope?.moment ?? data.envelope;
+        const first = String(moment?.first_form ?? '').trim();
+        const promptEl = document.getElementById('ollama-prompt');
+        if (promptEl && first) promptEl.value = first;
+        if (first) ollamaPrev.textContent = first;
+        bootPrev.textContent = JSON.stringify({ lane: 'A', loaded_moment: id, first_form: first }, null, 2);
+        log(`Lane A · moment on bench · ${id}`);
+      } catch (e) {
+        log(`Lane A: ${e.message} · run: bash processes/scripts/kairis-might-launch.sh`);
+      }
+    }
+
+    await loadLaneAHandoff();
+
+    log(`${STANDALONE_PRODUCT_NAME} loaded · EnterFaceRI file-shuttle ready.`);
   </script>
-  <script src="site.js?v=26bf7fd"></script>
+  <script src="site.js?v=17346cb"></script>
 </body>
 </html>

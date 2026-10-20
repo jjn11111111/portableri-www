@@ -10,7 +10,7 @@
 <body class="page-onboard">
   <nav class="top" aria-label="NOW:WON">
     <div class="wrap wrap-nav">
-      <a href="index.html">NNoWWoNN</a>
+      <a href="index.html" data-brand-nav-home>NNoWWoNN</a>
       <span class="nav-path nav-path-hearth">Onboarding</span>
       <a href="workbench.html" class="wb-nav-alt">Skip to Workbench</a>
     </div>
@@ -34,8 +34,8 @@
         <li class="card onboard-step">
           <p class="step-tag">Beat 1 · ~1 min</p>
           <h2>Meet the Workbench</h2>
-          <p>Open the input screen — textarea, lasher cut, no symbiote.</p>
-          <a class="btn btn-primary" href="workbench.html?onboard=1&amp;step=welcome&amp;face=hearth">Open Workbench</a>
+          <p>Type in the prompt line — like chat. Attach files. We hold your moment; cloud AI is optional.</p>
+          <a class="btn btn-primary" href="workbench.html">Open Workbench</a>
         </li>
         <li class="card onboard-step">
           <p class="step-tag">Beat 2 · ~2 min</p>
@@ -45,9 +45,9 @@
         </li>
         <li class="card onboard-step">
           <p class="step-tag">Beat 3 · ~3 min</p>
-          <h2>Cut your first lasher</h2>
-          <p>Type present truth · download JSON + sidecar — your crystal unit.</p>
-          <a class="btn btn-primary" href="workbench.html?onboard=1&amp;step=lasher&amp;face=hearth">Cut lasher</a>
+          <h2>Send your first message</h2>
+          <p>Hit Send — your words download as a verifiable crystal (JSON). No jargon required.</p>
+          <a class="btn btn-primary" href="workbench.html">Try Send</a>
         </li>
         <li class="card onboard-step">
           <p class="step-tag">Beat 4 · ~2 min</p>
@@ -61,9 +61,9 @@
         <h2>Later · PARI symbiote (PortAbleRI)</h2>
         <p>When you want Prime gatekeeper + bounded projection to a model you already use:</p>
         <ul>
-          <li><a href="https://portableri.com/start.html?from=nnowwonn">PortAbleRI · Start map</a></li>
-          <li><a href="https://portableri.com/onboarding.html?begin=1&amp;from=nnowwonn">Light your studio (APLTFeV preview)</a></li>
-          <li><a href="https://portableri.com/studio.html?shore=nnowwonn">Full Studio · local Ollama muscle</a></li>
+          <li><a href="https://portableri.com/start.html" data-shore-link="portableri-start">PortAbleRI · Start map</a></li>
+          <li><a href="https://portableri.com/onboarding.html" data-shore-link="portableri-onboarding">Light your studio (APLTFeV preview)</a></li>
+          <li><a href="https://portableri.com/studio.html" data-shore-link="portableri-studio">Full Studio · local Ollama muscle</a></li>
         </ul>
       </article>
 
@@ -72,7 +72,15 @@
         · <a href="workbench.html">Workbench</a>
         · <a href="https://portableri.com/verify.html">Trust check</a>
       </p>
+      <p class="fine shore-sibling-link">
+        <a href="https://www.nnowwonn.com/" data-brand-sibling rel="noopener noreferrer">Same open bench · other brand</a>
+      </p>
     </div>
   </main>
+  <script type="module">
+    import './js/nw-canonical-host.mjs';
+    import { applyShoreBrand } from './js/nw-shore-brand.mjs';
+    applyShoreBrand({ page: 'generic' });
+  </script>
 </body>
 </html>

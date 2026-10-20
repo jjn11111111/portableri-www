@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="EnterFaceRI Forum · chat on device · LASHER on Send · no NW chat pipe · shuttle Reply from Studio." />
+  <meta name="theme-color" content="#000000" />
+  <title>Forum · NOW:WON</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css?v=17" />
+  <script>
+    if (location.hostname === 'nnowwonn.com' || location.hostname === 'enterfaceri.com') {
+      location.replace('https://www.' + location.hostname + location.pathname + location.search + location.hash);
+    }
+  </script>
+</head>
+<body class="page-forum page-forum-chat page-enterface page-composer">
+  <a class="skip-link" href="#forum-input">Skip to message</a>
+
+  <div class="enterface-face-layer forum-chat-layer">
+    <header class="forum-chat-header">
+      <nav class="forum-chat-nav" aria-label="Site">
+        <a href="open.html" data-brand-nav-enter>EnterFace</a>
+        <span class="forum-chat-title">Forum</span>
+        <span class="forum-chat-spacer"></span>
+        <button type="button" class="forum-chat-tool" id="forum-import-reply" title="Import NW-Moment-Reply-v0 from Studio (no pipe)">Reply</button>
+        <input type="file" id="forum-import-reply-file" accept=".json,application/json" hidden />
+        <button type="button" class="forum-chat-tool" id="forum-save" disabled title="Export last moment">Export</button>
+        <button type="button" class="forum-chat-tool" id="forum-lane-a" disabled title="Lane A · Studio @ 8877">8877</button>
+        <button type="button" class="forum-chat-tool" id="forum-lane-c" disabled title="Lane C · one compress turn">Muscle</button>
+        <a class="forum-chat-tool" href="memory-core.html" title="Front / back filing field">Filing</a>
+        <a class="forum-chat-tool" href="workbench.html">Workbench</a>
+      </nav>
+    </header>
+
+    <main class="forum-chat-main" id="main">
+      <div id="forum-thread" class="forum-thread" aria-live="polite"></div>
+      <p id="forum-thread-empty" class="forum-thread-empty">EnterFace Forum · Send holds on your device · <strong>no NW pipe</strong> to a cloud model · use <strong>Reply</strong> for <code>NW-Moment-Reply-v0</code> from Studio.</p>
+
+      <div id="forum-stage" class="forum-pipeline-bar" hidden aria-hidden="true" data-phase="idle">
+        <div class="forum-pipeline forum-pipeline-compact">
+          <div class="forum-pipe-step" data-forum-step="front"><span class="forum-pipe-id">Front</span></div>
+          <div class="forum-pipe-arrow">→</div>
+          <div class="forum-pipe-step forum-pipe-gate" data-forum-step="gate"><span class="forum-pipe-id">Gate</span></div>
+          <div class="forum-pipe-arrow">→</div>
+          <div class="forum-pipe-step" data-forum-step="back"><span class="forum-pipe-id">Back</span></div>
+          <div class="forum-pipe-arrow">→</div>
+          <div class="forum-pipe-step forum-pipe-crystal" data-forum-step="crystal"><span class="forum-pipe-id">Named</span></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="forum-chat-footer">
+      <details class="forum-enterface-law" id="forum-enterface-law">
+        <summary>Say both · EnterFace law</summary>
+        <div id="forum-law-panel" class="enterface-law-panel"></div>
+      </details>
+      <form id="forum-form" class="forum-chat-composer" autocomplete="off">
+        <label class="visually-hidden" for="forum-input">Message</label>
+        <textarea
+          id="forum-input"
+          name="query"
+          rows="1"
+          placeholder="Message"
+          aria-label="Message"
+          required
+        ></textarea>
+        <button type="submit" class="forum-chat-send" id="forum-submit" aria-label="Send">↑</button>
+      </form>
+    </footer>
+  </div>
+
+  <script type="module">
+    import './js/nw-canonical-host.mjs';
+    import { applyShoreBrand } from './js/nw-shore-brand.mjs';
+    import { registerEnterFaceShell } from './js/nw-enterface-shell.mjs';
+    applyShoreBrand({ page: 'generic' });
+    import { runEnterFaceSummon } from './js/nw-face-summon.mjs';
+    import { wireForumChat } from './js/nw-forum-flow.mjs?v=19';
+    import { mountMemoryCoreField } from './js/nw-memory-core.mjs?v=19';
+    import { mountEnterFaceLawPanel } from './js/nw-enterface-attributes.mjs?v=19';
+
+    registerEnterFaceShell();
+    runEnterFaceSummon({ mode: 'hearth' });
+    mountMemoryCoreField(document.querySelector('.forum-chat-layer'));
+    mountEnterFaceLawPanel(document.getElementById('forum-law-panel'));
+    wireForumChat();
+  </script>
+</body>
+</html>

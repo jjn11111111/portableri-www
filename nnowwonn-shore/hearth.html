@@ -28,7 +28,7 @@
       </p>
       <div class="actions">
         <a class="btn btn-primary" href="workbench.html?face=hearth">Open NOW:WON Workbench</a>
-        <a class="btn btn-secondary" href="https://portableri.com/studio.html?shore=nnowwonn">Full Studio</a>
+        <a class="btn btn-secondary" href="https://portableri.com/studio.html" data-shore-link="portableri-studio">Full Studio</a>
         <a class="btn btn-secondary" href="forge.html">Try the Forge door</a>
       </div>
     </div>
@@ -62,5 +62,10 @@
       <p class="seal"><a href="index.html">Choose again</a> · <a href="forge.html">Forge</a></p>
     </div>
   </main>
+  <script type="module">
+    import './js/nw-canonical-host.mjs';
+    import { applyShoreBrand } from './js/nw-shore-brand.mjs';
+    applyShoreBrand({ page: 'generic' });
+  </script>
 </body>
 </html>

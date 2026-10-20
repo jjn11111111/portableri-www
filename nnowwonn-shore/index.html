@@ -10,13 +10,13 @@
 <body class="page-choose">
   <nav class="top" aria-label="Site">
     <div class="wrap wrap-nav">
-      <a href="index.html">NNowwoNN · NOW:WON</a>
+      <a href="index.html" data-brand-nav-home>NNowwoNN · NOW:WON</a>
     </div>
   </nav>
 
   <header class="hero hero-split">
     <div class="wrap">
-      <p class="eyebrow">Same workbench · same keys · no login</p>
+      <p class="eyebrow" data-brand-index-eyebrow>ReClaim YOUr Face · EnterFaceRI · open shore · no login on www</p>
       <h1>Two ways in · one fire</h1>
       <p class="lead">
         You were born with <strong>two kinds of knowing</strong>: the song the heart recognizes, and the diagram the hands can test.
@@ -26,10 +26,14 @@
       <p class="lead love-line">
         Take your keys back with love loud enough to share. That’s the whole revolution.
       </p>
-      <p class="spell-line"><strong>NNowwoNN</strong> reads the same fire backward and forward — <strong>NOW:WON</strong>.</p>
+      <p class="spell-line" data-brand-show="nnowwonn"><strong>NNowwoNN</strong> reads the same fire backward and forward — <strong>NOW:WON</strong>.</p>
+      <p class="spell-line fine" data-brand-show="product" hidden><strong>EnterFaceRI</strong> is the product mark on this URL · same open shore · no login · hold on your device.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="onboard.html">New here · start onboarding</a>
-        <a class="btn btn-secondary" href="workbench.html">Go to Workbench</a>
+        <a class="btn btn-primary" href="open.html">Begin typing</a>
+        <a class="btn btn-secondary" href="onboard.html">Guided tour</a>
+        <a class="btn btn-secondary" href="forum.html">Forum</a>
+        <a class="btn btn-secondary" href="workbench.html">Workbench</a>
+        <a class="btn btn-secondary" href="unpack.html">Unpack the stack</a>
       </div>
     </div>
   </header>
@@ -72,10 +76,18 @@
         <a href="encounter/ball.html">Carbon 60 · the ball · hex &amp; pent</a>
         · <a href="encounter/demo.html?serial=C60-DEMO&face=hearth">Encounter demo</a>
         · <a href="workbench.html">NOW:WON Workbench</a>
-        · <a href="https://www.portableri.com/studio.html?shore=nnowwonn">Full Studio</a>
+        · <a href="https://www.portableri.com/studio.html" data-shore-link="portableri-studio">Full Studio</a>
         · <a href="https://www.portableri.com/verify.html">Trust check</a>
+      </p>
+      <p class="fine shore-sibling-link">
+        <a href="https://www.nnowwonn.com/" data-brand-sibling rel="noopener noreferrer">Same open bench · other brand</a>
       </p>
     </div>
   </main>
+  <script type="module">
+    import './js/nw-canonical-host.mjs';
+    import { applyShoreBrand } from './js/nw-shore-brand.mjs';
+    applyShoreBrand({ page: 'home' });
+  </script>
 </body>
 </html>
