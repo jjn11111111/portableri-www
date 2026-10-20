@@ -1427,6 +1427,18 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   opacity: 0.35;
   font-weight: 300;
 }
+.armorav-first-product {
+  margin: 0.5rem 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 246, 250, 0.55);
+  line-height: 1.45;
+}
+.armorav-first-product strong {
+  color: color-mix(in srgb, var(--teal) 75%, #fff);
+  font-weight: 700;
+}
 .symbiote-swan-panel,
 .symbiote-armor-panel {
   font-size: 0.78rem;

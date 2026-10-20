@@ -3,6 +3,8 @@
 **Date:** 2026-10-20 · **Product:** ARMOR A/V (Armor · Anti-Venom)  
 **Parent:** PortAbleRI · KaiRis Systems · **Law:** AMOR creed · HA · P ≠ K ≠ R
 
+**Line position:** **First product offered** under PortAbleRI — establishes public **mission trajectory** (ArmorAV). PortAbleRI **stays** — kernel · Constitution · full local-host shore.
+
 ---
 
 ## Mark
@@ -32,6 +34,9 @@ Not romance marketing — **love returned to the knocker** as custody + export +
 
 - Hero poster · bond JSON `brand` field · deck one-liner  
 - Do **not** drop Tier A medical firewall on Anti-Venom pages  
-- Company remains **PortAbleRI**; ARMOR A/V is the **minimal scalable offering**
+- **PortAbleRI** = platform (going nowhere · gets deeper)  
+- **ArmorAV** = first product · trajectory · scalable entry
+
+**See also:** `publish/2026-10-20_PortAbleRI_ArmorAV_First-Product-Trajectory_v0.md`
 
 **AMOR · PAX · Lux et Veritas**
