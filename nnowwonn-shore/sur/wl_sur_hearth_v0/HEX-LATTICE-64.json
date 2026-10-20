@@ -1,0 +1,19 @@
+{
+  "schema": "HEX-LATTICE-64-v1",
+  "N": 6,
+  "vertex_count": 64,
+  "sku": "hearth-v0",
+  "default_reply_template": "[HEX {{hex}} · {{label}} · dui {{partner}}] Hearth SUR · {{body}}",
+  "slots": [
+    {
+      "index": 0,
+      "label": "kun-receptive",
+      "reply_template": "Hearth kun {{hex}} — sealed on your device. Dui {{partner}}. {{body}}"
+    },
+    {
+      "index": 63,
+      "label": "qian-active",
+      "reply_template": "Hearth qian {{hex}} · partner {{partner}} · {{body}}"
+    }
+  ]
+}

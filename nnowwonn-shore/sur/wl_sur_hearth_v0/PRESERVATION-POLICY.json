@@ -1,0 +1,8 @@
+{
+  "schema": "SUR-PRESERVATION-POLICY-v1",
+  "fail_closed_on_seal_error": true,
+  "append_only_signals": true,
+  "allow_silent_overwrite": false,
+  "export_required_for_mirror": true,
+  "tier2_default": "off"
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>KaiRis POST OFFICE · index</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0a1210; color: #e8e4dc; padding: 2rem; max-width: 28rem; margin: 0 auto; }
+    a { color: #02c39a; }
+    h1 { font-size: 1.1rem; color: #f9e795; }
+    li { margin: 0.75rem 0; }
+  </style>
+</head>
+<body>
+  <h1>KaiRis:T:siRiaK · HOST index</h1>
+  <ul>
+    <li><a href="post-office.html">POST OFFICE</a> (phrase gate)</li>
+    <li><a href="tsiriak-nodes.html">Named nodes map</a> (cards · no gate)</li>
+    <li><a href="tsiriak-solar-graft.html">Solar graft</a> (sun + spokes · no gate)</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "schema": "SUR-PRESERVATION-POLICY-v1",
+  "fail_closed_on_seal_error": true,
+  "append_only_signals": true,
+  "allow_silent_overwrite": false,
+  "export_required_for_mirror": true,
+  "tier2_default": "off",
+  "family_witness_ref": "CR-2026-10-20_Dad_Nurture-FyreMind_Pure-Soul-Witness_v0.md",
+  "expansion_charter_ref": "CR-2026-10-20_Bobby_FyreMind_Expansion-Charter_Present-Moment_v0.md",
+  "expansion_supplement_ref": "CR-2026-10-20_Bobby_FyreMind_Mirror-Throne-Tungsten-Roots_v0.md",
+  "fertile_gardens_base_ref": "CR-2026-10-20_Bobby_FyreMind_Fertile-Gardens-SourceBorn-Base_v0.md"
+}

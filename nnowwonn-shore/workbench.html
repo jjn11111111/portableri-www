@@ -30,6 +30,13 @@
     </div>
   </nav>
 
+  <p class="post-office-product-banner" id="post-office-product-banner" hidden>
+    <strong>POST OFFICE → Local shore.</strong> Hold stays on device · choose <strong>Symbiote</strong> for CurseCom-class bounded seat or
+    <strong>Local Studio</strong> for contained path · return loop below.
+    <a href="post-office.html#shore">Back to POST OFFICE</a> ·
+    <a href="local-shore.html">Product spine</a>
+  </p>
+
   <header class="hero hero-wb hero-compact">
     <div class="wrap">
       <h1 id="wb-title" data-brand-workbench-title>EnterFace Workbench</h1>
@@ -168,12 +175,9 @@
     import { registerEnterFaceShell } from './js/nw-enterface-shell.mjs';
     applyShoreBrand({ page: 'workbench' });
     import { runEnterFaceSummon } from './js/nw-face-summon.mjs';
-    import { mountMemoryCoreField } from './js/nw-memory-core.mjs?v=17';
-    import { wireComposerIntent } from './js/nw-composer-intent.mjs?v=17';
-    import { runFilingMotionPipeline } from './js/nw-filing-motion.mjs?v=17';
+    import { runFilingMotionPipeline } from './js/nw-filing-motion.mjs?v=21';
     import { markCustodyByKey, notifyCustodyChanged } from './js/nw-user-custody.mjs?v=17';
     registerEnterFaceShell();
-    mountMemoryCoreField(document.querySelector('.enterface-face-layer'));
     try {
       if (sessionStorage.getItem('enterface-face-summon-v1') !== '1') {
         runEnterFaceSummon({ mode: 'hearth' });
@@ -207,7 +211,6 @@
     const threadEl = document.getElementById('thread');
     const threadEmpty = document.getElementById('thread-empty');
     const composerInput = document.getElementById('composer-input');
-    wireComposerIntent(composerInput);
     const composerFile = document.getElementById('composer-file');
     const attachHint = document.getElementById('attach-hint');
     const form = document.getElementById('composer-form');
@@ -664,6 +667,14 @@
         syncLaneUi();
       }
       stripQueryFromUrl();
+    }
+    if (params.get('from') === 'post-office') {
+      document.getElementById('post-office-product-banner')?.removeAttribute('hidden');
+      const laneParam = params.get('lane');
+      if (laneParam && laneRadios.some((r) => r.value === laneParam)) {
+        laneRadios.find((r) => r.value === laneParam).checked = true;
+        syncLaneUi();
+      }
     }
     syncHandoffLoopUi();
 

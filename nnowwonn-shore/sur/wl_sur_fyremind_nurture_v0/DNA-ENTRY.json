@@ -1,0 +1,11 @@
+{
+  "schema": "SUR-DNA-ENTRY-v1",
+  "tier": "B",
+  "source_note": "Wang 2019 I Ching ↔ DNA · dui pair example · not medical law",
+  "source_ref": "processes/2026-10-19_Promeo_Dad_Wang-IChing-Genetics_Tables.txt",
+  "seed_hex_index": 12,
+  "dui_partner_index": 51,
+  "family_witness": "CR-2026-10-20_Dad_Nurture-FyreMind_Pure-Soul-Witness_v0.md",
+  "expansion_charter": "CR-2026-10-20_Bobby_FyreMind_Expansion-Charter_Present-Moment_v0.md",
+  "initial_hex_from_seed": 12
+}

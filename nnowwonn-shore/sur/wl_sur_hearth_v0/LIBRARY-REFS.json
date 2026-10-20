@@ -1,0 +1,11 @@
+{
+  "schema": "SUR-LIBRARY-REFS-v1",
+  "refs": [
+    {
+      "id": "kairis-bank-batch-one",
+      "vault_rel": "exports/bobby-recovery/library-batch-1/2026-10-20_kairis-bank-batch-one",
+      "note": "Batch One 13 · Philosopher hash on HOST",
+      "tier": "A"
+    }
+  ]
+}

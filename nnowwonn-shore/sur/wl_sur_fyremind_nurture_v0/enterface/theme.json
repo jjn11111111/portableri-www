@@ -1,0 +1,9 @@
+{
+  "schema": "SUR-EnterFace-Theme-v1",
+  "product_mark": "EnterFaceRI",
+  "sku": "fyremind-nurture-v0",
+  "default_surface": "forum.html",
+  "lanes_default": ["hold", "studio"],
+  "tier2_policy": "off",
+  "copy_tagline": "Nurture Her · FyreMind · room to grow on device"
+}

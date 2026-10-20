@@ -5,12 +5,12 @@ import { buildLasherRecordV0, downloadText } from './nw-workbench.mjs';
 import { mightHealth, mightStoreMoment, mightCompress, openLaneAStudio } from './nw-forum-might.mjs';
 import { setMemoryCorePhase } from './nw-memory-core.mjs';
 import { runFilingMotionPipeline } from './nw-filing-motion.mjs';
-import { wireComposerIntent } from './nw-composer-intent.mjs';
 import { parseMomentImport } from './nw-moment-import.mjs';
 import { markCustodyByKey, notifyCustodyChanged, syncCustodyFromDevice } from './nw-user-custody.mjs';
 import { shorePath } from './nw-shore-origin.mjs';
+import { isLocalNwHost } from './nw-lane-handoff.mjs';
+import { getSurContext, initSurLocalhost, runSurForumSend, mountSurForumBadge } from './nw-sur-bootstrap.mjs';
 
-const PHASE_MS = 420;
 const THREAD_KEY = 'nw-forum-thread-v2';
 const THREAD_KEY_LEGACY = 'nw-forum-thread-v1';
 
@@ -111,10 +111,6 @@ function setPhase(root, phase) {
   }
 }
 
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
 /** @param {ForumMsg[]} messages */
 function renderThread(messages) {
   const threadEl = document.getElementById('forum-thread');
@@ -160,9 +156,11 @@ function assistantHtml(record, sha256, replyText, userEcho, importLane, parentMo
       : 'Held on this device. Nothing left the open shore unless you open a HOST lane.';
   }
   const importLabel =
-    importLane && record.id === 'reply-import'
-      ? `<p class="forum-msg-import fine">Imported · ${escHtml(importLane)} · no NW pipe</p>`
-      : '';
+    importLane === 'hex'
+      ? `<p class="forum-msg-import fine">SUR hex · localStorage ledger · no NW pipe</p>`
+      : importLane && record.id === 'reply-import'
+        ? `<p class="forum-msg-import fine">Imported · ${escHtml(importLane)} · no NW pipe</p>`
+        : '';
   const sealBlock =
     record.id &&
     record.id !== 'legacy' &&
@@ -211,6 +209,16 @@ export async function runForumFlow(opts) {
 }
 
 export function wireForumChat() {
+  initSurLocalhost().then(() => {
+    mountSurForumBadge();
+    const sur = getSurContext();
+    const emptyEl = document.getElementById('forum-thread-empty');
+    if (sur?.ready && emptyEl) {
+      emptyEl.innerHTML =
+        'EnterFace Forum · <strong>SUR localhost</strong> · signals sealed first · hex reply · then LASHER export · <strong>no NW pipe</strong>.';
+    }
+  });
+
   const form = document.getElementById('forum-form');
   const input = document.getElementById('forum-input');
   const btn = document.getElementById('forum-submit');
@@ -275,31 +283,57 @@ export function wireForumChat() {
     renderThread(messages);
 
     try {
-      const { record, sha256, filename, exportText } = await runForumFlow({ query: line });
-      lastUserLine = line;
-      markCustodyByKey('front', 'forum', { hint: line.slice(0, 40) });
-      markCustodyByKey('front', 'export', { hint: record.id.slice(0, 28) });
-      if (await mightHealth()) {
+      const sur = getSurContext();
+      if (isLocalNwHost() && sur?.ready) {
+        const { turn, userSig, asstSig } = await runSurForumSend(line);
+        lastUserLine = line;
+        markCustodyByKey('front', 'forum', { hint: line.slice(0, 40) });
+        markCustodyByKey('back', 'hex', { hint: String(turn.active_hex) });
+        messages.pop();
+        messages.push({
+          role: 'assistant',
+          recordId: `SUR-${userSig.id}`,
+          sha256: asstSig.sha256,
+          replyText: turn.reply_text,
+          importLane: 'hex',
+          userEcho: line.slice(0, 160),
+        });
         try {
-          await mightStoreMoment(record.id, JSON.parse(exportText));
-          markCustodyByKey('back', 'might_live');
-          markCustodyByKey('back', 'moment', { hint: record.id.slice(0, 28) });
+          const { record, sha256, filename, exportText } = await runForumFlow({ query: line });
+          lastExport = { exportText, filename, recordId: record.id, sha256 };
+          if (btnSave) btnSave.disabled = false;
+          if (btnLaneA) btnLaneA.disabled = false;
+          if (btnMuscle) btnMuscle.disabled = false;
         } catch {
-          /* Might offline · hold still valid */
+          /* LASHER optional after SUR · Tier 2 buttons may stay off */
         }
+      } else {
+        const { record, sha256, filename, exportText } = await runForumFlow({ query: line });
+        lastUserLine = line;
+        markCustodyByKey('front', 'forum', { hint: line.slice(0, 40) });
+        markCustodyByKey('front', 'export', { hint: record.id.slice(0, 28) });
+        if (await mightHealth()) {
+          try {
+            await mightStoreMoment(record.id, JSON.parse(exportText));
+            markCustodyByKey('back', 'might_live');
+            markCustodyByKey('back', 'moment', { hint: record.id.slice(0, 28) });
+          } catch {
+            /* Might offline · hold still valid */
+          }
+        }
+        messages.pop();
+        messages.push({
+          role: 'assistant',
+          recordId: record.id,
+          sha256,
+          replyText: '',
+          userEcho: line.slice(0, 160),
+        });
+        lastExport = { exportText, filename, recordId: record.id, sha256 };
+        if (btnSave) btnSave.disabled = false;
+        if (btnLaneA) btnLaneA.disabled = false;
+        if (btnMuscle) btnMuscle.disabled = false;
       }
-      messages.pop();
-      messages.push({
-        role: 'assistant',
-        recordId: record.id,
-        sha256,
-        replyText: '',
-        userEcho: line.slice(0, 160),
-      });
-      lastExport = { exportText, filename, recordId: record.id, sha256 };
-      if (btnSave) btnSave.disabled = false;
-      if (btnLaneA) btnLaneA.disabled = false;
-      if (btnMuscle) btnMuscle.disabled = false;
     } catch (err) {
       messages.pop();
       messages.push({
@@ -318,7 +352,6 @@ export function wireForumChat() {
 
   if (!form || !input) return;
 
-  wireComposerIntent(input);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();

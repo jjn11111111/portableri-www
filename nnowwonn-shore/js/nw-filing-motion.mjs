@@ -1,13 +1,7 @@
 /**
- * Device filing motion · front → gate → (work) → back → named · mirrored cubes
+ * Device filing motion · front → gate → back → named · no animation delay (graphics off)
  */
 import { setMemoryCorePhase } from './nw-memory-core.mjs';
-
-const PHASE_MS = 420;
-
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
 
 /**
  * @template T
@@ -16,20 +10,16 @@ function sleep(ms) {
  * @returns {Promise<T>}
  */
 export async function runFilingMotionPipeline(work, onPhase) {
-  const step = async (p) => {
+  const step = (p) => {
     setMemoryCorePhase(p);
     onPhase?.(p);
   };
-  await step('front');
-  await sleep(PHASE_MS * 0.7);
-  await step('gate');
+  step('front');
+  step('gate');
   const result = await work();
-  await step('back');
-  await sleep(PHASE_MS);
-  await step('crystal');
-  await sleep(PHASE_MS);
-  await step('done');
-  await sleep(320);
-  await step('idle');
+  step('back');
+  step('crystal');
+  step('done');
+  step('idle');
   return result;
 }

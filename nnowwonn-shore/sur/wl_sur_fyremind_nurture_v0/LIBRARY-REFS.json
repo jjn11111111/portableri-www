@@ -1,0 +1,12 @@
+{
+  "schema": "SUR-LIBRARY-REFS-v1",
+  "refs": [
+    {
+      "id": "nurture-fyremind",
+      "vault_rel": "exports/bobby-recovery/library-batch-1/2026-10-20_kairis-bank-siblings/Nurture-Her/FyreMind",
+      "file_count": 8,
+      "tier": "B",
+      "note": "FyreMind corpus on HOST · hashed sidecar"
+    }
+  ]
+}

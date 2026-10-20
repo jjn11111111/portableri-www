@@ -1,0 +1,15 @@
+{
+  "schema": "CLONE-MANIFEST-v1",
+  "worldline_id": "wl_sur_fyremind_nurture_v0",
+  "sku": "fyremind-nurture-v0",
+  "sur_version": "0.1.0",
+  "prime_model_id": "hex-engine-v1",
+  "tier2_policy": "off",
+  "display_name": "SUR FyreMind Nurture",
+  "enterface": {
+    "bootstrap_query": "worldline=wl_sur_fyremind_nurture_v0",
+    "default_lane": "hold"
+  },
+  "created_at": "2026-10-20T00:00:00.000Z",
+  "sha256": "15bb7947f305d5ba016d6209f9ec7ea865ab8d37a88797e1fe7374f98d823044"
+}

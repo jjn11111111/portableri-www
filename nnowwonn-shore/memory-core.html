@@ -3,28 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Mirrored front / back cubes · sub-cube filing." />
+  <meta name="description" content="EnterFace filing · device custody slots · no cloud thread." />
   <meta name="theme-color" content="#000000" />
-  <title>Filing field · NOW:WON</title>
+  <title>Filing · NOW:WON</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page-hypercube-lane page-memory-core page-enterface">
   <div class="hypercube-lane-shell memory-core-shell">
     <header class="hypercube-lane-head memory-core-head">
       <a href="forum.html">Forum</a>
-      <span>Front cube · Gate · Back cube</span>
+      <span>Device filing</span>
     </header>
     <p class="hypercube-lane-note memory-core-note">
-      Two mirrored cubes · yours alone on this device. Sub-cubes appear only for custody you have actually opened.
-      At rest the field holds still; move the pointer to feel the hinge, or send/export on Forum to watch front → gate → back → named align with real filing.
+      Your facet on this device only. Front slots light from Forum send and handoffs; back slots from export, Studio, and muscle lanes.
+      Cube graphics are paused while core flows are refined — progress meters below stay in sync with real custody marks.
     </p>
     <div id="filing-tree" class="filing-tree-wrap"></div>
-    <div class="hypercube-lane-slot memory-core-slot" id="memory-core-slot" hidden></div>
   </div>
   <script type="module">
-    import { mountMemoryCoreField } from './js/nw-memory-core.mjs';
     import { renderFilingTree } from './js/nw-filing-tree.mjs';
-    mountMemoryCoreField(document.querySelector('.memory-core-shell'));
     renderFilingTree(document.getElementById('filing-tree'));
   </script>
 </body>

@@ -52,7 +52,7 @@ export function renderFilingTree(root) {
   const filing = getUserFilingExclusive();
   const state = getUserCubeState();
   const primaryLabel =
-    filing.primaryEnd === 'back' ? 'Back cube selected' : 'Front cube selected';
+    filing.primaryEnd === 'back' ? 'Back filing end active' : 'Front filing end active';
 
   const fLevels = levelMap(state.frontSlots);
   const bLevels = levelMap(state.backSlots);
@@ -63,8 +63,8 @@ export function renderFilingTree(root) {
   root.innerHTML =
     `<p class="filing-tree-facet">Your facet · <code>${esc(filing.facet)}</code> · ${esc(primaryLabel)} · this device only</p>` +
     `<div class="filing-tree-grid">` +
-    column('Your front sub-cubes', frontRows, state.frontProgress, 'Send on Forum to light the front cube.') +
-    column('Your back sub-cubes', backRows, state.backProgress, 'Export · 8877 · Muscle to earn the back cube.') +
+    column('Front slots', frontRows, state.frontProgress, 'Send on Forum to mark front custody.') +
+    column('Back slots', backRows, state.backProgress, 'Export · 8877 · Muscle to mark back custody.') +
     `</div>`;
 }
 

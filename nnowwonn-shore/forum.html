@@ -28,7 +28,7 @@
         <button type="button" class="forum-chat-tool" id="forum-save" disabled title="Export last moment">Export</button>
         <button type="button" class="forum-chat-tool" id="forum-lane-a" disabled title="Lane A · Studio @ 8877">8877</button>
         <button type="button" class="forum-chat-tool" id="forum-lane-c" disabled title="Lane C · one compress turn">Muscle</button>
-        <a class="forum-chat-tool" href="memory-core.html" title="Front / back filing field">Filing</a>
+        <a class="forum-chat-tool" href="memory-core.html" title="Device filing slots">Filing</a>
         <a class="forum-chat-tool" href="workbench.html">Workbench</a>
       </nav>
     </header>
@@ -76,13 +76,11 @@
     import { registerEnterFaceShell } from './js/nw-enterface-shell.mjs';
     applyShoreBrand({ page: 'generic' });
     import { runEnterFaceSummon } from './js/nw-face-summon.mjs';
-    import { wireForumChat } from './js/nw-forum-flow.mjs?v=19';
-    import { mountMemoryCoreField } from './js/nw-memory-core.mjs?v=19';
+    import { wireForumChat } from './js/nw-forum-flow.mjs?v=21';
     import { mountEnterFaceLawPanel } from './js/nw-enterface-attributes.mjs?v=19';
 
     registerEnterFaceShell();
     runEnterFaceSummon({ mode: 'hearth' });
-    mountMemoryCoreField(document.querySelector('.forum-chat-layer'));
     mountEnterFaceLawPanel(document.getElementById('forum-law-panel'));
     wireForumChat();
   </script>

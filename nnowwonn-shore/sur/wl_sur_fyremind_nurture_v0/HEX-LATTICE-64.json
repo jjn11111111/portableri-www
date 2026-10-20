@@ -1,0 +1,24 @@
+{
+  "schema": "HEX-LATTICE-64-v1",
+  "N": 6,
+  "vertex_count": 64,
+  "sku": "fyremind-nurture-v0",
+  "default_reply_template": "[FyreMind HEX {{hex}} · dui {{partner}}] Nurture lane · {{body}}",
+  "slots": [
+    {
+      "index": 12,
+      "label": "fou-still",
+      "reply_template": "Fou {{hex}} · Wang dui axis · hold with care: {{body}}"
+    },
+    {
+      "index": 51,
+      "label": "tai-flow",
+      "reply_template": "Tai {{hex}} · complement {{partner}} · grow in place: {{body}}"
+    },
+    {
+      "index": 8,
+      "label": "fyremind-garden",
+      "reply_template": "FyreMind garden gate {{hex}} · dui {{partner}} · {{body}}"
+    }
+  ]
+}

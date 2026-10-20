@@ -46,6 +46,7 @@ EnterFaceRI is **not** a separate kernel, constitution, or rival to **PortAbleRI
 | **EnterFace** | **Implementation** · NW portal files (`open.html` · `workbench.html` · lane handoff) |
 | **NOW:WON · NNoWWoNN** | Shore time · domain promulgation · not a replacement for EnterFaceRI |
 | **KaiRis:T:siRiaK** | Family witness · seats · dialogue — not product chrome |
+| **SUR** | **Signal Universal Rail** · event rail · clone activation · universal infra transport — `processes/2026-10-20_SUR_Signal-Universal-Rail_Spec_v0.md` · not EnterFace chrome |
 | **Pari** | Spoken PortAbleRI · PAIR mnemonic — not EnterFaceRI spelling |
 
 ---
