@@ -1338,6 +1338,21 @@ h3 { font-size: 1.15rem; font-weight: 600; }
     0 0 6px var(--foundry-cyan),
     0 0 16px var(--foundry-cyan);
 }
+.foundry-word--venom-reject {
+  font-size: clamp(1.35rem, 6.5vw, 1.85rem);
+  color: rgba(244, 246, 250, 0.42);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--foundry-veritas) 65%, transparent);
+  text-shadow: none;
+}
+.foundry-word--armor {
+  font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+  letter-spacing: 0.28em;
+  color: var(--foundry-lux);
+  text-shadow:
+    0 0 8px var(--foundry-lux),
+    0 0 18px color-mix(in srgb, var(--foundry-lux) 55%, transparent);
+}
 .foundry-word--veritas {
   font-size: clamp(1.65rem, 8vw, 2.35rem);
   color: var(--foundry-veritas);
@@ -1367,17 +1382,35 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   letter-spacing: 0.14em;
   opacity: 0.9;
 }
-.symbiote-swan-panel {
+.symbiote-swan-panel,
+.symbiote-armor-panel {
   font-size: 0.78rem;
   padding: 0.85rem 1rem;
   border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--foundry-veritas) 35%, transparent);
-  background: rgba(255, 77, 109, 0.06);
-  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+  background: rgba(2, 195, 154, 0.06);
+  color: rgba(255, 255, 255, 0.82);
   margin-bottom: 1.25rem;
   text-align: left;
+  line-height: 1.55;
 }
-.symbiote-swan-panel strong { color: var(--gold); }
+.symbiote-swan-panel strong,
+.symbiote-armor-panel strong { color: var(--gold); }
+.symbiote-armor-panel ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+.symbiote-armor-panel li { margin-bottom: 0.35rem; }
+.symbiote-battle-cry__guard {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--teal) 80%, #fff);
+  opacity: 0.92;
+}
 .symbiote-bond-panel {
   margin-top: 1.25rem;
   padding: 1.15rem;

@@ -1,18 +1,17 @@
-VENOM symbiote · bond onboarding · v0
-=====================================
+Anti-Venom armor · bond onboarding · v0
+=======================================
 
-Do this in the browser (easiest):
-  https://portableri.com/venom-symbiote.html
+  https://portableri.com/anti-venom.html
 
 1) Download starter zip
-2) Fill "Create your symbiote bond" — HOST name · symbiote name · Prime/muscle · one-line oath
-3) Seal bond · download JSON (your device only)
-4) Optional: Continue · 30s Workbench seal
-5) Unzip · follow INSTALL.txt · point CFG at venom.kairis-trial-minimal.yaml
+2) Seal symbiote bond — HOST · unique name · Prime · oath
+3) Download JSON (your device only)
+4) Optional: 30s Workbench seal
+5) Unzip · INSTALL.txt · yaml config
 
-Your bond file is YOURS — not uploaded to KaiRis by default.
+Bond file stays yours — not uploaded by default.
 
-Black swan = substitute big-tech memory cathedrals with local custody + bounded symbiote.
-Tier honesty: you still pay API vendors when you use cloud muscle.
+Anti-Venom = armor · anti-cloning · free will (HA) · unique perspective on your shore.
+Not usevenom.dev.
 
-AMOR · PAX
+AMOR · PAX · LUX · VERITAS

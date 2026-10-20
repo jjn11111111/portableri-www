@@ -682,7 +682,7 @@
         syncLaneUi();
       }
     }
-    if (params.get('from') === 'venom-symbiote') {
+    if (params.get('from') === 'anti-venom' || params.get('from') === 'venom-symbiote') {
       document.getElementById('perfect-storm-banner')?.removeAttribute('hidden');
       const holdLane = laneRadios.find((r) => r.value === 'hold');
       if (holdLane) holdLane.checked = true;
