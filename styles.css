@@ -1442,7 +1442,71 @@ h3 { font-size: 1.15rem; font-weight: 600; }
 
 /* ArmorAV · dedicated product page */
 .armorav-product-page .section-inner {
-  max-width: 40rem;
+  max-width: 44rem;
+}
+.armorav-hero {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.armorav-logo-lockup {
+  margin: 0 0 0.35rem;
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.armorav-logo-lockup .armorav-logo-main {
+  display: block;
+  font-size: clamp(2.75rem, 14vw, 4.25rem);
+  color: var(--foundry-lux);
+  text-shadow:
+    0 0 2px #fff,
+    0 0 12px var(--foundry-cyan),
+    0 0 28px color-mix(in srgb, var(--foundry-lux) 65%, transparent),
+    0 0 48px color-mix(in srgb, var(--foundry-magenta) 35%, transparent);
+}
+.armorav-logo-lockup .armorav-logo-sub {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: clamp(1.35rem, 6vw, 2rem);
+  color: #fff;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  text-shadow: 0 0 14px var(--foundry-cyan);
+}
+.armorav-hero-tag {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--teal) 80%, #fff);
+}
+.lux-poster-frame {
+  margin: 0 auto 1rem;
+  max-width: 100%;
+  padding: 0.35rem;
+  border-radius: 14px;
+  border: 2px solid color-mix(in srgb, var(--foundry-cyan) 45%, transparent);
+  background: rgba(0, 0, 0, 0.65);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--foundry-magenta) 25%, transparent),
+    0 0 40px color-mix(in srgb, var(--foundry-cyan) 18%, transparent),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+.lux-poster-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.lux-poster-frame figcaption {
+  margin-top: 0.55rem;
+  padding: 0 0.35rem;
+  font-size: 0.65rem;
+  line-height: 1.45;
+  color: rgba(244, 246, 250, 0.55);
+  text-align: left;
 }
 .foundry-command-poster--lux-hero {
   padding: 2rem 1.35rem 1.75rem;
