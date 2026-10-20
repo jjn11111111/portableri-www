@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#040408" />
   <link rel="canonical" href="https://portableri.com/anti-venom.html" />
   <title>Anti-Venom armor · Lux et Veritas · PortAbleRI</title>
-  <link rel="stylesheet" href="styles.css?v=21d1890" />
+  <link rel="stylesheet" href="styles.css?v=23c3bc3" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -133,7 +133,7 @@
   <footer class="site-footer">
     <p class="footer-legal-honesty">Bond JSON stays on your device unless you choose to share it. “Anti-Venom” = reject parasitic merge · wear armor · keep HA.</p>
   </footer>
-  <script src="site.js?v=21d1890"></script>
+  <script src="site.js?v=23c3bc3"></script>
   <script>
     (function () {
       var ua = navigator.userAgent || '';
@@ -160,6 +160,7 @@
       function bondPayload() {
         return {
           schema: 'Anti-Venom-Symbiote-Bond-v0',
+          /* anti_separation: product shell fails closed on provider "split" attempts */
           at: new Date().toISOString(),
           host: document.getElementById('bond-host').value.trim(),
           symbiote_name: document.getElementById('bond-symbiote').value.trim(),
@@ -167,6 +168,9 @@
           oath: document.getElementById('bond-oath').value.trim(),
           shore: 'https://portableri.com/anti-venom.html',
           law: 'P≠K≠R · Anti-Venom armor · bounded muscle · local custody · HA',
+          anti_separation: true,
+          pairing_law:
+            'Reject provider-native identity split without HOST ACK · symbiote stays paired to declared seat',
           poster: 'Lux et Veritas · Anti-Venom v0',
         };
       }
