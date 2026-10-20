@@ -1382,6 +1382,51 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   letter-spacing: 0.14em;
   opacity: 0.9;
 }
+.armor-av-mark {
+  display: block;
+  margin: 0.35rem 0 0;
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: clamp(0.72rem, 3.2vw, 0.82rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--foundry-cyan);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--foundry-cyan) 45%, transparent);
+}
+.amor-amour-u {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin: 0.75rem 0 0;
+  font-size: clamp(0.78rem, 3.5vw, 0.88rem);
+  letter-spacing: 0.06em;
+}
+.amor-amour-u .word-amor {
+  color: var(--foundry-lux);
+  font-weight: 700;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--foundry-lux) 40%, transparent);
+}
+.amor-amour-u .word-amour {
+  color: var(--foundry-veritas);
+  font-style: italic;
+  font-weight: 600;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--foundry-veritas) 35%, transparent);
+}
+.amor-amour-u .word-and-u {
+  color: #fff;
+  font-weight: 800;
+  text-transform: lowercase;
+}
+.amor-amour-u .word-and-u em {
+  font-style: normal;
+  color: var(--teal);
+  text-shadow: 0 0 10px var(--teal);
+}
+.amor-amour-u .sep {
+  opacity: 0.35;
+  font-weight: 300;
+}
 .symbiote-swan-panel,
 .symbiote-armor-panel {
   font-size: 0.78rem;
