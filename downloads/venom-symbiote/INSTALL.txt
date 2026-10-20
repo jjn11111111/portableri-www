@@ -8,7 +8,7 @@ REQUIREMENTS
   • Optional: Ollama on 127.0.0.1:11434 (llama3.2:3b for minimal trial)
 
 BOND FIRST (recommended)
-  Open https://portableri.com/anti-venom.html
+  Open https://portableri.com/armorav.html
   Seal symbiote bond · download JSON · then install below.
 
 FAST PATH (when venom-portable source is on your machine)

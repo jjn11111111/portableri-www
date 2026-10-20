@@ -1439,6 +1439,63 @@ h3 { font-size: 1.15rem; font-weight: 600; }
   color: color-mix(in srgb, var(--teal) 75%, #fff);
   font-weight: 700;
 }
+
+/* ArmorAV · dedicated product page */
+.armorav-product-page .section-inner {
+  max-width: 40rem;
+}
+.foundry-command-poster--lux-hero {
+  padding: 2rem 1.35rem 1.75rem;
+  border-width: 3px;
+}
+.foundry-command-poster--lux-hero .foundry-kicker {
+  letter-spacing: 0.18em;
+  margin-bottom: 1rem;
+}
+.foundry-lux-hero-stack {
+  margin: 0.25rem 0 1rem;
+  padding: 0.75rem 0 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--foundry-lux) 25%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--foundry-veritas) 22%, transparent);
+}
+.foundry-product-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin-top: 0.85rem;
+}
+.armorav-steps {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.5rem 0;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .armorav-steps { grid-template-columns: repeat(3, 1fr); }
+}
+.armorav-step {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 4, 8, 0.55);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.armorav-step strong {
+  display: block;
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.armorav-hero-actions {
+  margin: 1.25rem auto 0;
+  max-width: 22rem;
+}
+.armorav-hero-actions .btn { width: 100%; display: flex; justify-content: center; }
 .symbiote-swan-panel,
 .symbiote-armor-panel {
   font-size: 0.78rem;
